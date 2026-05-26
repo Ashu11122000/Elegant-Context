@@ -468,6 +468,173 @@ npm run dev
 
 ---
 
+## Tailwind CSS Setup
+
+This project uses **Tailwind CSS v3** for utility-first modern UI development and premium responsive styling.
+
+### Step 1: Install Tailwind CSS and Required Dependencies
+
+Install Tailwind CSS along with PostCSS and Autoprefixer:
+
+```bash
+npm install -D tailwindcss@3 postcss autoprefixer
+```
+
+---
+
+### Step 2: Initialize Tailwind Configuration
+
+Generate the Tailwind CSS and PostCSS configuration files:
+
+```bash
+npx tailwindcss init -p
+```
+
+This command creates:
+
+```bash
+tailwind.config.js
+postcss.config.js
+```
+
+---
+
+### Step 3: Configure Tailwind CSS
+
+Open the `tailwind.config.js` file and update it with the following configuration:
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        luxury: {
+          black: "#0f0a05",
+          gold: "#d4a24c",
+          cream: "#f8f1e7",
+          brown: "#3b2414",
+          charcoal: "#1f1f1f",
+          platinum: "#e5e4e2",
+        },
+      },
+      fontFamily: {
+        elegant: ["Playfair Display", "serif"],
+        modern: ["Inter", "sans-serif"],
+      },
+      boxShadow: {
+        premium: "0 10px 40px rgba(0, 0, 0, 0.25)",
+      },
+      borderRadius: {
+        premium: "20px",
+      },
+    },
+  },
+  plugins: [],
+};
+```
+
+---
+
+### Step 4: Add Tailwind Directives to Global CSS
+
+Open:
+
+```bash
+src/index.css
+```
+
+Replace existing styles with:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+---
+
+### Step 5: Verify React Entry File
+
+Open:
+
+```bash
+src/main.jsx
+```
+
+Ensure the Tailwind CSS file is imported:
+
+```javascript
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+---
+
+### Step 6: Start Development Server
+
+Run the application:
+
+```bash
+npm run dev
+```
+
+---
+
+### Step 7: Verify Tailwind CSS Installation
+
+Temporarily update `App.jsx` to test Tailwind:
+
+```javascript
+function App() {
+  return (
+    <div className="min-h-screen bg-luxury-black text-luxury-gold flex items-center justify-center">
+      <h1 className="text-5xl font-bold font-elegant">
+        Tailwind CSS v3 Successfully Configured
+      </h1>
+    </div>
+  );
+}
+
+export default App;
+```
+
+If the styled page renders successfully, Tailwind CSS setup is complete.
+
+---
+
+### Tailwind CSS Features Used in This Project
+
+- Utility-first CSS architecture
+- Responsive design breakpoints
+- Flexbox utilities
+- CSS Grid utilities
+- Typography system
+- Spacing scale utilities
+- Color palette customization
+- Custom theme extension
+- Hover and focus state styling
+- Transition and animation utilities
+- Shadow and elevation utilities
+- Layout composition utilities
+- Mobile-first responsive design
+- Reusable component styling patterns
+- Performance-optimized CSS generation
+
+---
+
 ## Current Progress
 
 Completed:
