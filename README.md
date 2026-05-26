@@ -629,292 +629,309 @@ Deliverables:
 ```bash
 Elegant-Context/
 │
+├── .early.coverage/
+├── .vite/
+├── node_modules/
 ├── public/
 │   ├── favicon.ico
 │   ├── preview.png
 │   ├── robots.txt
 │   ├── manifest.json
-│   ├── site.webmanifest
 │   └── placeholder-images/
 │       ├── no-image.png
 │       ├── user-avatar.png
-│       ├── product-placeholder.png
-│       ├── empty-cart.png
-│       ├── empty-wishlist.png
-│       └── not-found.png
+│       └── product-placeholder.png
 │
 ├── src/
 │
 │   ├── api/
-│   │   ├── axiosClient.js
-│   │   ├── productApi.js
 │   │   ├── authApi.js
-│   │   ├── wishlistApi.js
+│   │   ├── axiosClient.js
+│   │   ├── orderApi.js
+│   │   ├── paymentApi.js
+│   │   ├── productApi.js
 │   │   ├── reviewApi.js
-│   │   ├── checkoutApi.js
-│   │   └── searchApi.js
+│   │   └── wishlistApi.js
+│   │
+│   ├── app/
+│   │   └── store.js
 │   │
 │   ├── assets/
-│   │
-│   │   ├── images/
-│   │   │   ├── logo.png
-│   │   │   ├── hero-banner.jpg
-│   │   │   ├── auth-banner.jpg
-│   │   │   ├── cart-banner.jpg
-│   │   │   ├── checkout-banner.jpg
-│   │   │   ├── offer-banner.jpg
-│   │   │   ├── dark-mode-preview.jpg
-│   │   │   ├── empty-state-banner.jpg
-│   │   │   └── category-banners/
-│   │   │       ├── fashion.jpg
-│   │   │       ├── electronics.jpg
-│   │   │       ├── grocery.jpg
-│   │   │       ├── beauty.jpg
-│   │   │       ├── books.jpg
-│   │   │       ├── gaming.jpg
-│   │   │       ├── fitness.jpg
-│   │   │       ├── accessories.jpg
-│   │   │       └── furniture.jpg
+│   │   ├── fonts/
+│   │   │   ├── primary-font/
+│   │   │   └── secondary-font/
 │   │   │
 │   │   ├── icons/
 │   │   │   ├── cart.svg
-│   │   │   ├── heart.svg
-│   │   │   ├── search.svg
-│   │   │   ├── user.svg
-│   │   │   ├── star.svg
-│   │   │   ├── moon.svg
-│   │   │   ├── sun.svg
-│   │   │   ├── menu.svg
 │   │   │   ├── close.svg
 │   │   │   ├── filter.svg
+│   │   │   ├── heart.svg
+│   │   │   ├── loader.svg
+│   │   │   ├── moon.svg
+│   │   │   ├── search.svg
 │   │   │   ├── sort.svg
+│   │   │   ├── star.svg
+│   │   │   ├── sun.svg
 │   │   │   ├── trash.svg
-│   │   │   └── loader.svg
+│   │   │   └── user.svg
 │   │   │
-│   │   └── fonts/
-│   │       ├── Inter-Regular.ttf
-│   │       ├── Inter-Bold.ttf
-│   │       ├── PlayfairDisplay-Regular.ttf
-│   │       └── PlayfairDisplay-Bold.ttf
+│   │   └── images/
+│   │       ├── category-images/
+│   │       ├── auth-banner.jpg
+│   │       ├── cart-banner.jpg
+│   │       ├── checkout-banner.jpg
+│   │       ├── dark-mode-preview.jpg
+│   │       ├── hero-banner.jpg
+│   │       ├── logo.jpg
+│   │       ├── offer-banner.jpg
+│   │       └── state-banner.jpg
 │   │
 │   ├── components/
 │   │
-│   │   ├── common/
-│   │   │   ├── Loader.jsx
-│   │   │   ├── Spinner.jsx
-│   │   │   ├── ErrorMessage.jsx
-│   │   │   ├── EmptyState.jsx
-│   │   │   ├── Skeleton.jsx
-│   │   │   ├── Pagination.jsx
-│   │   │   ├── Breadcrumb.jsx
-│   │   │   ├── SectionHeading.jsx
-│   │   │   ├── NoDataFound.jsx
-│   │   │   └── BackButton.jsx
+│   │   ├── admin/
+│   │   │   ├── DashboardStats.jsx
+│   │   │   ├── InventoryManagement.jsx
+│   │   │   ├── OrderManagement.jsx
+│   │   │   ├── ProductManagement.jsx
+│   │   │   └── UserManagement.jsx
 │   │   │
-│   │   ├── layout/
-│   │   │   ├── Header.jsx
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   ├── Sidebar.jsx
-│   │   │   ├── MobileMenu.jsx
-│   │   │   ├── SearchBar.jsx
-│   │   │   ├── TopBanner.jsx
-│   │   │   └── Layout.jsx
-│   │   │
-│   │   ├── ui/
-│   │   │   ├── Button.jsx
-│   │   │   ├── Card.jsx
-│   │   │   ├── Badge.jsx
-│   │   │   ├── Input.jsx
-│   │   │   ├── Select.jsx
-│   │   │   ├── Checkbox.jsx
-│   │   │   ├── Radio.jsx
-│   │   │   ├── Modal.jsx
-│   │   │   ├── Drawer.jsx
-│   │   │   ├── Tooltip.jsx
-│   │   │   ├── Toast.jsx
-│   │   │   ├── SkeletonCard.jsx
-│   │   │   ├── Tabs.jsx
-│   │   │   ├── ThemeToggle.jsx
-│   │   │   ├── SearchInput.jsx
-│   │   │   ├── PriceTag.jsx
-│   │   │   └── RatingStars.jsx
-│   │   │
-│   │   ├── home/
-│   │   │   ├── HeroSection.jsx
-│   │   │   ├── FeaturedProducts.jsx
-│   │   │   ├── CategoryGrid.jsx
-│   │   │   ├── TrendingProducts.jsx
-│   │   │   ├── BestSellers.jsx
-│   │   │   ├── PromotionalBanner.jsx
-│   │   │   ├── NewsletterSection.jsx
-│   │   │   └── Testimonials.jsx
-│   │   │
-│   │   ├── products/
-│   │   │   ├── ProductCard.jsx
-│   │   │   ├── ProductGrid.jsx
-│   │   │   ├── ProductList.jsx
-│   │   │   ├── ProductDetails.jsx
-│   │   │   ├── ProductGallery.jsx
-│   │   │   ├── ProductInfo.jsx
-│   │   │   ├── ProductTabs.jsx
-│   │   │   ├── SimilarProducts.jsx
-│   │   │   ├── ProductFilters.jsx
-│   │   │   ├── CategorySidebar.jsx
-│   │   │   ├── PriceFilter.jsx
-│   │   │   ├── BrandFilter.jsx
-│   │   │   ├── RatingFilter.jsx
-│   │   │   ├── SortDropdown.jsx
-│   │   │   ├── SearchResults.jsx
-│   │   │   ├── ProductSearch.jsx
-│   │   │   └── FilterPanel.jsx
+│   │   ├── auth/
+│   │   │   ├── AuthCard.jsx
+│   │   │   ├── ForgotPasswordForm.jsx
+│   │   │   ├── LoginForm.jsx
+│   │   │   ├── RegisterForm.jsx
+│   │   │   ├── ResetPasswordForm.jsx
+│   │   │   └── SocialLoginButtons.jsx
 │   │   │
 │   │   ├── cart/
 │   │   │   ├── Cart.jsx
+│   │   │   ├── CartDrawer.jsx
+│   │   │   ├── CartEmptyState.jsx
 │   │   │   ├── CartItem.jsx
 │   │   │   ├── CartSummary.jsx
-│   │   │   ├── CartDrawer.jsx
-│   │   │   ├── QuantitySelector.jsx
+│   │   │   ├── CartTotals.jsx
 │   │   │   ├── CouponBox.jsx
-│   │   │   ├── CartEmptyState.jsx
-│   │   │   └── CartTotals.jsx
-│   │   │
-│   │   ├── wishlist/
-│   │   │   ├── WishlistButton.jsx
-│   │   │   ├── WishlistItem.jsx
-│   │   │   ├── WishlistGrid.jsx
-│   │   │   └── WishlistEmptyState.jsx
-│   │   │
-│   │   ├── auth/
-│   │   │   ├── LoginForm.jsx
-│   │   │   ├── RegisterForm.jsx
-│   │   │   ├── ForgotPasswordForm.jsx
-│   │   │   ├── ResetPasswordForm.jsx
-│   │   │   ├── AuthCard.jsx
-│   │   │   └── SocialLoginButtons.jsx
+│   │   │   └── QuantitySelector.jsx
 │   │   │
 │   │   ├── checkout/
 │   │   │   ├── CheckoutForm.jsx
-│   │   │   ├── ShippingAddress.jsx
-│   │   │   ├── PaymentMethod.jsx
+│   │   │   ├── CheckoutStepper.jsx
 │   │   │   ├── OrderSummary.jsx
+│   │   │   ├── PaymentMethod.jsx
 │   │   │   ├── PlaceOrderButton.jsx
-│   │   │   └── CheckoutStepper.jsx
+│   │   │   └── ShippingAddress.jsx
+│   │   │
+│   │   ├── common/
+│   │   │   ├── BackButton.jsx
+│   │   │   ├── Breadcrumb.jsx
+│   │   │   ├── DiscountBadge.jsx
+│   │   │   ├── EmptyState.jsx
+│   │   │   ├── ErrorMessage.jsx
+│   │   │   ├── Loader.jsx
+│   │   │   ├── NoDataFound.jsx
+│   │   │   ├── Pagination.jsx
+│   │   │   ├── PriceTag.jsx
+│   │   │   ├── RatingStars.jsx
+│   │   │   ├── SectionHeading.jsx
+│   │   │   ├── Skeleton.jsx
+│   │   │   └── Spinner.jsx
+│   │   │
+│   │   ├── home/
+│   │   │   ├── BestSellers.jsx
+│   │   │   ├── CategoryGrid.jsx
+│   │   │   ├── FeaturedProducts.jsx
+│   │   │   ├── HeroSection.jsx
+│   │   │   ├── NewsletterSection.jsx
+│   │   │   ├── PromotionalBanner.jsx
+│   │   │   ├── Testimonials.jsx
+│   │   │   └── TrendingProducts.jsx
+│   │   │
+│   │   ├── layout/
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── Layout.jsx
+│   │   │   ├── MobileMenu.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── SearchBar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── TopBanner.jsx
+│   │   │
+│   │   ├── products/
+│   │   │   ├── BrandFilter.jsx
+│   │   │   ├── CategorySidebar.jsx
+│   │   │   ├── FilterPanel.jsx
+│   │   │   ├── PriceFilter.jsx
+│   │   │   ├── ProductCard.jsx
+│   │   │   ├── ProductDetails.jsx
+│   │   │   ├── ProductFilters.jsx
+│   │   │   ├── ProductGallery.jsx
+│   │   │   ├── ProductGrid.jsx
+│   │   │   ├── ProductInfo.jsx
+│   │   │   ├── ProductList.jsx
+│   │   │   ├── ProductSearch.jsx
+│   │   │   ├── ProductTabs.jsx
+│   │   │   ├── RatingFilter.jsx
+│   │   │   ├── SearchResults.jsx
+│   │   │   ├── SimilarProducts.jsx
+│   │   │   └── SortDropdown.jsx
 │   │   │
 │   │   ├── reviews/
-│   │   │   ├── ReviewCard.jsx
-│   │   │   ├── ReviewList.jsx
-│   │   │   ├── ReviewForm.jsx
 │   │   │   ├── RatingBreakdown.jsx
+│   │   │   ├── ReviewCard.jsx
+│   │   │   ├── ReviewForm.jsx
+│   │   │   ├── ReviewList.jsx
 │   │   │   └── ReviewStars.jsx
 │   │   │
-│   │   └── theme/
-│   │       ├── ThemeProvider.jsx
-│   │       └── ThemeSwitcher.jsx
+│   │   ├── theme/
+│   │   │   ├── ThemeProvider.jsx
+│   │   │   └── ThemeSwitcher.jsx
+│   │   │
+│   │   ├── UI/
+│   │   │   ├── Badge.jsx
+│   │   │   ├── Button.jsx
+│   │   │   ├── Card.jsx
+│   │   │   ├── Checkbox.jsx
+│   │   │   ├── Drawer.jsx
+│   │   │   ├── Input.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── PriceTag.jsx
+│   │   │   ├── Radio.jsx
+│   │   │   ├── RatingStars.jsx
+│   │   │   ├── SearchInput.jsx
+│   │   │   ├── Select.jsx
+│   │   │   ├── SkeletonCard.jsx
+│   │   │   ├── Tabs.jsx
+│   │   │   ├── ThemeToggle.jsx
+│   │   │   ├── Toast.jsx
+│   │   │   └── Tooltip.jsx
+│   │   │
+│   │   └── wishlist/
+│   │       ├── WishlistButton.jsx
+│   │       ├── WishlistEmptyState.jsx
+│   │       ├── WishlistGrid.jsx
+│   │       └── WishlistItem.jsx
 │   │
 │   ├── config/
+│   │   ├── appConfig.js
 │   │   ├── constants.js
-│   │   ├── routes.js
 │   │   ├── env.js
-│   │   ├── theme.js
 │   │   ├── filters.js
-│   │   └── appConfig.js
+│   │   ├── routes.js
+│   │   └── theme.js
 │   │
 │   ├── context/
-│   │   ├── CartContext.jsx
 │   │   ├── AuthContext.jsx
+│   │   ├── CartContext.jsx
 │   │   ├── ThemeContext.jsx
 │   │   └── WishlistContext.jsx
 │   │
 │   ├── data/
-│   │   ├── fashion.js
-│   │   ├── electronics.js
-│   │   ├── grocery.js
+│   │   ├── accessories.js
+│   │   ├── babyProducts.js
 │   │   ├── beauty.js
 │   │   ├── books.js
-│   │   ├── gaming.js
-│   │   ├── furniture.js
+│   │   ├── electronics.js
+│   │   ├── fashion.js
 │   │   ├── fitness.js
-│   │   ├── accessories.js
-│   │   ├── users.js
-│   │   ├── categories.js
+│   │   ├── furniture.js
+│   │   ├── gaming.js
+│   │   ├── grocery.js
+│   │   ├── officeProducts.js
 │   │   └── products.js
 │   │
+│   ├── features/
+│   │   ├── auth/
+│   │   │   ├── authSelectors.js
+│   │   │   └── authSlice.js
+│   │   │
+│   │   ├── cart/
+│   │   │   ├── cartSelectors.js
+│   │   │   └── cartSlice.js
+│   │   │
+│   │   ├── orders/
+│   │   │   ├── orderSelector.jsx
+│   │   │   └── orderSlice.js
+│   │   │
+│   │   └── wishlist/
+│   │       ├── wishlistSelector.js
+│   │       └── wishlistSlice.js
+│   │
 │   ├── hooks/
-│   │   ├── useCart.js
 │   │   ├── useAuth.js
-│   │   ├── useWishlist.js
+│   │   ├── useCart.js
 │   │   ├── useDebounce.js
-│   │   ├── useLocalStorage.js
-│   │   ├── useTheme.js
 │   │   ├── useFetch.js
 │   │   ├── useFilter.js
-│   │   └── useSearch.js
+│   │   ├── useLocalStorage.js
+│   │   ├── useSearch.js
+│   │   ├── useTheme.js
+│   │   └── useWishlist.js
 │   │
 │   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── ProductsPage.jsx
-│   │   ├── ProductDetailsPage.jsx
+│   │   ├── AdminDashboard.jsx
 │   │   ├── CartPage.jsx
-│   │   ├── WishlistPage.jsx
 │   │   ├── CheckoutPage.jsx
-│   │   ├── LoginPage.jsx
-│   │   ├── RegisterPage.jsx
 │   │   ├── ForgotPasswordPage.jsx
-│   │   ├── ResetPasswordPage.jsx
-│   │   ├── ProfilePage.jsx
+│   │   ├── Home.jsx
+│   │   ├── LoginPage.jsx
+│   │   ├── NotFound.jsx
 │   │   ├── OrdersPage.jsx
+│   │   ├── ProductsDetailsPage.jsx
+│   │   ├── ProductsPage.jsx
+│   │   ├── ProfilePage.jsx
+│   │   ├── RegisterPage.jsx
+│   │   ├── ResetPasswordPage.jsx
 │   │   ├── SearchPage.jsx
 │   │   ├── SettingsPage.jsx
-│   │   └── NotFound.jsx
+│   │   └── WishlistPage.jsx
+│   │
+│   ├── redux/
+│   │   └── store.js
 │   │
 │   ├── routes/
+│   │   ├── AdminRoute.jsx
 │   │   ├── AppRoutes.jsx
 │   │   ├── PrivateRoute.jsx
-│   │   ├── PublicRoute.jsx
-│   │   └── AuthRoute.jsx
+│   │   └── PublicRoutes.jsx
 │   │
 │   ├── services/
 │   │   ├── authService.js
 │   │   ├── cartService.js
-│   │   ├── wishlistService.js
 │   │   ├── checkoutService.js
+│   │   ├── orderService.js
+│   │   ├── paymentService.js
 │   │   ├── productService.js
 │   │   ├── reviewService.js
 │   │   ├── searchService.js
-│   │   └── storageService.js
+│   │   ├── storageService.js
+│   │   └── wishlistService.js
 │   │
 │   ├── utils/
-│   │   ├── helpers.js
-│   │   ├── currencyFormatter.js
+│   │   ├── authHelpers.js
 │   │   ├── calculateDiscount.js
-│   │   ├── generateSlug.js
-│   │   ├── validation.js
-│   │   ├── storage.js
+│   │   ├── currencyFormatter.js
 │   │   ├── debounce.js
 │   │   ├── filterProducts.js
+│   │   ├── generateSlug.js
+│   │   ├── helpers.js
 │   │   ├── sortProducts.js
-│   │   └── authHelpers.js
+│   │   ├── storage.js
+│   │   └── validation.js
 │   │
 │   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
+│   ├── index.css
+│   └── main.jsx
 │
 ├── .env
 ├── .env.example
 ├── .gitignore
-├── .prettierrc
-├── .eslintrc.cjs
 ├── index.html
-├── package.json
 ├── package-lock.json
-├── vite.config.js
-├── tailwind.config.js
+├── package.json
 ├── postcss.config.js
-├── eslint.config.js
-├── jsconfig.json
 ├── README.md
-└── LICENSE
+├── tailwind.config.js
+└── vite.config.js
 ```
 
 ---
