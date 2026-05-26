@@ -1542,15 +1542,118 @@ npm install -D @testing-library/user-event
 
 ---
 
-# Environment Configuration
+## Project Development Roadmap
 
-## Step 19 — Create Environment File
+This section outlines the complete implementation roadmap for building Elegant Context from scratch, progressing from beginner-level frontend development to advanced production-style React engineering.
 
-Create:
+---
+
+## Phase 1: Foundation Setup and Project Initialization
+
+### Goal
+
+Establish the initial frontend architecture, development environment, styling system, and scalable project structure.
+
+### Implementation Tasks
+
+- Clean default Vite starter files
+- Remove unused boilerplate code
+- Configure Tailwind CSS
+- Set up global CSS styles
+- Organize project folder structure
+- Add static asset organization
+- Configure environment files
+- Create shared configuration modules
+- Prepare root React entry structure
+
+### Files to Work On
 
 ```bash
+src/main.jsx
+src/App.jsx
+src/index.css
+tailwind.config.js
+postcss.config.js
 .env
+.env.example
+src/config/constants.js
+src/config/env.js
+src/config/appConfig.js
 ```
+
+### What To Implement
+
+#### Application Entry Setup
+Configure the root React rendering logic inside `main.jsx`.
+
+Responsibilities:
+
+- render root application
+- load global CSS
+- wrap providers
+- initialize application bootstrapping
+
+---
+
+#### App Shell Setup
+Create the root application component.
+
+Responsibilities:
+
+- temporary application shell
+- base rendering structure
+- layout placeholder
+
+---
+
+#### Tailwind CSS Configuration
+Configure the Tailwind design system.
+
+Set up:
+
+- custom colors
+- typography
+- spacing
+- border radius
+- shadows
+- breakpoints
+
+---
+
+#### Global CSS Setup
+Configure base styling.
+
+Add:
+
+- CSS reset
+- typography defaults
+- body styles
+- smooth scrolling
+- base theme styling
+
+---
+
+#### Asset Management
+Organize:
+
+```bash
+src/assets/icons/
+src/assets/images/
+src/assets/fonts/
+```
+
+Store:
+
+- SVG icons
+- banners
+- product placeholders
+- brand images
+- font files
+
+---
+
+#### Environment Configuration
+Create environment variables.
 
 Example:
 
@@ -1561,209 +1664,2913 @@ VITE_API_BASE_URL=https://dummyapi.com
 
 ---
 
-## Step 20 — Environment Example File
+### Learning Outcomes
 
-Create:
+This phase covers:
+
+- React project initialization
+- Vite architecture
+- Tailwind CSS setup
+- modular frontend structure
+- environment configuration
+- scalable frontend planning
+
+---
+
+## Phase 2: Layout System Development
+
+### Goal
+
+Build the reusable layout architecture used across the entire application.
+
+### Components To Build
 
 ```bash
-.env.example
+src/components/layout/
 ```
 
-Example:
+Files:
 
-```env
-VITE_APP_NAME=
-VITE_API_BASE_URL=
+```bash
+Header.jsx
+Navbar.jsx
+Footer.jsx
+Layout.jsx
+Sidebar.jsx
+MobileMenu.jsx
+SearchBar.jsx
+TopBanner.jsx
 ```
 
 ---
 
-# Project Scripts
+### Implementation Tasks
 
-Available scripts:
+#### Header
+Build the application header.
 
-## Start Development Server
+Features:
+
+- brand logo
+- navigation shortcuts
+- cart access
+- wishlist access
+- authentication entry
+- responsive layout
+
+---
+
+#### Navbar
+Build desktop navigation.
+
+Features:
+
+- category links
+- hover interactions
+- navigation routing
+
+---
+
+#### Footer
+Build footer layout.
+
+Features:
+
+- informational links
+- copyright
+- navigation shortcuts
+- newsletter area
+
+---
+
+#### Sidebar
+Build collapsible sidebar.
+
+Features:
+
+- category navigation
+- filtering shortcuts
+- mobile access
+
+---
+
+#### Mobile Menu
+Build responsive mobile navigation.
+
+Features:
+
+- hamburger menu
+- collapsible navigation
+- mobile interactions
+
+---
+
+#### Search Bar
+Build reusable search UI.
+
+Features:
+
+- controlled input
+- search query handling
+- responsive placement
+
+---
+
+#### Layout Wrapper
+Build reusable page wrapper.
+
+Structure:
+
+- Header
+- Navbar
+- Main content
+- Footer
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- component composition
+- reusable layout architecture
+- responsive frontend design
+- navigation systems
+- UI structuring
+
+---
+
+## Phase 3: Reusable UI Component System
+
+### Goal
+
+Build a scalable frontend design system using reusable UI primitives.
+
+### Components To Build
 
 ```bash
-npm run dev
+src/components/UI/
+```
+
+Files:
+
+```bash
+Button.jsx
+Card.jsx
+Input.jsx
+Select.jsx
+Checkbox.jsx
+Radio.jsx
+Modal.jsx
+Drawer.jsx
+Tooltip.jsx
+Toast.jsx
+SkeletonCard.jsx
+Tabs.jsx
+ThemeToggle.jsx
+SearchInput.jsx
 ```
 
 ---
 
-## Production Build
+### Implementation Tasks
+
+#### Button Component
+Build reusable button system.
+
+Variants:
+
+- primary
+- secondary
+- outline
+- danger
+- loading
+- disabled
+
+---
+
+#### Card Component
+Reusable content container.
+
+Used for:
+
+- product cards
+- auth cards
+- checkout cards
+- summaries
+
+---
+
+#### Input Component
+Reusable form input.
+
+Features:
+
+- labels
+- validation states
+- helper text
+- error messages
+
+---
+
+#### Select Component
+Reusable dropdown system.
+
+Used for:
+
+- filters
+- sorting
+- forms
+
+---
+
+#### Checkbox and Radio Components
+Reusable form controls.
+
+Used for:
+
+- filters
+- preferences
+- form selection
+
+---
+
+#### Modal Component
+Reusable overlay popup.
+
+Use cases:
+
+- previews
+- confirmations
+- prompts
+
+---
+
+#### Drawer Component
+Sliding panel UI.
+
+Use cases:
+
+- cart drawer
+- mobile sidebar
+
+---
+
+#### Tooltip Component
+Hover information UI.
+
+---
+
+#### Toast Component
+Feedback notification system.
+
+Use cases:
+
+- success messages
+- warnings
+- validation alerts
+
+---
+
+#### Skeleton Components
+Loading placeholders.
+
+Use cases:
+
+- product loading
+- async fetch states
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- reusable component engineering
+- design system architecture
+- component abstraction
+- scalable UI development
+
+---
+
+## Phase 4: Product Data Layer and Utility Architecture
+
+### Goal
+
+Prepare the application's data and utility logic before rendering product interfaces.
+
+### Files To Build
 
 ```bash
-npm run build
+src/data/
+src/utils/
 ```
 
 ---
 
-## Preview Production Build
+### Data Files
 
 ```bash
-npm run preview
+products.js
+fashion.js
+electronics.js
+beauty.js
+books.js
+gaming.js
+grocery.js
+fitness.js
+furniture.js
+accessories.js
 ```
 
 ---
 
-## Run ESLint
+### Utility Files
 
 ```bash
-npm run lint
+currencyFormatter.js
+calculateDiscount.js
+filterProducts.js
+sortProducts.js
+generateSlug.js
+helpers.js
+validation.js
 ```
 
 ---
 
-# Dependency Summary
+### Implementation Tasks
 
-## Production Dependencies
+#### Product Data Management
+Prepare mock product datasets.
+
+Include:
+
+- product title
+- price
+- category
+- brand
+- rating
+- image
+- description
+- stock status
+
+---
+
+#### Category Data
+Create reusable category collections.
+
+---
+
+#### Filtering Logic
+Build filtering helpers.
+
+Features:
+
+- category filtering
+- price filtering
+- brand filtering
+- rating filtering
+
+---
+
+#### Sorting Logic
+Build reusable sorting helpers.
+
+Examples:
+
+- low to high
+- high to low
+- newest
+- top rated
+
+---
+
+#### Currency Formatting
+Create reusable price formatting utility.
+
+---
+
+#### Slug Generation
+Generate SEO-friendly product URLs.
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- modular JavaScript architecture
+- data separation
+- utility abstraction
+- array methods
+- filtering logic
+- sorting logic
+
+---
+
+## Phase 5: Home Page Development
+
+### Goal
+
+Build the storefront landing experience.
+
+### Components To Build
 
 ```bash
-npm install react-router-dom axios react-icons react-toastify framer-motion clsx uuid lodash
+src/components/home/
+```
+
+Files:
+
+```bash
+HeroSection.jsx
+FeaturedProducts.jsx
+CategoryGrid.jsx
+TrendingProducts.jsx
+BestSellers.jsx
+PromotionalBanner.jsx
+NewsletterSection.jsx
+Testimonials.jsx
 ```
 
 ---
 
-## Development Dependencies
+### Implementation Tasks
+
+#### Hero Section
+Build the homepage hero banner.
+
+Features:
+
+- promotional messaging
+- CTA buttons
+- premium visual layout
+
+---
+
+#### Featured Products
+Display highlighted products.
+
+Features:
+
+- dynamic rendering
+- reusable product cards
+
+---
+
+#### Category Grid
+Display shopping categories.
+
+Features:
+
+- category images
+- navigation links
+- responsive layout
+
+---
+
+#### Trending Products
+Show trending collections.
+
+---
+
+#### Best Sellers
+Show top-selling product section.
+
+---
+
+#### Promotional Banner
+Display marketing campaigns.
+
+---
+
+#### Newsletter Section
+Build subscription UI.
+
+Features:
+
+- email input
+- validation
+- CTA interaction
+
+---
+
+#### Testimonials
+Display user review highlights.
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- list rendering
+- props-based architecture
+- reusable product rendering
+- responsive layout engineering
+- premium UI implementation
+
+---
+
+### Expected Outcome After Phase 5
+
+At this stage, the project will include:
+
+- complete application foundation
+- reusable layout architecture
+- scalable UI design system
+- product data architecture
+- functional homepage storefront
+- responsive premium frontend structure
+
+---
+
+## Phase 6: Product Management System
+
+### Goal
+
+Build the complete product browsing and product detail experience.
+
+This phase transforms static homepage sections into a real product browsing system where users can explore products, view detailed information, and navigate categories.
+
+---
+
+### Components To Build
 
 ```bash
-npm install -D tailwindcss@3 postcss autoprefixer eslint prettier eslint-config-prettier
+src/components/products/
+```
+
+Files:
+
+```bash
+ProductCard.jsx
+ProductGrid.jsx
+ProductList.jsx
+ProductDetails.jsx
+ProductGallery.jsx
+ProductInfo.jsx
+ProductTabs.jsx
+SimilarProducts.jsx
+CategorySidebar.jsx
 ```
 
 ---
 
-# Initial Application Verification
+### Implementation Tasks
 
-Run:
+#### Product Card Component
 
-```bash
-npm run dev
-```
+Build reusable product cards.
 
-Expected:
+Features:
 
-- development server starts
-- browser opens
-- Tailwind styles render
-- routing works
-- components load
-- assets display correctly
+- product image
+- product title
+- category
+- pricing
+- discount badge
+- rating
+- wishlist button
+- add to cart button
+- quick product preview
 
----
+Responsibilities:
 
-# Recommended Development Workflow
-
-Step order:
-
-1. clone repository
-2. install dependencies
-3. configure environment
-4. start development server
-5. verify UI rendering
-6. build reusable components
-7. implement routing
-8. integrate Context API
-9. add localStorage persistence
-10. implement search/filter/wishlist/cart
-11. polish UI interactions
-12. optimize architecture
+- reusable rendering
+- responsive layout
+- shared UI consistency
 
 ---
 
-# Common Setup Troubleshooting
+#### Product Grid Component
 
-## Tailwind Styles Not Working
+Build product listing layout.
 
-Fix:
+Features:
+
+- responsive grid
+- multiple products rendering
+- reusable card composition
+
+---
+
+#### Product List Component
+
+Alternative list layout.
+
+Features:
+
+- list-based rendering
+- horizontal product information layout
+- detailed browsing view
+
+---
+
+#### Product Details Page
+
+Build product detail experience.
+
+Features:
+
+- detailed product information
+- pricing details
+- stock status
+- wishlist support
+- add to cart interaction
+- product descriptions
+
+---
+
+#### Product Gallery
+
+Build image preview system.
+
+Features:
+
+- main image preview
+- thumbnail navigation
+- image switching
+
+---
+
+#### Product Information Section
+
+Display:
+
+- title
+- pricing
+- description
+- brand
+- rating
+- stock availability
+
+---
+
+#### Product Tabs
+
+Tabbed interface for:
+
+- description
+- specifications
+- reviews
+- shipping details
+
+---
+
+#### Similar Products
+
+Display related products.
+
+Features:
+
+- dynamic product suggestions
+- category-based matching
+
+---
+
+#### Category Sidebar
+
+Category navigation component.
+
+Features:
+
+- category links
+- quick browsing shortcuts
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- reusable product rendering
+- component composition
+- dynamic UI rendering
+- props-driven architecture
+- product detail UI engineering
+
+---
+
+## Phase 7: Search, Filtering, and Sorting System
+
+### Goal
+
+Build advanced product discovery features.
+
+This phase introduces practical e-commerce functionality where users can efficiently search and filter products.
+
+---
+
+### Components To Build
 
 ```bash
-check tailwind.config.js content paths
+src/components/products/
 ```
 
-Verify:
+Files:
 
 ```bash
-src/index.css includes tailwind directives
+ProductSearch.jsx
+SearchResults.jsx
+ProductFilters.jsx
+FilterPanel.jsx
+PriceFilter.jsx
+BrandFilter.jsx
+RatingFilter.jsx
+SortDropdown.jsx
 ```
 
 ---
 
-## npm Install Errors
-
-Fix:
+### Hooks To Build
 
 ```bash
-delete node_modules
+src/hooks/
 ```
 
-```bash
-delete package-lock.json
-```
-
-Reinstall:
+Files:
 
 ```bash
-npm install
+useSearch.js
+useFilter.js
+useDebounce.js
 ```
 
 ---
 
-## Port Already In Use
-
-Run:
+### Utility Files
 
 ```bash
-npm run dev -- --port 5174
+src/utils/
+```
+
+Files:
+
+```bash
+filterProducts.js
+sortProducts.js
+debounce.js
 ```
 
 ---
 
-## React Router Page Refresh Error
+### Implementation Tasks
 
-Configure deployment fallback routing.
+#### Product Search
+
+Build search functionality.
+
+Features:
+
+- search by product name
+- keyword matching
+- instant filtering
+- search state updates
 
 ---
 
-## ESLint Conflicts
+#### Search Results
 
-Fix:
+Display matched products.
+
+Features:
+
+- dynamic rendering
+- no results fallback
+- responsive layouts
+
+---
+
+#### Debounced Search
+
+Optimize search interactions.
+
+Purpose:
+
+Prevent filtering logic from running on every keystroke.
+
+Implementation:
+
+- debounce user input
+- delay search execution
+
+---
+
+#### Price Filtering
+
+Build pricing filter logic.
+
+Examples:
+
+- under ₹1000
+- ₹1000–₹5000
+- premium range
+
+---
+
+#### Brand Filtering
+
+Allow filtering by:
+
+- product brand
+- multiple brand selection
+
+---
+
+#### Rating Filtering
+
+Allow filtering by:
+
+- 4 stars and above
+- 3 stars and above
+- top-rated only
+
+---
+
+#### Sorting System
+
+Allow sorting:
+
+- price low to high
+- price high to low
+- newest first
+- highest rated
+- alphabetical
+
+---
+
+#### Filter Panel
+
+Reusable filter container.
+
+Features:
+
+- mobile responsiveness
+- grouped filtering controls
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- array filtering
+- array sorting
+- controlled inputs
+- debouncing
+- custom hooks
+- advanced product discovery UX
+
+---
+
+## Phase 8: Shopping Cart System
+
+### Goal
+
+Build centralized shopping cart functionality using global state management.
+
+This phase introduces production-style state architecture.
+
+---
+
+### Context Files
 
 ```bash
-install eslint-config-prettier
+src/context/
+```
+
+Files:
+
+```bash
+CartContext.jsx
 ```
 
 ---
 
-# Frontend Persistence Architecture
+### Hook Files
 
-Elegant Context stores frontend-only user state using browser storage.
+```bash
+src/hooks/
+```
 
-Stored data:
+Files:
+
+```bash
+useCart.js
+```
+
+---
+
+### Components
+
+```bash
+src/components/cart/
+```
+
+Files:
+
+```bash
+Cart.jsx
+CartDrawer.jsx
+CartItem.jsx
+CartSummary.jsx
+CartTotals.jsx
+CouponBox.jsx
+QuantitySelector.jsx
+CartEmptyState.jsx
+```
+
+---
+
+### Pages
+
+```bash
+src/pages/
+```
+
+Files:
+
+```bash
+CartPage.jsx
+```
+
+---
+
+### Implementation Tasks
+
+#### Cart Context
+
+Create centralized cart state.
+
+Responsibilities:
+
+- store cart items
+- add items
+- remove items
+- update quantity
+- clear cart
+
+---
+
+#### Add To Cart Logic
+
+Implement:
+
+- add product
+- prevent duplicate handling
+- quantity merging
+
+---
+
+#### Remove From Cart
+
+Implement:
+
+- item deletion
+- cart synchronization
+
+---
+
+#### Quantity Management
+
+Build quantity controls.
+
+Features:
+
+- increment quantity
+- decrement quantity
+- minimum quantity handling
+
+---
+
+#### Cart Summary
+
+Display:
+
+- subtotal
+- total items
+- discount
+- estimated totals
+
+---
+
+#### Coupon UI
+
+Frontend coupon simulation.
+
+Examples:
+
+- SAVE10
+- WELCOME20
+
+---
+
+#### Cart Drawer
+
+Slide-out cart preview.
+
+Features:
+
+- quick cart access
+- mini summary
+- checkout shortcut
+
+---
+
+#### Cart Empty State
+
+Fallback UI for empty cart.
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- Context API
+- shared state architecture
+- global state synchronization
+- derived state
+- cart business logic
+
+---
+
+## Phase 9: Wishlist System
+
+### Goal
+
+Build wishlist functionality with shared state persistence.
+
+This phase expands global state architecture.
+
+---
+
+### Context Files
+
+```bash
+src/context/
+```
+
+Files:
+
+```bash
+WishlistContext.jsx
+```
+
+---
+
+### Hook Files
+
+```bash
+src/hooks/
+```
+
+Files:
+
+```bash
+useWishlist.js
+```
+
+---
+
+### Components
+
+```bash
+src/components/wishlist/
+```
+
+Files:
+
+```bash
+WishlistButton.jsx
+WishlistGrid.jsx
+WishlistItem.jsx
+WishlistEmptyState.jsx
+```
+
+---
+
+### Pages
+
+```bash
+src/pages/
+```
+
+Files:
+
+```bash
+WishlistPage.jsx
+```
+
+---
+
+### Implementation Tasks
+
+#### Wishlist Context
+
+Manage wishlist state.
+
+Responsibilities:
+
+- add products
+- remove products
+- check existing products
+- synchronize UI
+
+---
+
+#### Wishlist Button
+
+Reusable toggle interaction.
+
+States:
+
+- added
+- not added
+
+---
+
+#### Wishlist Grid
+
+Display saved products.
+
+---
+
+#### Wishlist Empty State
+
+Fallback UI.
+
+---
+
+#### Product Integration
+
+Connect wishlist with:
+
+- ProductCard
+- ProductDetails
+- SimilarProducts
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- shared global state
+- reusable hooks
+- state synchronization
+- UI state feedback
+
+---
+
+## Phase 10: Persistence Layer
+
+### Goal
+
+Persist frontend user state across browser refreshes.
+
+Without persistence, all cart and user actions reset.
+
+This phase creates production-style frontend continuity.
+
+---
+
+### Files To Build
+
+```bash
+src/hooks/useLocalStorage.js
+src/services/storageService.js
+src/utils/storage.js
+```
+
+---
+
+### Persistence Targets
+
+Store:
 
 - cart state
 - wishlist state
+- authentication state
 - theme preference
-- auth session
+- search preferences
 
-Storage format:
+---
+
+### Implementation Tasks
+
+#### localStorage Hook
+
+Build reusable storage hook.
+
+Responsibilities:
+
+- read stored data
+- write updates
+- remove keys
+- handle parsing safely
+
+---
+
+#### Cart Persistence
+
+Persist:
+
+- cart items
+- quantities
+- totals
+
+Behavior:
+
+- restore cart on refresh
+
+---
+
+#### Wishlist Persistence
+
+Persist:
+
+- saved wishlist items
+
+Behavior:
+
+- restore user selections
+
+---
+
+#### Authentication Persistence
+
+Persist:
+
+- mock login state
+- user session details
+
+Behavior:
+
+- auto session restoration
+
+---
+
+#### Theme Persistence
+
+Persist:
+
+- dark mode
+- light mode
+
+Behavior:
+
+- restore theme automatically
+
+---
+
+#### Safe Storage Handling
+
+Handle:
+
+- invalid JSON
+- missing values
+- corrupted storage entries
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- browser storage
+- JSON serialization
+- hydration logic
+- persistence architecture
+- reusable storage abstractions
+
+---
+
+### Expected Outcome After Phase 10
+
+At this stage, the application includes:
+
+- complete product browsing system
+- advanced search functionality
+- filtering system
+- sorting system
+- centralized shopping cart
+- wishlist functionality
+- persistent frontend state
+- production-style state architecture
+
+---
+
+## Phase 11: Authentication System
+
+### Goal
+
+Build a frontend authentication system to simulate real-world user access workflows.
+
+This phase focuses on authentication UI, form handling, protected access, session persistence, and authentication state management.
+
+Even without backend integration, implementing authentication workflows demonstrates strong frontend engineering skills.
+
+---
+
+### Components To Build
+
+```bash
+src/components/auth/
+```
+
+Files:
+
+```bash
+AuthCard.jsx
+LoginForm.jsx
+RegisterForm.jsx
+ForgotPasswordForm.jsx
+ResetPasswordForm.jsx
+SocialLoginButtons.jsx
+```
+
+---
+
+### Context Files
+
+```bash
+src/context/
+```
+
+Files:
+
+```bash
+AuthContext.jsx
+```
+
+---
+
+### Hook Files
+
+```bash
+src/hooks/
+```
+
+Files:
+
+```bash
+useAuth.js
+```
+
+---
+
+### Pages
+
+```bash
+src/pages/
+```
+
+Files:
+
+```bash
+LoginPage.jsx
+RegisterPage.jsx
+ForgotPasswordPage.jsx
+ResetPasswordPage.jsx
+ProfilePage.jsx
+```
+
+---
+
+### Utility Files
+
+```bash
+src/utils/
+```
+
+Files:
+
+```bash
+validation.js
+authHelpers.js
+```
+
+---
+
+### Service Files
+
+```bash
+src/services/
+```
+
+Files:
+
+```bash
+authService.js
+```
+
+---
+
+### Implementation Tasks
+
+#### Authentication Context
+
+Create centralized authentication state.
+
+Responsibilities:
+
+- login state management
+- logout functionality
+- user session handling
+- authentication synchronization
+- persistence restoration
+
+---
+
+#### Login Form
+
+Build login interface.
+
+Features:
+
+- email input
+- password input
+- validation
+- remember me checkbox
+- login submission
+- error messaging
+
+Validation examples:
+
+- required fields
+- valid email format
+- password minimum length
+
+---
+
+#### Register Form
+
+Build registration interface.
+
+Features:
+
+- full name input
+- email
+- password
+- confirm password
+- validation
+- account creation simulation
+
+Validation examples:
+
+- matching passwords
+- password rules
+- valid email checks
+
+---
+
+#### Forgot Password Form
+
+Build password recovery interface.
+
+Features:
+
+- email input
+- reset simulation
+- validation feedback
+
+---
+
+#### Reset Password Form
+
+Build password reset interface.
+
+Features:
+
+- new password
+- confirm password
+- validation
+
+---
+
+#### Social Login Buttons
+
+Frontend-only simulated buttons.
+
+Examples:
+
+- Google login
+- GitHub login
+- Facebook login
+
+---
+
+#### Authentication Helpers
+
+Create helper utilities.
+
+Examples:
+
+- token generation simulation
+- auth validation helpers
+- session formatting
+
+---
+
+#### Authentication Service
+
+Separate auth logic.
+
+Responsibilities:
+
+- login simulation
+- logout workflows
+- registration simulation
+- session retrieval
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- controlled forms
+- validation architecture
+- authentication workflows
+- global auth state
+- frontend session persistence
+- reusable auth abstractions
+
+---
+
+## Phase 12: Routing Architecture
+
+### Goal
+
+Convert the application into a scalable multi-page React application.
+
+This phase introduces route management, protected navigation, route guards, and production-style navigation architecture.
+
+---
+
+### Files To Build
+
+```bash
+src/routes/
+```
+
+Files:
+
+```bash
+AppRoutes.jsx
+PrivateRoute.jsx
+PublicRoutes.jsx
+AdminRoute.jsx
+```
+
+---
+
+### Pages To Integrate
+
+```bash
+Home.jsx
+ProductsPage.jsx
+ProductsDetailsPage.jsx
+CartPage.jsx
+WishlistPage.jsx
+CheckoutPage.jsx
+LoginPage.jsx
+RegisterPage.jsx
+ForgotPasswordPage.jsx
+ResetPasswordPage.jsx
+ProfilePage.jsx
+OrdersPage.jsx
+SearchPage.jsx
+SettingsPage.jsx
+AdminDashboard.jsx
+NotFound.jsx
+```
+
+---
+
+### Implementation Tasks
+
+#### React Router Setup
+
+Configure:
+
+- BrowserRouter
+- Routes
+- Route definitions
+- nested layouts
+
+Purpose:
+
+Enable proper multi-page navigation.
+
+---
+
+#### App Routes
+
+Central route definitions.
+
+Examples:
+
+- /
+- /products
+- /products/:slug
+- /cart
+- /wishlist
+- /checkout
+- /login
+- /register
+- /profile
+- /orders
+- /settings
+
+---
+
+#### Private Route
+
+Protect authenticated pages.
+
+Protected pages:
+
+- cart
+- wishlist
+- checkout
+- profile
+- orders
+
+Behavior:
+
+redirect unauthenticated users.
+
+---
+
+#### Public Routes
+
+Control guest-only access.
+
+Examples:
+
+- login
+- register
+- forgot password
+
+Behavior:
+
+redirect logged-in users away.
+
+---
+
+#### Admin Route
+
+Simulated admin-only access.
+
+Examples:
+
+- dashboard
+- product management
+- inventory management
+
+---
+
+#### Not Found Route
+
+Fallback page:
+
+404 page handling.
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- React Router DOM
+- route architecture
+- protected navigation
+- conditional redirects
+- scalable page architecture
+
+---
+
+## Phase 13: Checkout System
+
+### Goal
+
+Build the frontend checkout workflow.
+
+This phase simulates order completion, checkout steps, and order summaries.
+
+---
+
+### Components To Build
+
+```bash
+src/components/checkout/
+```
+
+Files:
+
+```bash
+CheckoutForm.jsx
+CheckoutStepper.jsx
+ShippingAddress.jsx
+PaymentMethod.jsx
+OrderSummary.jsx
+PlaceOrderButton.jsx
+```
+
+---
+
+### Pages
+
+```bash
+CheckoutPage.jsx
+OrdersPage.jsx
+```
+
+---
+
+### Service Files
+
+```bash
+checkoutService.js
+orderService.js
+paymentService.js
+```
+
+---
+
+### Implementation Tasks
+
+#### Checkout Form
+
+Build checkout container.
+
+Sections:
+
+- shipping
+- payment
+- summary
+- confirmation
+
+---
+
+#### Shipping Address
+
+Build address form.
+
+Fields:
+
+- full name
+- mobile number
+- address line
+- city
+- state
+- postal code
+- country
+
+Validation:
+
+- required fields
+- format checks
+
+---
+
+#### Payment Method
+
+Frontend payment simulation.
+
+Options:
+
+- credit card
+- debit card
+- UPI
+- cash on delivery
+- net banking
+
+---
+
+#### Order Summary
+
+Display:
+
+- selected products
+- quantities
+- subtotal
+- shipping charges
+- taxes
+- discount
+- final total
+
+---
+
+#### Checkout Stepper
+
+Visual checkout progress.
+
+Steps:
+
+- cart
+- shipping
+- payment
+- review
+- confirmation
+
+---
+
+#### Place Order Button
+
+Simulated order completion.
+
+Behavior:
+
+- validation
+- loading state
+- success feedback
+
+---
+
+#### Orders Page
+
+Display simulated order history.
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- form architecture
+- state sharing
+- derived totals
+- checkout UX engineering
+- order workflow simulation
+
+---
+
+## Phase 14: Theme System
+
+### Goal
+
+Build dark mode and light mode support.
+
+Modern applications require persistent theme customization.
+
+---
+
+### Files To Build
+
+```bash
+src/context/ThemeContext.jsx
+src/components/theme/ThemeProvider.jsx
+src/components/theme/ThemeSwitcher.jsx
+src/hooks/useTheme.js
+```
+
+---
+
+### Implementation Tasks
+
+#### Theme Context
+
+Manage:
+
+- active theme
+- toggle logic
+- persistence state
+
+---
+
+#### Theme Switcher
+
+Build UI toggle.
+
+Features:
+
+- icon switching
+- instant UI updates
+- state feedback
+
+---
+
+#### Theme Persistence
+
+Store preference in:
 
 ```javascript
 localStorage
 ```
 
-Example:
+Behavior:
 
-```javascript
-localStorage.setItem("cart", JSON.stringify(cart));
+restore user preference automatically.
+
+---
+
+#### Tailwind Theme Integration
+
+Support:
+
+- dark mode classes
+- theme utilities
+- dynamic styling
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- Context API
+- global UI state
+- theme persistence
+- UI customization architecture
+
+---
+
+## Phase 15: User Experience Engineering
+
+### Goal
+
+Polish the application with production-quality frontend UX features.
+
+This phase transforms a functional application into a polished professional product.
+
+---
+
+### Components To Build
+
+```bash
+src/components/common/
+src/components/UI/
 ```
 
-Restore:
+Examples:
 
-```javascript
-JSON.parse(localStorage.getItem("cart"));
+```bash
+Loader.jsx
+Spinner.jsx
+Skeleton.jsx
+EmptyState.jsx
+ErrorMessage.jsx
+Toast.jsx
+Tooltip.jsx
+Modal.jsx
+Drawer.jsx
+NoDataFound.jsx
 ```
 
-This enables persistent frontend user experience without backend integration.
+---
+
+### Implementation Tasks
+
+#### Loading States
+
+Build visual loading indicators.
+
+Examples:
+
+- product loading
+- auth loading
+- checkout loading
+
+---
+
+#### Skeleton Loading
+
+Build loading placeholders.
+
+Use cases:
+
+- product cards
+- cart sections
+- checkout sections
+
+---
+
+#### Empty States
+
+Fallback UI for:
+
+- empty cart
+- empty wishlist
+- no search results
+- no orders
+
+---
+
+#### Error Handling UI
+
+Display:
+
+- validation errors
+- API simulation errors
+- fallback messages
+
+---
+
+#### Toast Notifications
+
+Use cases:
+
+- add to cart success
+- remove item success
+- wishlist updates
+- auth alerts
+- order success
+
+---
+
+#### Tooltip Enhancements
+
+Contextual hover guidance.
+
+---
+
+#### Drawer Interactions
+
+Polish:
+
+- cart drawer
+- sidebar drawer
+
+---
+
+#### Modal Enhancements
+
+Use cases:
+
+- confirmations
+- previews
+- warnings
+
+---
+
+#### Responsive UX Optimization
+
+Ensure:
+
+- mobile layouts
+- tablet layouts
+- desktop responsiveness
+
+---
+
+#### Animation Integration
+
+Use Framer Motion for:
+
+- transitions
+- drawer movement
+- hover interactions
+- page animations
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- production UX design
+- feedback systems
+- loading architecture
+- responsive engineering
+- animation integration
+
+---
+
+### Expected Outcome After Phase 15
+
+At this stage, the application includes:
+
+- authentication system
+- protected routes
+- complete checkout flow
+- theme management
+- premium user experience
+- production-quality frontend workflows
+
+---
+
+## Phase 16: Services Layer Architecture
+
+### Goal
+
+Build a scalable frontend business logic layer that separates UI components from application logic.
+
+In production applications, components should focus on rendering UI while services handle business workflows, transformations, storage coordination, and simulated API communication.
+
+This phase introduces proper separation of concerns.
+
+---
+
+### Files To Build
+
+```bash
+src/services/
+```
+
+Files:
+
+```bash
+authService.js
+cartService.js
+checkoutService.js
+orderService.js
+paymentService.js
+productService.js
+reviewService.js
+searchService.js
+storageService.js
+wishlistService.js
+```
+
+---
+
+### Implementation Tasks
+
+#### Product Service
+
+Build product-related logic abstraction.
+
+Responsibilities:
+
+- fetch product datasets
+- search products
+- filter products
+- sort products
+- fetch product details
+- fetch similar products
+- category lookups
+
+Purpose:
+
+Avoid placing product logic directly inside UI components.
+
+---
+
+#### Cart Service
+
+Build cart business logic.
+
+Responsibilities:
+
+- add product
+- remove product
+- update quantity
+- calculate subtotal
+- calculate totals
+- apply coupons
+- clear cart
+
+Purpose:
+
+Centralize cart logic.
+
+---
+
+#### Wishlist Service
+
+Build wishlist logic.
+
+Responsibilities:
+
+- add wishlist item
+- remove wishlist item
+- check saved products
+- synchronize wishlist state
+
+---
+
+#### Authentication Service
+
+Build auth workflows.
+
+Responsibilities:
+
+- login simulation
+- logout workflows
+- register simulation
+- reset password simulation
+- session restoration
+
+---
+
+#### Checkout Service
+
+Build checkout business logic.
+
+Responsibilities:
+
+- validate checkout forms
+- prepare checkout summary
+- process simulated order placement
+
+---
+
+#### Payment Service
+
+Simulate payment workflows.
+
+Responsibilities:
+
+- payment validation
+- method selection
+- mock payment success/failure
+
+---
+
+#### Search Service
+
+Centralize search logic.
+
+Responsibilities:
+
+- keyword matching
+- product query filtering
+- autocomplete preparation
+
+---
+
+#### Review Service
+
+Simulate review workflows.
+
+Responsibilities:
+
+- fetch reviews
+- submit review simulation
+- rating aggregation
+
+---
+
+#### Storage Service
+
+Centralize local storage workflows.
+
+Responsibilities:
+
+- save state
+- load state
+- clear keys
+- parse stored JSON safely
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- service-layer architecture
+- separation of concerns
+- business logic abstraction
+- scalable frontend engineering
+- maintainable project organization
+
+---
+
+## Phase 17: Custom Hooks Architecture
+
+### Goal
+
+Build reusable logic abstractions using React custom hooks.
+
+This phase improves code reuse and removes duplicated logic from components.
+
+---
+
+### Files To Build
+
+```bash
+src/hooks/
+```
+
+Files:
+
+```bash
+useAuth.js
+useCart.js
+useDebounce.js
+useFetch.js
+useFilter.js
+useLocalStorage.js
+useSearch.js
+useTheme.js
+useWishlist.js
+```
+
+---
+
+### Implementation Tasks
+
+#### useAuth Hook
+
+Responsibilities:
+
+- access auth context
+- login helpers
+- logout helpers
+- session checks
+
+Purpose:
+
+Simplify authentication access.
+
+---
+
+#### useCart Hook
+
+Responsibilities:
+
+- add to cart
+- remove from cart
+- quantity management
+- cart calculations
+
+Purpose:
+
+Cleaner cart integration.
+
+---
+
+#### useWishlist Hook
+
+Responsibilities:
+
+- wishlist state access
+- add/remove workflows
+
+Purpose:
+
+Reusable wishlist access.
+
+---
+
+#### useTheme Hook
+
+Responsibilities:
+
+- theme access
+- theme switching
+- preference persistence
+
+---
+
+#### useLocalStorage Hook
+
+Responsibilities:
+
+- save data
+- retrieve data
+- remove data
+- synchronize stored state
+
+---
+
+#### useDebounce Hook
+
+Responsibilities:
+
+- delay expensive actions
+- optimize search input
+
+Use cases:
+
+- search
+- filtering
+- autosuggestions
+
+---
+
+#### useFilter Hook
+
+Responsibilities:
+
+- reusable filtering logic
+- dynamic product filtering
+
+---
+
+#### useSearch Hook
+
+Responsibilities:
+
+- search query management
+- keyword matching
+- result synchronization
+
+---
+
+#### useFetch Hook
+
+Responsibilities:
+
+- async data handling
+- loading states
+- error states
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- reusable React logic
+- abstraction architecture
+- hook patterns
+- frontend maintainability
+- advanced React engineering
+
+---
+
+## Phase 18: Performance Optimization
+
+### Goal
+
+Improve application performance and responsiveness.
+
+This phase introduces optimization strategies used in production React applications.
+
+---
+
+### Optimization Areas
+
+- rendering performance
+- bundle optimization
+- route loading
+- expensive calculation control
+- re-render prevention
+
+---
+
+### Implementation Tasks
+
+#### React.memo
+
+Use for:
+
+- product cards
+- reusable UI components
+- expensive child renders
+
+Purpose:
+
+Prevent unnecessary re-renders.
+
+---
+
+#### useMemo
+
+Use for:
+
+- filtered products
+- sorted products
+- calculated totals
+- expensive transformations
+
+Purpose:
+
+Memoize expensive calculations.
+
+---
+
+#### useCallback
+
+Use for:
+
+- event handlers
+- prop callbacks
+- reusable actions
+
+Purpose:
+
+Prevent callback recreation.
+
+---
+
+#### Lazy Loading
+
+Use React lazy loading.
+
+Examples:
+
+- CheckoutPage
+- WishlistPage
+- ProductDetailsPage
+- AdminDashboard
+
+Purpose:
+
+Reduce initial bundle size.
+
+---
+
+#### Code Splitting
+
+Split:
+
+- route bundles
+- heavy UI modules
+
+Purpose:
+
+Improve initial loading speed.
+
+---
+
+#### Debounced Search Optimization
+
+Prevent repeated filtering on every keystroke.
+
+---
+
+#### Image Optimization
+
+Improve:
+
+- product images
+- banners
+- placeholders
+
+Techniques:
+
+- compressed assets
+- lazy image loading
+- responsive image sizing
+
+---
+
+#### State Optimization
+
+Reduce:
+
+- duplicated state
+- redundant derived calculations
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- React optimization
+- rendering efficiency
+- memoization
+- lazy loading
+- bundle optimization
+- scalable performance engineering
+
+---
+
+## Phase 19: Refactoring and Production Cleanup
+
+### Goal
+
+Refactor the project into production-quality frontend architecture.
+
+This phase focuses on maintainability, readability, and engineering polish.
+
+---
+
+### Implementation Tasks
+
+#### Folder Cleanup
+
+Ensure:
+
+- consistent naming
+- logical grouping
+- feature separation
+
+---
+
+#### Component Refactoring
+
+Improve:
+
+- readability
+- reusability
+- modularity
+
+Split oversized components.
+
+---
+
+#### Utility Refactoring
+
+Move repeated logic into:
+
+```bash
+src/utils/
+```
+
+Examples:
+
+- formatting
+- filtering
+- validation
+- calculations
+
+---
+
+#### Hook Refactoring
+
+Move reusable logic into:
+
+```bash
+src/hooks/
+```
+
+---
+
+#### Service Refactoring
+
+Move business logic into:
+
+```bash
+src/services/
+```
+
+---
+
+#### Configuration Refactoring
+
+Move constants into:
+
+```bash
+src/config/
+```
+
+Examples:
+
+- routes
+- theme config
+- filters
+- environment configs
+
+---
+
+#### Naming Consistency
+
+Standardize:
+
+- component names
+- file names
+- folder names
+- variable naming
+- hook naming
+
+---
+
+#### Dead Code Removal
+
+Remove:
+
+- unused imports
+- experimental code
+- duplicated helpers
+- abandoned components
+
+---
+
+#### ESLint Cleanup
+
+Fix:
+
+- lint warnings
+- syntax inconsistencies
+- formatting mismatches
+
+---
+
+#### Prettier Formatting
+
+Standardize formatting across the codebase.
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- code maintainability
+- frontend architecture refinement
+- engineering discipline
+- production code organization
+
+---
+
+## Phase 20: Final Testing, Build, and Deployment
+
+### Goal
+
+Prepare the project for production release and public portfolio visibility.
+
+---
+
+### Implementation Tasks
+
+#### Manual Frontend Testing
+
+Test all flows:
+
+- navigation
+- cart workflows
+- wishlist workflows
+- authentication flows
+- checkout workflows
+- responsive layouts
+- theme switching
+- search/filtering
+
+---
+
+#### Edge Case Testing
+
+Test:
+
+- empty cart
+- empty wishlist
+- invalid auth input
+- invalid checkout input
+- no search results
+- broken storage data
+
+---
+
+#### Build Verification
+
+Run:
+
+```bash
+npm run build
+```
+
+Verify:
+
+- successful compilation
+- no production errors
+- optimized assets
+
+---
+
+#### Preview Production Build
+
+Run:
+
+```bash
+npm run preview
+```
+
+Purpose:
+
+Test real production behavior locally.
+
+---
+
+#### Lint Verification
+
+Run:
+
+```bash
+npm run lint
+```
+
+Purpose:
+
+Ensure code quality.
+
+---
+
+#### Final README Documentation
+
+Update:
+
+- project overview
+- features
+- folder structure
+- installation guide
+- screenshots
+- deployment link
+
+---
+
+#### GitHub Repository Cleanup
+
+Ensure:
+
+- clean commits
+- proper README
+- .gitignore correctness
+- organized project structure
+
+---
+
+#### Deployment
+
+Frontend deployment platforms:
+
+- Vercel
+- Netlify
+- GitHub Pages
+- Firebase Hosting
+
+Deployment goals:
+
+- public portfolio access
+- recruiter visibility
+- production testing
+
+---
+
+#### Portfolio Integration
+
+Add:
+
+- GitHub repository
+- live deployed link
+- screenshots
+- project description
+
+---
+
+### Learning Outcomes
+
+This phase covers:
+
+- deployment workflows
+- production build verification
+- frontend release preparation
+- testing discipline
+- portfolio readiness
+
+---
+
+## Expected Final Outcome
+
+After completing all 20 phases, Elegant Context will include:
+
+### Frontend Features
+
+- responsive storefront
+- product listing
+- product details
+- search
+- filtering
+- sorting
+- wishlist
+- cart system
+- checkout flow
+- authentication UI
+- protected routes
+- theme switching
+- persistent frontend state
+- reusable design system
+- premium UX enhancements
+
+---
+
+### Architecture Features
+
+- scalable folder structure
+- Context API state management
+- custom hooks
+- service layer abstraction
+- utility architecture
+- config-driven application setup
+- reusable component system
+
+---
+
+### Engineering Skills Demonstrated
+
+- HTML5
+- CSS3
+- Tailwind CSS
+- JavaScript ES6+
+- React.js
+- React Router DOM
+- Context API
+- Custom Hooks
+- localStorage persistence
+- component architecture
+- frontend performance optimization
+- deployment workflows
+- scalable frontend engineering
+
+---
+
+## Final Project Status
+
+Elegant Context becomes a production-style frontend e-commerce application suitable for:
+
+- portfolio showcase
+- internship applications
+- frontend developer resumes
+- React interview discussions
+- advanced frontend learning
 
 ---
 
