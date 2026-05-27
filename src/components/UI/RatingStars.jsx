@@ -14,52 +14,103 @@ function RatingStars({
   className = "",
 }) {
   const sizeClasses = {
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-lg",
+    sm: {
+      stars: "text-sm",
+      badge: "text-xs px-2 py-1",
+      meta: "text-xs",
+    },
+    md: {
+      stars: "text-base",
+      badge: "text-sm px-2.5 py-1",
+      meta: "text-sm",
+    },
+    lg: {
+      stars: "text-lg",
+      badge: "text-base px-3 py-1.5",
+      meta: "text-base",
+    },
   };
 
-  const renderStars = () => {
-    return Array.from({ length: maxRating }, (_, index) => {
-      const starNumber = index + 1;
+  const selectedSize =
+    sizeClasses[size] || sizeClasses.md;
 
-      if (rating >= starNumber) {
-        return <FaStar key={starNumber} />;
+  const safeRating = Math.max(
+    0,
+    Math.min(rating, maxRating)
+  );
+
+  const renderStars = () =>
+    Array.from(
+      { length: maxRating },
+      (_, index) => {
+        const starNumber = index + 1;
+
+        if (safeRating >= starNumber) {
+          return (
+            <FaStar
+              key={starNumber}
+              className="drop-shadow-[0_0_4px_rgba(237,191,104,0.35)]"
+            />
+          );
+        }
+
+        if (safeRating >= starNumber - 0.5) {
+          return (
+            <FaStarHalfAlt
+              key={starNumber}
+              className="drop-shadow-[0_0_4px_rgba(237,191,104,0.35)]"
+            />
+          );
+        }
+
+        return (
+          <FaRegStar
+            key={starNumber}
+            className="text-white/20"
+          />
+        );
       }
-
-      if (rating >= starNumber - 0.5) {
-        return <FaStarHalfAlt key={starNumber} />;
-      }
-
-      return <FaRegStar key={starNumber} />;
-    });
-  };
+    );
 
   return (
     <div
       className={[
-        "flex items-center gap-2",
+        "flex flex-wrap items-center gap-3",
         className,
       ].join(" ")}
     >
+      {/* Stars */}
       <div
         className={[
-          "flex items-center text-[#edbf68]",
-          sizeClasses[size],
+          "flex items-center gap-1 text-[#edbf68]",
+          selectedSize.stars,
         ].join(" ")}
+        aria-label={`Rated ${safeRating} out of ${maxRating}`}
       >
         {renderStars()}
       </div>
 
+      {/* Rating value */}
       {showValue && (
-        <span className="text-sm font-medium text-[#f8f3e9]">
-          {rating.toFixed(1)}
+        <span
+          className={[
+            "inline-flex items-center rounded-full border border-[#edbf68]/20 bg-white/5 font-semibold text-[#f8f3e9] shadow-sm backdrop-blur-sm",
+            selectedSize.badge,
+          ].join(" ")}
+        >
+          {safeRating.toFixed(1)}
         </span>
       )}
 
+      {/* Review count */}
       {typeof reviewCount === "number" && (
-        <span className="text-sm text-[#cbbd9b]">
-          ({reviewCount})
+        <span
+          className={[
+            "font-medium tracking-wide text-[#cbbd9b]",
+            selectedSize.meta,
+          ].join(" ")}
+        >
+          ({reviewCount.toLocaleString()} reviews)
         </span>
       )}
     </div>
@@ -70,7 +121,11 @@ RatingStars.propTypes = {
   rating: PropTypes.number,
   maxRating: PropTypes.number,
   reviewCount: PropTypes.number,
-  size: PropTypes.oneOf(["sm", "md", "lg"]),
+  size: PropTypes.oneOf([
+    "sm",
+    "md",
+    "lg",
+  ]),
   showValue: PropTypes.bool,
   className: PropTypes.string,
 };

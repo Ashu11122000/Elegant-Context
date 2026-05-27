@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import {
   FaCheckCircle,
   FaExclamationCircle,
+  FaExclamationTriangle,
   FaInfoCircle,
   FaTimes,
-  FaExclamationTriangle,
 } from "react-icons/fa";
 
 function Toast({
@@ -21,11 +21,13 @@ function Toast({
       return undefined;
     }
 
-    const timer = setTimeout(() => {
-      onClose();
+    const timer = window.setTimeout(() => {
+      if (typeof onClose === "function") {
+        onClose();
+      }
     }, duration);
 
-    return () => clearTimeout(timer);
+    return () => window.clearTimeout(timer);
   }, [isVisible, duration, onClose]);
 
   if (!isVisible) {
@@ -34,24 +36,32 @@ function Toast({
 
   const typeStyles = {
     success: {
-      icon: <FaCheckCircle />,
-      classes:
-        "border-green-500/30 bg-green-900/20 text-green-200",
+      icon: FaCheckCircle,
+      container:
+        "border-emerald-400/20 bg-gradient-to-br from-emerald-900/40 to-emerald-800/20 text-emerald-100",
+      iconWrapper:
+        "bg-emerald-400/15 text-emerald-300",
     },
     error: {
-      icon: <FaExclamationCircle />,
-      classes:
-        "border-red-500/30 bg-red-900/20 text-red-200",
+      icon: FaExclamationCircle,
+      container:
+        "border-red-400/20 bg-gradient-to-br from-red-900/40 to-red-800/20 text-red-100",
+      iconWrapper:
+        "bg-red-400/15 text-red-300",
     },
     warning: {
-      icon: <FaExclamationTriangle />,
-      classes:
-        "border-yellow-500/30 bg-yellow-900/20 text-yellow-200",
+      icon: FaExclamationTriangle,
+      container:
+        "border-amber-400/20 bg-gradient-to-br from-amber-900/40 to-yellow-800/20 text-amber-100",
+      iconWrapper:
+        "bg-amber-400/15 text-amber-300",
     },
     info: {
-      icon: <FaInfoCircle />,
-      classes:
-        "border-[#edbf68]/20 bg-[#2a1f0a] text-[#f8f3e9]",
+      icon: FaInfoCircle,
+      container:
+        "border-[#edbf68]/20 bg-gradient-to-br from-[#2f220d]/95 via-[#241a09]/95 to-[#181105]/95 text-[#f8f3e9]",
+      iconWrapper:
+        "bg-[#edbf68]/15 text-[#edbf68]",
     },
   };
 
@@ -62,33 +72,46 @@ function Toast({
     "bottom-left": "bottom-6 left-6",
   };
 
-  const currentToast = typeStyles[type];
+  const currentToast =
+    typeStyles[type] || typeStyles.info;
+
+  const Icon = currentToast.icon;
 
   return (
-    <div
-      className={`
-        fixed z-50 flex min-w-[320px] max-w-md items-center gap-4
-        rounded-2xl border px-5 py-4 shadow-2xl
-        ${positionClasses[position]}
-        ${currentToast.classes}
-      `}
+    <section
       role="alert"
       aria-live="polite"
+      className={`fixed z-50 w-[calc(100%-2rem)] max-w-md rounded-3xl border shadow-2xl shadow-black/30 backdrop-blur-xl animate-in slide-in-from-top-4 duration-300 ${positionClasses[position]} ${currentToast.container}`}
     >
-      <span className="text-lg">{currentToast.icon}</span>
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute -top-6 -right-6 h-24 w-24 rounded-full bg-white/5 blur-3xl" />
 
-      <p className="flex-1 text-sm font-medium">
-        {message}
-      </p>
+      <div className="relative flex items-start gap-4 px-5 py-4">
+        {/* Icon */}
+        <div
+          className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl ${currentToast.iconWrapper}`}
+        >
+          <Icon size={20} />
+        </div>
 
-      <button
-        type="button"
-        onClick={onClose}
-        className="transition-opacity duration-300 hover:opacity-70"
-      >
-        <FaTimes />
-      </button>
-    </div>
+        {/* Message */}
+        <div className="flex-1 pt-1">
+          <p className="text-sm font-medium leading-relaxed">
+            {message}
+          </p>
+        </div>
+
+        {/* Close */}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close notification"
+          className="group flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition-all duration-300 hover:rotate-90 hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-[#edbf68]/20"
+        >
+          <FaTimes className="text-sm transition-transform duration-300" />
+        </button>
+      </div>
+    </section>
   );
 }
 

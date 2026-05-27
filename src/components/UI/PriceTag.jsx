@@ -10,28 +10,39 @@ function PriceTag({
 }) {
   const sizeClasses = {
     sm: {
-      price: "text-base",
+      price: "text-lg",
       original: "text-sm",
-      discount: "text-xs",
+      discount: "text-[10px]",
+      badge: "px-2.5 py-1",
     },
     md: {
-      price: "text-xl",
+      price: "text-2xl",
       original: "text-base",
-      discount: "text-sm",
+      discount: "text-xs",
+      badge: "px-3 py-1.5",
     },
     lg: {
-      price: "text-2xl",
+      price: "text-3xl",
       original: "text-lg",
-      discount: "text-base",
+      discount: "text-sm",
+      badge: "px-4 py-2",
     },
   };
 
   const hasDiscount =
-    originalPrice !== null && originalPrice > price;
+    typeof originalPrice === "number" &&
+    originalPrice > price;
 
   const discountPercentage = hasDiscount
-    ? Math.round(((originalPrice - price) / originalPrice) * 100)
+    ? Math.round(
+        ((originalPrice - price) /
+          originalPrice) *
+          100
+      )
     : 0;
+
+  const selectedSize =
+    sizeClasses[size] || sizeClasses.md;
 
   return (
     <div
@@ -40,36 +51,40 @@ function PriceTag({
         className,
       ].join(" ")}
     >
+      {/* Main Price */}
       <span
         className={[
-          "font-bold text-[#edbf68]",
-          sizeClasses[size].price,
+          "font-bold tracking-tight text-[#edbf68]",
+          selectedSize.price,
         ].join(" ")}
       >
         {currency}
         {price.toLocaleString()}
       </span>
 
+      {/* Original Price */}
       {hasDiscount && (
         <>
           <span
             className={[
-              "text-[#cbbd9b] line-through",
-              sizeClasses[size].original,
+              "font-medium text-[#cbbd9b] line-through opacity-80",
+              selectedSize.original,
             ].join(" ")}
           >
             {currency}
             {originalPrice.toLocaleString()}
           </span>
 
+          {/* Discount Badge */}
           {showDiscount && (
             <span
               className={[
-                "font-semibold text-green-400",
-                sizeClasses[size].discount,
+                "inline-flex items-center rounded-full border border-emerald-300/20 bg-gradient-to-r from-emerald-500/20 to-green-500/10 font-semibold uppercase tracking-[0.12em] text-emerald-300 shadow-sm backdrop-blur-sm",
+                selectedSize.discount,
+                selectedSize.badge,
               ].join(" ")}
             >
-              {discountPercentage}% OFF
+              Save {discountPercentage}%
             </span>
           )}
         </>
@@ -83,7 +98,11 @@ PriceTag.propTypes = {
   originalPrice: PropTypes.number,
   currency: PropTypes.string,
   showDiscount: PropTypes.bool,
-  size: PropTypes.oneOf(["sm", "md", "lg"]),
+  size: PropTypes.oneOf([
+    "sm",
+    "md",
+    "lg",
+  ]),
   className: PropTypes.string,
 };
 

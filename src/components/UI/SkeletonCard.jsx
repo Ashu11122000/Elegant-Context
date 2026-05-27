@@ -1,38 +1,69 @@
 import PropTypes from "prop-types";
 import Card from "./Card";
+import Skeleton from "./Skeleton";
 
 function SkeletonCard({
   count = 1,
   showBadge = false,
   compact = false,
 }) {
-  const skeletonItems = Array.from({ length: count });
+  const skeletonItems = Array.from(
+    { length: count },
+    (_, index) => index
+  );
 
   return (
     <>
-      {skeletonItems.map((_, index) => (
+      {skeletonItems.map((item) => (
         <Card
-          key={index}
+          key={item}
           bordered
-          className="animate-pulse overflow-hidden"
+          className="overflow-hidden"
         >
-          <div
-            className={`
-              rounded-xl bg-white/10
-              ${compact ? "h-40" : "h-64"}
-            `}
+          {/* Product image skeleton */}
+          <Skeleton
+            variant="image"
+            className={`w-full ${
+              compact
+                ? "h-44 rounded-2xl"
+                : "h-72 rounded-3xl"
+            }`}
           />
 
-          <div className="mt-4 space-y-3">
+          {/* Content skeleton */}
+          <div className="mt-6 space-y-4">
             {showBadge && (
-              <div className="h-5 w-20 rounded-full bg-white/10" />
+              <Skeleton
+                width="90px"
+                height="28px"
+                className="rounded-full"
+              />
             )}
 
-            <div className="h-5 w-3/4 rounded bg-white/10" />
+            {/* Product title */}
+            <Skeleton
+              variant="title"
+              width="75%"
+            />
 
-            <div className="h-4 w-1/2 rounded bg-white/10" />
+            {/* Subtitle / category */}
+            <Skeleton
+              variant="text"
+              width="50%"
+            />
 
-            <div className="h-10 w-full rounded-full bg-white/10" />
+            {/* Price */}
+            <Skeleton
+              variant="text"
+              width="35%"
+              height="20px"
+            />
+
+            {/* CTA */}
+            <Skeleton
+              variant="button"
+              className="w-full"
+            />
           </div>
         </Card>
       ))}

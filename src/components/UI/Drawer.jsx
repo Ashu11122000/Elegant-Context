@@ -19,12 +19,18 @@ function Drawer({
     };
 
     if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
+      document.addEventListener(
+        "keydown",
+        handleEscape
+      );
       document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener(
+        "keydown",
+        handleEscape
+      );
       document.body.style.overflow = "";
     };
   }, [isOpen, onClose]);
@@ -40,34 +46,44 @@ function Drawer({
   };
 
   const positionClasses = {
-    right: "right-0",
-    left: "left-0",
+    right:
+      "right-0 animate-[slideInRight_0.35s_ease-out]",
+    left:
+      "left-0 animate-[slideInLeft_0.35s_ease-out]",
   };
 
   const drawerContent = (
-    <div className="fixed inset-0 z-50 bg-black/70">
-      <div
-        className="absolute inset-0"
+    <div className="fixed inset-0 z-50">
+      {/* Premium overlay */}
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+
+      <button
+        type="button"
+        className="absolute inset-0 h-full w-full cursor-default"
         onClick={handleOverlayClick}
-        aria-hidden="true"
+        aria-label="Close drawer overlay"
       />
 
-      <div
-        className={`
-          absolute top-0 h-full w-full max-w-md
-          border-[#edbf68]/20
-          bg-[#2a1f0a]
-          shadow-2xl
-          ${positionClasses[position]}
-          ${position === "right" ? "border-l" : "border-r"}
-        `}
+      <section
+        className={`absolute top-0 h-full w-full max-w-md overflow-hidden border-[#edbf68]/20 bg-gradient-to-b from-[#2f220d] via-[#241a09] to-[#181105] shadow-2xl shadow-black/50 backdrop-blur-xl ${
+          positionClasses[position]
+        } ${
+          position === "right"
+            ? "border-l"
+            : "border-r"
+        }`}
         role="dialog"
         aria-modal="true"
         aria-label={title || "Drawer"}
       >
-        <div className="flex items-center justify-between border-b border-white/10 p-6">
+        {/* Ambient glow */}
+        <div className="pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-full bg-[#edbf68]/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 rounded-full bg-white/5 blur-3xl" />
+
+        {/* Header */}
+        <header className="relative z-10 flex items-center justify-between border-b border-white/10 px-6 py-6">
           {title && (
-            <h2 className="text-xl font-semibold text-[#f8f3e9]">
+            <h2 className="text-xl font-semibold tracking-wide text-[#f8f3e9]">
               {title}
             </h2>
           )}
@@ -75,25 +91,25 @@ function Drawer({
           <button
             type="button"
             onClick={onClose}
-            className="
-              flex h-10 w-10 items-center justify-center rounded-full
-              text-[#f8f3e9]
-              transition-all duration-300
-              hover:bg-white/10
-            "
+            className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#f8f3e9] transition-all duration-300 hover:rotate-90 hover:bg-white/10 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#edbf68]/30"
+            aria-label="Close drawer"
           >
-            <FaTimes />
+            <FaTimes className="transition-transform duration-300" />
           </button>
-        </div>
+        </header>
 
-        <div className="h-[calc(100%-88px)] overflow-y-auto p-6">
+        {/* Content */}
+        <div className="relative z-10 h-[calc(100%-92px)] overflow-y-auto px-6 py-6">
           {children}
         </div>
-      </div>
+      </section>
     </div>
   );
 
-  return createPortal(drawerContent, document.body);
+  return createPortal(
+    drawerContent,
+    document.body
+  );
 }
 
 Drawer.propTypes = {
@@ -101,7 +117,10 @@ Drawer.propTypes = {
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string,
   children: PropTypes.node.isRequired,
-  position: PropTypes.oneOf(["left", "right"]),
+  position: PropTypes.oneOf([
+    "left",
+    "right",
+  ]),
   closeOnOverlayClick: PropTypes.bool,
 };
 

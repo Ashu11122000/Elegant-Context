@@ -3,12 +3,12 @@
 import PropTypes from "prop-types";
 
 const VARIANT_CLASSES = {
-  text: "h-4 rounded-md",
-  title: "h-6 rounded-lg",
-  image: "aspect-square rounded-2xl",
+  text: "h-4 rounded-lg",
+  title: "h-7 rounded-xl",
+  image: "aspect-square rounded-3xl",
   avatar: "rounded-full",
-  button: "h-11 rounded-xl",
-  card: "rounded-2xl",
+  button: "h-12 rounded-2xl",
+  card: "rounded-3xl",
 };
 
 const SIZE_CLASSES = {
@@ -27,10 +27,12 @@ function Skeleton({
   count = 1,
 }) {
   const variantClass =
-    VARIANT_CLASSES[variant] || VARIANT_CLASSES.text;
+    VARIANT_CLASSES[variant] ||
+    VARIANT_CLASSES.text;
 
   const sizeClass =
-    SIZE_CLASSES[size] || SIZE_CLASSES.full;
+    SIZE_CLASSES[size] ||
+    SIZE_CLASSES.full;
 
   const customStyle = {
     ...(width ? { width } : {}),
@@ -41,15 +43,20 @@ function Skeleton({
     <div
       role="status"
       aria-label="Loading content"
-      className="space-y-3"
+      className="space-y-4"
     >
-      {Array.from({ length: count }).map((_, index) => (
-        <div
-          key={`skeleton-${index + 1}`}
-          style={customStyle}
-          className={`animate-pulse bg-stone-200 ${variantClass} ${sizeClass} ${className}`}
-        />
-      ))}
+      {Array.from({ length: count }).map(
+        (_, index) => (
+          <div
+            key={`skeleton-${index + 1}`}
+            style={customStyle}
+            className={`relative overflow-hidden border border-white/40 bg-gradient-to-r from-stone-100 via-stone-200 to-stone-100 shadow-sm backdrop-blur-sm ${variantClass} ${sizeClass} ${className}`}
+          >
+            {/* Premium shimmer animation */}
+            <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.8s_infinite] bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+          </div>
+        )
+      )}
     </div>
   );
 }
