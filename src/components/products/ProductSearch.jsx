@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { FaSearch, FaTimes } from "react-icons/fa";
-import Input from "../common/Input";
+import Input from "../UI/Input";
 
 function ProductSearch({
   searchQuery = "",

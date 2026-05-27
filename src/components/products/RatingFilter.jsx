@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import RatingStars from "../common/RatingStars";
+import RatingStars from "../UI/RatingStars";
 
 const RATING_OPTIONS = [4, 3, 2, 1];
 

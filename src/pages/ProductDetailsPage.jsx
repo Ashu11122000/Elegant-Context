@@ -4,11 +4,10 @@ import ProductDetails from "../components/products/ProductDetails";
 import Button from "../components/UI/Button";
 
 function ProductDetailsPage() {
-  const { productSlug } = useParams();
+  const { slug } = useParams();
 
   const product = products.find(
-    (item) =>
-      item.slug === productSlug || String(item.id) === String(productSlug)
+    (item) => item.slug === slug || String(item.id) === String(slug)
   );
 
   const handleAddToCart = (selectedProduct, quantity) => {
@@ -50,10 +49,7 @@ function ProductDetailsPage() {
   return (
     <section className="min-h-screen bg-[#271e07] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <nav
-          aria-label="Breadcrumb"
-          className="mb-10 flex flex-wrap items-center gap-2 text-sm"
-        >
+        <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm">
           <Link
             to="/"
             className="text-[#d7c3a0] transition hover:text-[#edbf68]"

@@ -1,6 +1,6 @@
 import { normalizeString } from "./helpers";
 
-export function filterProducts(products = [], filters = {}) {
+function filterProducts(products = [], filters = {}) {
   if (!Array.isArray(products)) {
     return [];
   }
@@ -11,9 +11,9 @@ export function filterProducts(products = [], filters = {}) {
     subcategory = "",
     brand = "",
     tags = [],
-    minPrice = 0,
-    maxPrice = Infinity,
-    minRating = 0,
+    minPrice,
+    maxPrice,
+    rating = 0,
     featured = false,
     trending = false,
     isNew = false,
@@ -22,49 +22,61 @@ export function filterProducts(products = [], filters = {}) {
 
   const normalizedSearch = normalizeString(searchQuery);
 
+  const parsedMinPrice =
+    minPrice === "" || minPrice === null || minPrice === undefined
+      ? 0
+      : Number(minPrice);
+
+  const parsedMaxPrice =
+    maxPrice === "" || maxPrice === null || maxPrice === undefined
+      ? Infinity
+      : Number(maxPrice);
+
   return products.filter((product) => {
     const matchesSearch =
       !normalizedSearch ||
-      normalizeString(product.title).includes(normalizedSearch) ||
-      normalizeString(product.description).includes(normalizedSearch) ||
-      normalizeString(product.brand).includes(normalizedSearch) ||
-      normalizeString(product.category).includes(normalizedSearch) ||
-      normalizeString(product.subcategory).includes(normalizedSearch) ||
-      product.tags.some((tag) =>
+      normalizeString(product.title || product.name || "").includes(
+        normalizedSearch
+      ) ||
+      normalizeString(product.description || "").includes(normalizedSearch) ||
+      normalizeString(product.brand || "").includes(normalizedSearch) ||
+      normalizeString(product.category || "").includes(normalizedSearch) ||
+      normalizeString(product.subcategory || "").includes(normalizedSearch) ||
+      (product.tags || []).some((tag) =>
         normalizeString(tag).includes(normalizedSearch)
       );
 
     const matchesCategory =
       !category ||
-      normalizeString(product.category) ===
-        normalizeString(category);
+      category === "all" ||
+      normalizeString(product.category || "") === normalizeString(category);
 
     const matchesSubcategory =
       !subcategory ||
-      normalizeString(product.subcategory) ===
+      subcategory === "all" ||
+      normalizeString(product.subcategory || "") ===
         normalizeString(subcategory);
 
     const matchesBrand =
       !brand ||
-      normalizeString(product.brand) ===
-        normalizeString(brand);
+      brand === "all" ||
+      normalizeString(product.brand || "") === normalizeString(brand);
 
     const matchesTags =
       !tags.length ||
       tags.some((selectedTag) =>
-        product.tags.some(
+        (product.tags || []).some(
           (productTag) =>
-            normalizeString(productTag) ===
-            normalizeString(selectedTag)
+            normalizeString(productTag) === normalizeString(selectedTag)
         )
       );
 
     const matchesPrice =
-      product.price >= minPrice &&
-      product.price <= maxPrice;
+      product.price >= parsedMinPrice &&
+      product.price <= parsedMaxPrice;
 
     const matchesRating =
-      product.rating >= minRating;
+      product.rating >= rating;
 
     const matchesFeatured =
       !featured || product.featured;
