@@ -1,17 +1,10 @@
 import Layout from "./components/layout/Layout";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <Layout>
-      <section className="app-container py-20 text-center">
-        <h2 className="text-5xl font-bold text-[#edbf68]">
-          Premium Fashion Store
-        </h2>
-
-        <p className="mt-6 text-lg text-[#d1b68b]">
-          Production-grade React e-commerce architecture.
-        </p>
-      </section>
+      <Home />
     </Layout>
   );
 }
