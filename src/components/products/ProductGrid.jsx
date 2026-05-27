@@ -102,23 +102,23 @@ function ProductGrid({
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-white/8 bg-white/5 px-6 py-5 backdrop-blur-xl">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8f7855]">
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="flex h-[140px] min-w-[120px] flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 px-6 text-center backdrop-blur-xl">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8f7855]">
                   Products
                 </p>
 
-                <p className="mt-3 text-3xl font-semibold text-[#f8e8c8]">
+                <p className="mt-4 text-5xl font-semibold text-[#f8e8c8]">
                   {products.length}
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/8 bg-white/5 px-6 py-5 backdrop-blur-xl">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8f7855]">
+              <div className="flex h-[140px] min-w-[120px] flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 px-6 text-center backdrop-blur-xl">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8f7855]">
                   Shopping
                 </p>
 
-                <div className="mt-3 text-2xl text-[#edbf68]">
+                <div className="mt-4 text-4xl text-[#edbf68]">
                   <FaShoppingBag />
                 </div>
               </div>
