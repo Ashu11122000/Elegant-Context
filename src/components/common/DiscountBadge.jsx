@@ -1,16 +1,17 @@
 // src/components/common/DiscountBadge.jsx
 
 import PropTypes from "prop-types";
+import { FiTag } from "react-icons/fi";
 
 const VARIANT_CLASSES = {
   primary:
-    "bg-amber-900 text-white border border-amber-900",
+    "border border-amber-300/70 bg-gradient-to-r from-amber-900 via-amber-800 to-stone-900 text-white shadow-lg shadow-amber-900/20",
   subtle:
-    "bg-amber-50 text-amber-900 border border-amber-200",
+    "border border-amber-200/70 bg-gradient-to-r from-amber-50 to-stone-50 text-amber-900 shadow-md shadow-amber-100/60",
   success:
-    "bg-green-50 text-green-700 border border-green-200",
+    "border border-emerald-200/70 bg-gradient-to-r from-emerald-50 to-green-50 text-emerald-800 shadow-md shadow-emerald-100/60",
   danger:
-    "bg-red-50 text-red-700 border border-red-200",
+    "border border-rose-200/70 bg-gradient-to-r from-rose-50 to-red-50 text-rose-700 shadow-md shadow-rose-100/60",
 };
 
 function DiscountBadge({
@@ -33,10 +34,19 @@ function DiscountBadge({
 
   return (
     <span
-      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tracking-wide shadow-sm ${badgeClass} ${className}`}
+      className={`group inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl ${badgeClass} ${className}`}
     >
-      {prefix} {discount}
-      {suffix}
+      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+        <FiTag
+          size={11}
+          aria-hidden="true"
+        />
+      </span>
+
+      <span>
+        {prefix} {discount}
+        {suffix}
+      </span>
     </span>
   );
 }

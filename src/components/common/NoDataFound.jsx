@@ -5,9 +5,9 @@ import { FiSearch } from "react-icons/fi";
 import EmptyState from "./EmptyState";
 
 function NoDataFound({
-  title = "No data found",
-  message = "We couldn’t find any matching results.",
-  actionLabel,
+  title = "No matching products found",
+  message = "We couldn’t find anything matching your search or selected filters. Try refining your preferences for a better discovery experience.",
+  actionLabel = "Clear Filters",
   onAction,
   className = "",
 }) {
@@ -16,9 +16,13 @@ function NoDataFound({
       icon={FiSearch}
       title={title}
       message={message}
-      actionLabel={actionLabel}
+      actionLabel={
+        typeof onAction === "function"
+          ? actionLabel
+          : undefined
+      }
       onAction={onAction}
-      className={className}
+      className={`bg-gradient-to-br from-white via-stone-50 to-amber-50/40 ${className}`}
     />
   );
 }

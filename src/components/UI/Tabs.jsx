@@ -1,42 +1,71 @@
-
 import { useState } from "react";
 import PropTypes from "prop-types";
 import Card from "./Card";
 
-function Tabs({ tabs, defaultTab, className = "" }) {
-  const initialTab = defaultTab || tabs[0]?.id;
-  const [activeTab, setActiveTab] = useState(initialTab);
+function Tabs({
+  tabs,
+  defaultTab,
+  className = "",
+}) {
+  const initialTab =
+    defaultTab || tabs[0]?.id;
+
+  const [activeTab, setActiveTab] =
+    useState(initialTab);
 
   return (
-    <div className={`w-full ${className}`}>
-      <div className="mb-6 flex flex-wrap gap-3 border-b border-white/10 pb-4">
-        {tabs.map((tab) => {
-          const isActive = activeTab === tab.id;
+    <section
+      className={`w-full ${className}`}
+    >
+      {/* Premium tab navigation */}
+      <div className="relative mb-8 overflow-x-auto">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#edbf68]/20 to-transparent" />
 
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => setActiveTab(tab.id)}
-              className={`
-                rounded-full px-5 py-2 text-sm font-medium transition-all duration-300
-                ${
-                  isActive
-                    ? "bg-[#edbf68] text-[#1f1606] shadow-lg"
-                    : "bg-[#2d220b] text-[#f8f3e9] hover:bg-[#3a2a0d]"
+        <div className="flex min-w-max gap-3 pb-5">
+          {tabs.map((tab) => {
+            const isActive =
+              activeTab === tab.id;
+
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() =>
+                  setActiveTab(tab.id)
                 }
-              `}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
+                aria-pressed={isActive}
+                className={`group relative rounded-2xl px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-all duration-300 ${
+                  isActive
+                    ? "border border-[#edbf68]/20 bg-gradient-to-r from-[#edbf68] to-[#d9aa4f] text-[#1f1606] shadow-xl shadow-[#edbf68]/20"
+                    : "border border-white/10 bg-white/5 text-[#f8f3e9] backdrop-blur-sm hover:-translate-y-1 hover:bg-white/10 hover:shadow-lg"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      <Card bordered padding="lg">
-        {tabs.find((tab) => tab.id === activeTab)?.content}
+      {/* Premium tab content */}
+      <Card
+        bordered
+        padding="lg"
+        className="relative overflow-hidden"
+      >
+        {/* Ambient glow */}
+        <div className="pointer-events-none absolute -top-10 -right-10 h-36 w-36 rounded-full bg-[#edbf68]/8 blur-3xl" />
+
+        <div className="relative z-10">
+          {
+            tabs.find(
+              (tab) =>
+                tab.id === activeTab
+            )?.content
+          }
+        </div>
       </Card>
-    </div>
+    </section>
   );
 }
 
@@ -44,8 +73,10 @@ Tabs.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      content: PropTypes.node.isRequired,
+      label:
+        PropTypes.string.isRequired,
+      content:
+        PropTypes.node.isRequired,
     })
   ).isRequired,
   defaultTab: PropTypes.string,

@@ -1,7 +1,10 @@
 // src/components/common/Pagination.jsx
 
 import PropTypes from "prop-types";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import {
+  FiChevronLeft,
+  FiChevronRight,
+} from "react-icons/fi";
 
 function Pagination({
   currentPage,
@@ -14,15 +17,13 @@ function Pagination({
   }
 
   const createPageNumbers = () => {
-    const pages = [];
     const maxVisiblePages = 5;
 
     if (totalPages <= maxVisiblePages) {
-      for (let page = 1; page <= totalPages; page += 1) {
-        pages.push(page);
-      }
-
-      return pages;
+      return Array.from(
+        { length: totalPages },
+        (_, index) => index + 1
+      );
     }
 
     if (currentPage <= 3) {
@@ -53,65 +54,87 @@ function Pagination({
 
   const pageNumbers = createPageNumbers();
 
+  const navigationButtonClasses =
+    "group inline-flex items-center gap-2 rounded-2xl border border-stone-200/70 bg-white/90 px-5 py-3 text-sm font-semibold tracking-wide text-stone-700 shadow-md shadow-stone-200/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-300 hover:bg-amber-50 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0";
+
   return (
     <nav
       aria-label="Pagination Navigation"
-      className={`flex flex-wrap items-center justify-center gap-2 ${className}`}
+      className={`flex flex-wrap items-center justify-center gap-3 rounded-3xl border border-stone-200/70 bg-gradient-to-br from-white via-stone-50 to-amber-50/30 p-4 shadow-xl shadow-stone-200/30 backdrop-blur-sm ${className}`}
     >
       <button
         type="button"
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() =>
+          onPageChange(currentPage - 1)
+        }
         disabled={currentPage === 1}
-        className="flex items-center gap-2 rounded-xl border border-amber-200 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-all duration-300 hover:border-amber-500 hover:bg-amber-50 disabled:cursor-not-allowed disabled:opacity-40"
+        className={navigationButtonClasses}
       >
-        <FiChevronLeft size={18} />
-        <span className="hidden sm:inline">Previous</span>
+        <FiChevronLeft
+          size={18}
+          className="transition-transform duration-300 group-hover:-translate-x-0.5"
+        />
+        <span className="hidden sm:inline">
+          Previous
+        </span>
       </button>
 
-      {pageNumbers.map((page, index) => {
-        const key =
-          typeof page === "string"
-            ? `ellipsis-${index}`
-            : `page-${page}`;
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        {pageNumbers.map((page, index) => {
+          const key =
+            typeof page === "string"
+              ? `ellipsis-${index}`
+              : `page-${page}`;
 
-        if (page === "...") {
+          if (page === "...") {
+            return (
+              <span
+                key={key}
+                className="px-2 text-sm font-semibold tracking-wide text-stone-400"
+              >
+                ...
+              </span>
+            );
+          }
+
+          const isActive = currentPage === page;
+
           return (
-            <span
+            <button
               key={key}
-              className="px-2 text-sm font-medium text-stone-500"
+              type="button"
+              onClick={() => onPageChange(page)}
+              aria-current={
+                isActive ? "page" : undefined
+              }
+              className={`relative h-12 w-12 rounded-2xl border text-sm font-semibold transition-all duration-300 ${
+                isActive
+                  ? "border-amber-900 bg-gradient-to-br from-amber-900 via-amber-800 to-stone-900 text-white shadow-xl shadow-amber-900/20"
+                  : "border-stone-200/70 bg-white/90 text-stone-700 shadow-sm backdrop-blur-sm hover:-translate-y-0.5 hover:border-amber-300 hover:bg-amber-50 hover:shadow-md"
+              }`}
             >
-              ...
-            </span>
+              {page}
+            </button>
           );
-        }
-
-        const isActive = currentPage === page;
-
-        return (
-          <button
-            key={key}
-            type="button"
-            onClick={() => onPageChange(page)}
-            aria-current={isActive ? "page" : undefined}
-            className={`h-11 w-11 rounded-xl border text-sm font-semibold transition-all duration-300 ${
-              isActive
-                ? "border-amber-900 bg-amber-900 text-white shadow-md"
-                : "border-stone-200 bg-white text-stone-700 hover:border-amber-500 hover:bg-amber-50"
-            }`}
-          >
-            {page}
-          </button>
-        );
-      })}
+        })}
+      </div>
 
       <button
         type="button"
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() =>
+          onPageChange(currentPage + 1)
+        }
         disabled={currentPage === totalPages}
-        className="flex items-center gap-2 rounded-xl border border-amber-200 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-all duration-300 hover:border-amber-500 hover:bg-amber-50 disabled:cursor-not-allowed disabled:opacity-40"
+        className={navigationButtonClasses}
       >
-        <span className="hidden sm:inline">Next</span>
-        <FiChevronRight size={18} />
+        <span className="hidden sm:inline">
+          Next
+        </span>
+
+        <FiChevronRight
+          size={18}
+          className="transition-transform duration-300 group-hover:translate-x-0.5"
+        />
       </button>
     </nav>
   );

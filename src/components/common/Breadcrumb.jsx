@@ -29,10 +29,25 @@ function Breadcrumb({
       aria-label="Breadcrumb"
       className={`w-full ${className}`}
     >
-      <ol className="flex flex-wrap items-center gap-2 text-sm text-stone-600">
+      <ol className="flex flex-wrap items-center gap-2 rounded-2xl border border-stone-200/70 bg-white/80 px-4 py-3 shadow-sm backdrop-blur-md md:px-5">
         {breadcrumbItems.map((item, index) => {
           const isLast =
             index === breadcrumbItems.length - 1;
+
+          const content =
+            index === 0 && showHome ? (
+              <span className="flex items-center gap-2">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-100 via-orange-50 to-stone-100 text-amber-800 shadow-sm ring-1 ring-amber-200/60 transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
+                  <FiHome
+                    size={15}
+                    aria-hidden="true"
+                  />
+                </span>
+                <span>{item.label}</span>
+              </span>
+            ) : (
+              item.label
+            );
 
           return (
             <li
@@ -40,46 +55,27 @@ function Breadcrumb({
               className="flex items-center gap-2"
             >
               {index > 0 && (
-                <FiChevronRight
-                  size={16}
-                  className="text-stone-400"
+                <span
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-stone-100 text-stone-400 shadow-sm"
                   aria-hidden="true"
-                />
+                >
+                  <FiChevronRight size={14} />
+                </span>
               )}
 
               {isLast || !item.path ? (
                 <span
                   aria-current="page"
-                  className="font-medium text-amber-900"
+                  className="group inline-flex items-center text-sm font-semibold tracking-wide text-amber-900"
                 >
-                  {index === 0 && showHome ? (
-                    <span className="flex items-center gap-1">
-                      <FiHome
-                        size={15}
-                        aria-hidden="true"
-                      />
-                      {item.label}
-                    </span>
-                  ) : (
-                    item.label
-                  )}
+                  {content}
                 </span>
               ) : (
                 <Link
                   to={item.path}
-                  className="transition-colors duration-300 hover:text-amber-900"
+                  className="group inline-flex items-center text-sm font-medium tracking-wide text-stone-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-amber-900"
                 >
-                  {index === 0 && showHome ? (
-                    <span className="flex items-center gap-1">
-                      <FiHome
-                        size={15}
-                        aria-hidden="true"
-                      />
-                      {item.label}
-                    </span>
-                  ) : (
-                    item.label
-                  )}
+                  {content}
                 </Link>
               )}
             </li>
