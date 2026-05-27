@@ -1,106 +1,92 @@
-import { useState } from "react";
-import { FaThLarge, FaList } from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
 import products from "../data/products";
-import ProductFilter from "../components/products/ProductFilter";
-import ProductGrid from "../components/products/ProductGrid";
-import ProductList from "../components/products/ProductList";
-import SearchResults from "../components/products/SearchResults";
-import Button from "../components/common/Button";
+import ProductDetails from "../components/products/ProductDetails";
 
-function ProductsPage() {
-  const [viewMode, setViewMode] = useState("grid");
+function ProductDetailsPage() {
+  const { productSlug } = useParams();
 
-  const handleWishlistToggle = (product) => {
-    console.log("Wishlist toggle:", product);
+  const product = products.find(
+    (item) =>
+      item.slug === productSlug || String(item.id) === String(productSlug)
+  );
+
+  const handleAddToCart = (selectedProduct, quantity) => {
+    console.log("Add to cart:", selectedProduct, quantity);
   };
 
-  const handleQuickView = (product) => {
-    console.log("Quick view:", product);
+  const handleWishlistToggle = (selectedProduct) => {
+    console.log("Wishlist:", selectedProduct);
   };
+
+  const handleQuickView = (selectedProduct) => {
+    console.log("Quick view:", selectedProduct);
+  };
+
+  if (!product) {
+    return (
+      <section className="min-h-screen bg-[#271e07] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-[#d7c3a0]">
+            Product Unavailable
+          </p>
+
+          <h1 className="mb-5 text-4xl font-bold text-[#f5e6c8]">
+            Product Not Found
+          </h1>
+
+          <p className="mb-8 max-w-2xl text-lg leading-relaxed text-[#d7c3a0]">
+            The product you are looking for may have been removed or is temporarily unavailable.
+          </p>
+
+          <Link
+            to="/products"
+            className="rounded-xl bg-[#edbf68] px-6 py-4 font-semibold text-[#1f1606] transition hover:opacity-90"
+          >
+            Back to Products
+          </Link>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="min-h-screen bg-[#271e07] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12">
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-[#d7c3a0]">
-            Luxury Collection
-          </p>
+        <nav
+          aria-label="Breadcrumb"
+          className="mb-10 flex flex-wrap items-center gap-2 text-sm"
+        >
+          <Link
+            to="/"
+            className="text-[#d7c3a0] transition hover:text-[#edbf68]"
+          >
+            Home
+          </Link>
 
-          <h1 className="mb-4 text-4xl font-bold text-[#f5e6c8] md:text-5xl">
-            Discover Premium Fashion
-          </h1>
+          <span className="text-[#d7c3a0]">/</span>
 
-          <p className="max-w-3xl text-lg leading-relaxed text-[#d7c3a0]">
-            Explore curated luxury fashion and accessories crafted for modern elegance.
-          </p>
-        </div>
+          <Link
+            to="/products"
+            className="text-[#d7c3a0] transition hover:text-[#edbf68]"
+          >
+            Products
+          </Link>
 
-        <ProductFilter products={products}>
-          {({
-            filteredProducts,
-            filterState,
-            resetFilters,
-          }) => (
-            <>
-              <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <SearchResults
-                  totalResults={filteredProducts.length}
-                  searchQuery={filterState.searchQuery}
-                  selectedCategory={filterState.selectedCategory}
-                  selectedRating={filterState.selectedRating}
-                  minPrice={filterState.minPrice}
-                  maxPrice={filterState.maxPrice}
-                  onClearFilters={resetFilters}
-                />
+          <span className="text-[#d7c3a0]">/</span>
 
-                <div className="flex items-center gap-3">
-                  <Button
-                    onClick={() => setViewMode("grid")}
-                    className={`px-4 py-3 ${
-                      viewMode === "grid"
-                        ? ""
-                        : "bg-[#31230c] text-[#edbf68] hover:bg-[#3a2a0f]"
-                    }`}
-                  >
-                    <FaThLarge size={16} />
-                  </Button>
+          <span className="text-[#f5e6c8]">{product.name}</span>
+        </nav>
 
-                  <Button
-                    onClick={() => setViewMode("list")}
-                    className={`px-4 py-3 ${
-                      viewMode === "list"
-                        ? ""
-                        : "bg-[#31230c] text-[#edbf68] hover:bg-[#3a2a0f]"
-                    }`}
-                  >
-                    <FaList size={16} />
-                  </Button>
-                </div>
-              </div>
-
-              {viewMode === "grid" ? (
-                <ProductGrid
-                  products={filteredProducts}
-                  showWishlist
-                  showQuickView
-                  onWishlistToggle={handleWishlistToggle}
-                  onQuickView={handleQuickView}
-                />
-              ) : (
-                <ProductList
-                  products={filteredProducts}
-                  showWishlist
-                  showQuickView
-                  onWishlistToggle={handleWishlistToggle}
-                  onQuickView={handleQuickView}
-                />
-              )}
-            </>
-          )}
-        </ProductFilter>
+        <ProductDetails
+          product={product}
+          allProducts={products}
+          onAddToCart={handleAddToCart}
+          onWishlistToggle={handleWishlistToggle}
+          onQuickView={handleQuickView}
+        />
       </div>
     </section>
   );
 }
 
-export default ProductsPage;
+export default ProductDetailsPage;

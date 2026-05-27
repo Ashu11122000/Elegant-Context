@@ -16,7 +16,7 @@ function ProductDetailsPage() {
   };
 
   const handleWishlistToggle = (selectedProduct) => {
-    console.log("Wishlist toggle:", selectedProduct);
+    console.log("Wishlist:", selectedProduct);
   };
 
   const handleQuickView = (selectedProduct) => {
@@ -36,14 +36,11 @@ function ProductDetailsPage() {
           </h1>
 
           <p className="mb-8 max-w-2xl text-lg leading-relaxed text-[#d7c3a0]">
-            The product you are looking for may have been removed, renamed, or is
-            temporarily unavailable.
+            The product you are looking for may have been removed or is temporarily unavailable.
           </p>
 
           <Link to="/products">
-            <Button>
-              Back to Products
-            </Button>
+            <Button>Back to Products</Button>
           </Link>
         </div>
       </section>
@@ -75,9 +72,7 @@ function ProductDetailsPage() {
 
           <span className="text-[#d7c3a0]">/</span>
 
-          <span className="text-[#f5e6c8]">
-            {product.name}
-          </span>
+          <span className="text-[#f5e6c8]">{product.name}</span>
         </nav>
 
         <ProductDetails
