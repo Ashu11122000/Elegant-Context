@@ -1,9 +1,7 @@
 import { useParams } from "react-router-dom";
-import {
-  FaGem,
-  FaArrowLeft,
-} from "react-icons/fa";
+import { FaGem, FaArrowLeft } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
+
 import products from "../data/products";
 import ProductDetails from "../components/products/ProductDetails";
 import Breadcrumb from "../components/common/Breadcrumb";
@@ -11,12 +9,11 @@ import ErrorMessage from "../components/common/ErrorMessage";
 import ROUTES from "../config/routes";
 
 function ProductDetailsPage() {
-  const { productSlug } = useParams();
+  const { slug } = useParams();
 
   const product = products.find(
     (item) =>
-      item?.slug === productSlug ||
-      String(item?.id) === String(productSlug)
+      item?.slug === slug || String(item?.id) === String(slug)
   );
 
   const handleAddToCart = (selectedProduct, quantity) => {
@@ -37,7 +34,7 @@ function ProductDetailsPage() {
         {/* Ambient Background */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute right-0 top-40 h-[350px] w-[350px] rounded-full bg-yellow-400/5 blur-3xl" />
+          <div className="absolute top-40 right-0 h-[350px] w-[350px] rounded-full bg-yellow-400/5 blur-3xl" />
           <div className="absolute bottom-0 left-1/3 h-[400px] w-[400px] rounded-full bg-orange-500/5 blur-3xl" />
         </div>
 
@@ -96,8 +93,8 @@ function ProductDetailsPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl">
-        {/* Premium Breadcrumb */}
-        <div className="mb-10 rounded-2xl border border-white/8 bg-white/5 px-6 py-5 backdrop-blur-xl">
+        {/* Breadcrumb */}
+        <div className="mb-10 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur-xl">
           <Breadcrumb
             items={[
               {
@@ -111,7 +108,7 @@ function ProductDetailsPage() {
           />
         </div>
 
-        {/* Product Details Shell */}
+        {/* Product Details */}
         <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#1b1308] via-[#120d06] to-[#090603] shadow-[0_30px_120px_rgba(0,0,0,0.55)]">
           <ProductDetails
             product={product}

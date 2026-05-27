@@ -14,9 +14,9 @@ export function filterProducts(
     subcategory = "",
     brand = "all",
     tags = [],
-    minPrice = 0,
-    maxPrice = Infinity,
-    minRating = 0,
+    minPrice = "",
+    maxPrice = "",
+    rating = 0,
     featured = false,
     trending = false,
     isNew = false,
@@ -26,18 +26,35 @@ export function filterProducts(
   const normalizedSearch =
     normalizeString(searchQuery);
 
+  const parsedMinPrice =
+    minPrice === "" ||
+    minPrice === null ||
+    minPrice === undefined
+      ? 0
+      : Number(minPrice);
+
+  const parsedMaxPrice =
+    maxPrice === "" ||
+    maxPrice === null ||
+    maxPrice === undefined
+      ? Infinity
+      : Number(maxPrice);
+
   return products.filter((product) => {
+    const productName =
+      product.title || product.name || "";
+
     const matchesSearch =
       !normalizedSearch ||
-      normalizeString(
-        product.title || product.name || ""
-      ).includes(normalizedSearch) ||
+      normalizeString(productName).includes(
+        normalizedSearch
+      ) ||
       normalizeString(
         product.description || ""
       ).includes(normalizedSearch) ||
-      normalizeString(
-        product.brand || ""
-      ).includes(normalizedSearch) ||
+      normalizeString(product.brand || "").includes(
+        normalizedSearch
+      ) ||
       normalizeString(
         product.category || ""
       ).includes(normalizedSearch) ||
@@ -84,13 +101,12 @@ export function filterProducts(
       Number(product.price) || 0;
 
     const matchesPrice =
-      productPrice >= Number(minPrice || 0) &&
-      productPrice <=
-        Number(maxPrice || Infinity);
+      productPrice >= parsedMinPrice &&
+      productPrice <= parsedMaxPrice;
 
     const matchesRating =
       Number(product.rating || 0) >=
-      Number(minRating || 0);
+      Number(rating || 0);
 
     const matchesFeatured =
       !featured || product.featured;
@@ -102,7 +118,7 @@ export function filterProducts(
       !isNew || product.isNew;
 
     const matchesStock =
-      !inStock || product.stock > 0;
+      !inStock || Number(product.stock || 0) > 0;
 
     return (
       matchesSearch &&

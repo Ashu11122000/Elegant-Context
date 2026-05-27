@@ -1,17 +1,22 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { FaEye, FaHeart, FaRegHeart } from "react-icons/fa";
+import {
+  FaEye,
+  FaHeart,
+  FaRegHeart,
+} from "react-icons/fa";
+
 import RatingStars from "../UI/RatingStars";
 import PriceTag from "../UI/PriceTag";
 import Button from "../UI/Button";
 
 function ProductCard({
   product,
+  onWishlistToggle,
+  onQuickView,
   showWishlist = true,
   showQuickView = true,
   variant = "grid",
-  onWishlistToggle,
-  onQuickView,
 }) {
   if (!product) {
     return null;
@@ -20,35 +25,33 @@ function ProductCard({
   const {
     id,
     name,
+    title,
     slug,
     image,
     price,
     originalPrice,
     rating = 0,
+    reviewCount = 0,
     reviewsCount = 0,
     badge,
     isWishlisted = false,
     category,
   } = product;
 
+  const productName = name || title;
+  const totalReviews = reviewsCount || reviewCount;
   const productUrl = `/products/${slug || id}`;
 
   const handleWishlistClick = (event) => {
     event.preventDefault();
     event.stopPropagation();
-
-    if (onWishlistToggle) {
-      onWishlistToggle(product);
-    }
+    onWishlistToggle?.(product);
   };
 
   const handleQuickViewClick = (event) => {
     event.preventDefault();
     event.stopPropagation();
-
-    if (onQuickView) {
-      onQuickView(product);
-    }
+    onQuickView?.(product);
   };
 
   return (
@@ -76,9 +79,8 @@ function ProductCard({
         >
           <img
             src={image}
-            alt={name}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            alt={productName}
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
           />
 
           <div className="absolute inset-0 bg-black/10 opacity-0 transition duration-300 group-hover:opacity-100" />
@@ -130,16 +132,15 @@ function ProductCard({
 
         <Link to={productUrl}>
           <h3 className="mb-3 line-clamp-2 min-h-[56px] text-lg font-semibold text-[#f5e6c8] transition-colors duration-300 hover:text-[#edbf68]">
-            {name}
+            {productName}
           </h3>
         </Link>
 
         <div className="mb-4 flex items-center gap-3">
-          <RatingStars rating={rating} />
-
-          <span className="text-sm text-[#d7c3a0]">
-            ({reviewsCount})
-          </span>
+          <RatingStars
+            rating={rating}
+            reviewCount={totalReviews}
+          />
         </div>
 
         <div className="mb-5">
@@ -164,17 +165,19 @@ ProductCard.propTypes = {
     id: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ]).isRequired,
-    name: PropTypes.string.isRequired,
+    ]),
+    name: PropTypes.string,
+    title: PropTypes.string,
     slug: PropTypes.string,
     image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    originalPrice: PropTypes.number,
+    category: PropTypes.string,
     rating: PropTypes.number,
+    reviewCount: PropTypes.number,
     reviewsCount: PropTypes.number,
+    price: PropTypes.number,
+    originalPrice: PropTypes.number,
     badge: PropTypes.string,
     isWishlisted: PropTypes.bool,
-    category: PropTypes.string,
   }).isRequired,
   showWishlist: PropTypes.bool,
   showQuickView: PropTypes.bool,

@@ -1,6 +1,9 @@
 import { useMemo, useState } from "react";
 import PropTypes from "prop-types";
+
 import FilterPanel from "./FilterPanel";
+import ProductGrid from "./ProductGrid";
+import NoDataFound from "../UI/NoDataFound";
 import filterProducts from "../../utils/filterProducts";
 import sortProducts from "../../utils/sortProducts";
 
@@ -24,25 +27,27 @@ function ProductFilter({
   const [appliedMaxPrice, setAppliedMaxPrice] =
     useState("");
 
-  const categories = useMemo(() => {
-    return [
+  const categories = useMemo(
+    () => [
       ...new Set(
         products
           .map((product) => product.category)
           .filter(Boolean)
       ),
-    ];
-  }, [products]);
+    ],
+    [products]
+  );
 
-  const brands = useMemo(() => {
-    return [
+  const brands = useMemo(
+    () => [
       ...new Set(
         products
           .map((product) => product.brand)
           .filter(Boolean)
       ),
-    ];
-  }, [products]);
+    ],
+    [products]
+  );
 
   const handleApplyPriceFilter = () => {
     setAppliedMinPrice(minPrice);
@@ -176,7 +181,7 @@ function ProductFilter({
             {discoveryStats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-white/8 bg-white/5 p-5 backdrop-blur-xl transition-all duration-300 hover:border-amber-300/15 hover:bg-white/[0.07]"
+                className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all duration-300 hover:border-amber-300/15 hover:bg-white/[0.07]"
               >
                 <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#8f7855]">
                   {stat.label}
@@ -217,15 +222,22 @@ function ProductFilter({
         />
 
         <div className="min-w-0">
-          {typeof children === "function"
-            ? children({
-                filteredProducts,
-                filterState,
-                resetFilters: handleResetFilters,
-                activeFilters,
-                totalProducts: products.length,
-              })
-            : null}
+          {typeof children === "function" ? (
+            children({
+              filteredProducts,
+              filterState,
+              resetFilters: handleResetFilters,
+              activeFilters,
+              totalProducts: products.length,
+            })
+          ) : filteredProducts.length > 0 ? (
+            <ProductGrid products={filteredProducts} />
+          ) : (
+            <NoDataFound
+              title="No Products Found"
+              message="Try adjusting your filters or search criteria to discover premium products."
+            />
+          )}
         </div>
       </div>
     </section>
@@ -235,8 +247,15 @@ function ProductFilter({
 ProductFilter.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      name: PropTypes.string,
       category: PropTypes.string,
       brand: PropTypes.string,
+      price: PropTypes.number,
+      rating: PropTypes.number,
     })
   ),
   children: PropTypes.func,
