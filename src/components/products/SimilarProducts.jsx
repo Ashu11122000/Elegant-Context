@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import SectionHeading from "../common/SectionHeading";
+import SectionHeading from "../UI/SectionHeading";
 import ProductGrid from "./ProductGrid";
 
 function SimilarProducts({

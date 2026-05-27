@@ -1,24 +1,19 @@
-import PropTypes from "prop-types";
-
-import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
-import TopBanner from "./TopBanner";
+import Footer from "./Footer";
 
-function Layout({ children }) {
-    return (
-        <div className="min-h-screen flex flex-col">
-            <TopBanner />
-            <Header />
+function Layout() {
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      <Header />
 
-            <main className="flex-1">{children}</main>
+      <main className="flex-1">
+        <Outlet />
+      </main>
 
-            <Footer />
-        </div>
-    );
+      <Footer />
+    </div>
+  );
 }
-
-Layout.propTypes = {
-    children: PropTypes.node.isRequired,
-};
 
 export default Layout;

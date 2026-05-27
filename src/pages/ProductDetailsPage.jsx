@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import products from "../data/products";
 import ProductDetails from "../components/products/ProductDetails";
-import Button from "../components/common/Button";
+import Button from "../components/UI/Button";
 
 function ProductDetailsPage() {
   const { productSlug } = useParams();
