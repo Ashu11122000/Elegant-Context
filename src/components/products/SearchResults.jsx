@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Button from "../common/Button";
+import Button from "../UI/Button";
 
 function SearchResults({
   totalResults = 0,

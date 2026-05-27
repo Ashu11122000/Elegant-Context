@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import Input from "../common/Input";
-import Button from "../common/Button";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 
 function PriceFilter({
   minPrice = "",

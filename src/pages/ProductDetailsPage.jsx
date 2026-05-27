@@ -1,14 +1,17 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import products from "../data/products";
 import ProductDetails from "../components/products/ProductDetails";
-import Button from "../components/UI/Button";
+import Breadcrumb from "../components/common/Breadcrumb";
+import ErrorMessage from "../components/common/ErrorMessage";
+import ROUTES from "../config/routes";
 
 function ProductDetailsPage() {
   const { productSlug } = useParams();
 
   const product = products.find(
     (item) =>
-      item.slug === productSlug || String(item.id) === String(productSlug)
+      item.slug === productSlug ||
+      String(item.id) === String(productSlug)
   );
 
   const handleAddToCart = (selectedProduct, quantity) => {
@@ -25,55 +28,32 @@ function ProductDetailsPage() {
 
   if (!product) {
     return (
-      <section className="min-h-screen bg-[#271e07] px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-[#d7c3a0]">
-            Product Unavailable
-          </p>
-
-          <h1 className="mb-5 text-4xl font-bold text-[#f5e6c8]">
-            Product Not Found
-          </h1>
-
-          <p className="mb-8 max-w-2xl text-lg leading-relaxed text-[#d7c3a0]">
-            The product you are looking for may have been removed or is temporarily unavailable.
-          </p>
-
-          <Link to="/products">
-            <Button>Back to Products</Button>
-          </Link>
+      <section className="min-h-screen bg-stone-950 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <ErrorMessage
+            title="Product Not Found"
+            message="The product you are looking for may have been removed or is temporarily unavailable."
+          />
         </div>
       </section>
     );
   }
 
   return (
-    <section className="min-h-screen bg-[#271e07] px-4 py-12 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-stone-950 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <nav
-          aria-label="Breadcrumb"
-          className="mb-10 flex flex-wrap items-center gap-2 text-sm"
-        >
-          <Link
-            to="/"
-            className="text-[#d7c3a0] transition hover:text-[#edbf68]"
-          >
-            Home
-          </Link>
-
-          <span className="text-[#d7c3a0]">/</span>
-
-          <Link
-            to="/products"
-            className="text-[#d7c3a0] transition hover:text-[#edbf68]"
-          >
-            Products
-          </Link>
-
-          <span className="text-[#d7c3a0]">/</span>
-
-          <span className="text-[#f5e6c8]">{product.name}</span>
-        </nav>
+        <Breadcrumb
+          className="mb-10"
+          items={[
+            {
+              label: "Products",
+              path: ROUTES.PRODUCTS,
+            },
+            {
+              label: product.name,
+            },
+          ]}
+        />
 
         <ProductDetails
           product={product}

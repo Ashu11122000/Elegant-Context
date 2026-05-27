@@ -1,92 +1,88 @@
-import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import products from "../data/products";
-import ProductDetails from "../components/products/ProductDetails";
+import ProductFilter from "../components/products/ProductFilter";
+import ProductGrid from "../components/products/ProductGrid";
+import Breadcrumb from "../components/common/Breadcrumb";
+import Sidebar from "../components/layout/Sidebar";
+import SearchBar from "../components/layout/SearchBar";
+import NoDataFound from "../components/common/NoDataFound";
+import ROUTES from "../config/routes";
 
-function ProductDetailsPage() {
-  const { productSlug } = useParams();
+function ProductsPage() {
+  const navigate = useNavigate();
 
-  const product = products.find(
-    (item) =>
-      item.slug === productSlug || String(item.id) === String(productSlug)
-  );
+  const handleSearch = (query) => {
+    if (!query.trim()) {
+      return;
+    }
 
-  const handleAddToCart = (selectedProduct, quantity) => {
-    console.log("Add to cart:", selectedProduct, quantity);
+    navigate(`${ROUTES.SEARCH_RESULTS}?q=${query}`);
   };
-
-  const handleWishlistToggle = (selectedProduct) => {
-    console.log("Wishlist:", selectedProduct);
-  };
-
-  const handleQuickView = (selectedProduct) => {
-    console.log("Quick view:", selectedProduct);
-  };
-
-  if (!product) {
-    return (
-      <section className="min-h-screen bg-[#271e07] px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-[#d7c3a0]">
-            Product Unavailable
-          </p>
-
-          <h1 className="mb-5 text-4xl font-bold text-[#f5e6c8]">
-            Product Not Found
-          </h1>
-
-          <p className="mb-8 max-w-2xl text-lg leading-relaxed text-[#d7c3a0]">
-            The product you are looking for may have been removed or is temporarily unavailable.
-          </p>
-
-          <Link
-            to="/products"
-            className="rounded-xl bg-[#edbf68] px-6 py-4 font-semibold text-[#1f1606] transition hover:opacity-90"
-          >
-            Back to Products
-          </Link>
-        </div>
-      </section>
-    );
-  }
 
   return (
-    <section className="min-h-screen bg-[#271e07] px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <nav
-          aria-label="Breadcrumb"
-          className="mb-10 flex flex-wrap items-center gap-2 text-sm"
-        >
-          <Link
-            to="/"
-            className="text-[#d7c3a0] transition hover:text-[#edbf68]"
-          >
-            Home
-          </Link>
-
-          <span className="text-[#d7c3a0]">/</span>
-
-          <Link
-            to="/products"
-            className="text-[#d7c3a0] transition hover:text-[#edbf68]"
-          >
-            Products
-          </Link>
-
-          <span className="text-[#d7c3a0]">/</span>
-
-          <span className="text-[#f5e6c8]">{product.name}</span>
-        </nav>
-
-        <ProductDetails
-          product={product}
-          allProducts={products}
-          onAddToCart={handleAddToCart}
-          onWishlistToggle={handleWishlistToggle}
-          onQuickView={handleQuickView}
+    <section className="min-h-screen bg-stone-50">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <Breadcrumb
+          className="mb-8"
+          items={[
+            {
+              label: "Products",
+            },
+          ]}
         />
+
+        <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p className="mb-2 text-sm font-medium uppercase tracking-[0.25em] text-amber-700">
+              Premium Collection
+            </p>
+
+            <h1 className="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              Discover Luxury Fashion
+            </h1>
+
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-stone-600 sm:text-base">
+              Explore curated premium fashion pieces,
+              elegant accessories, and timeless luxury essentials.
+            </p>
+          </div>
+
+          <div className="w-full lg:w-auto">
+            <SearchBar
+              onSearch={handleSearch}
+              placeholder="Search luxury products..."
+            />
+          </div>
+        </div>
+
+        <ProductFilter products={products}>
+          {({
+            filteredProducts,
+            resetFilters,
+          }) => (
+            <div className="flex gap-8">
+              <Sidebar />
+
+              <div className="min-w-0 flex-1">
+                {filteredProducts.length > 0 ? (
+                  <ProductGrid
+                    products={filteredProducts}
+                  />
+                ) : (
+                  <NoDataFound
+                    title="No matching products"
+                    message="Try adjusting filters or search criteria."
+                    actionLabel="Reset Filters"
+                    onAction={resetFilters}
+                  />
+                )}
+              </div>
+            </div>
+          )}
+        </ProductFilter>
       </div>
     </section>
   );
 }
 
-export default ProductDetailsPage;
+export default ProductsPage;

@@ -9,14 +9,20 @@ function ProductFilter({
   children,
 }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedBrand, setSelectedBrand] = useState("all");
-  const [selectedSort, setSelectedSort] = useState("featured");
-  const [selectedRating, setSelectedRating] = useState(0);
+  const [selectedCategory, setSelectedCategory] =
+    useState("all");
+  const [selectedBrand, setSelectedBrand] =
+    useState("all");
+  const [selectedSort, setSelectedSort] =
+    useState("featured");
+  const [selectedRating, setSelectedRating] =
+    useState(0);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [appliedMinPrice, setAppliedMinPrice] = useState("");
-  const [appliedMaxPrice, setAppliedMaxPrice] = useState("");
+  const [appliedMinPrice, setAppliedMinPrice] =
+    useState("");
+  const [appliedMaxPrice, setAppliedMaxPrice] =
+    useState("");
 
   const categories = useMemo(() => {
     return [
@@ -119,12 +125,14 @@ function ProductFilter({
         onResetFilters={handleResetFilters}
       />
 
-      <div>
-        {children({
-          filteredProducts,
-          filterState,
-          resetFilters: handleResetFilters,
-        })}
+      <div className="min-w-0">
+        {typeof children === "function"
+          ? children({
+              filteredProducts,
+              filterState,
+              resetFilters: handleResetFilters,
+            })
+          : null}
       </div>
     </div>
   );
@@ -137,7 +145,7 @@ ProductFilter.propTypes = {
       brand: PropTypes.string,
     })
   ),
-  children: PropTypes.func.isRequired,
+  children: PropTypes.func,
 };
 
 export default ProductFilter;
