@@ -1,12 +1,7 @@
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  return (
-    <Layout>
-      <Home />
-    </Layout>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
