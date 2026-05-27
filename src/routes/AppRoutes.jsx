@@ -8,7 +8,6 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* Home */}
         <Route index element={<Home />} />
 
         {/* Product listing */}

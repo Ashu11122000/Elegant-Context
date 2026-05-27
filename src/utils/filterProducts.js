@@ -14,9 +14,9 @@ export function filterProducts(
     subcategory = "",
     brand = "all",
     tags = [],
-    minPrice = 0,
-    maxPrice = Infinity,
-    minRating = 0,
+    minPrice,
+    maxPrice,
+    rating = 0,
     featured = false,
     trending = false,
     isNew = false,
@@ -25,6 +25,16 @@ export function filterProducts(
 
   const normalizedSearch =
     normalizeString(searchQuery);
+
+  const parsedMinPrice =
+    minPrice === "" || minPrice === null || minPrice === undefined
+      ? 0
+      : Number(minPrice);
+
+  const parsedMaxPrice =
+    maxPrice === "" || maxPrice === null || maxPrice === undefined
+      ? Infinity
+      : Number(maxPrice);
 
   return products.filter((product) => {
     const matchesSearch =

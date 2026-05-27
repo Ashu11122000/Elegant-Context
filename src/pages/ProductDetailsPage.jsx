@@ -6,7 +6,7 @@ import ErrorMessage from "../components/common/ErrorMessage";
 import ROUTES from "../config/routes";
 
 function ProductDetailsPage() {
-  const { productSlug } = useParams();
+  const { slug } = useParams();
 
   const product = products.find(
     (item) =>
