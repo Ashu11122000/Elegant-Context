@@ -8,14 +8,20 @@ import sortProducts from "../../utils/sortProducts";
 
 function ProductFilter({ products = [] }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedBrand, setSelectedBrand] = useState("all");
-  const [selectedSort, setSelectedSort] = useState("featured");
-  const [selectedRating, setSelectedRating] = useState(0);
+  const [selectedCategory, setSelectedCategory] =
+    useState("all");
+  const [selectedBrand, setSelectedBrand] =
+    useState("all");
+  const [selectedSort, setSelectedSort] =
+    useState("featured");
+  const [selectedRating, setSelectedRating] =
+    useState(0);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [appliedMinPrice, setAppliedMinPrice] = useState("");
-  const [appliedMaxPrice, setAppliedMaxPrice] = useState("");
+  const [appliedMinPrice, setAppliedMinPrice] =
+    useState("");
+  const [appliedMaxPrice, setAppliedMaxPrice] =
+    useState("");
 
   const categories = useMemo(
     () => [
@@ -106,17 +112,14 @@ function ProductFilter({ products = [] }) {
         onResetFilters={handleResetFilters}
       />
 
-      <div>
-        {filteredProducts.length > 0 ? (
-          <ProductGrid products={filteredProducts} />
-        ) : (
-          <NoDataFound
-            title="No Products Found"
-            message="Try adjusting filters or search for something else."
-            actionLabel="Reset Filters"
-            onAction={handleResetFilters}
-          />
-        )}
+      <div className="min-w-0">
+        {typeof children === "function"
+          ? children({
+              filteredProducts,
+              filterState,
+              resetFilters: handleResetFilters,
+            })
+          : null}
       </div>
     </section>
   );
@@ -133,6 +136,7 @@ ProductFilter.propTypes = {
       rating: PropTypes.number,
     })
   ),
+  children: PropTypes.func,
 };
 
 export default ProductFilter;
