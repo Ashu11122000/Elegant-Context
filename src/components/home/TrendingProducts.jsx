@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import ProductCard from "../products/ProductCard";
-import SectionHeading from "../common/SectionHeading";
+import SectionHeading from "../UI/SectionHeading";
 import { TRENDING_PRODUCTS } from "../../data/products";
 
 function TrendingProducts({ limit = 4 }) {

@@ -1,5 +1,5 @@
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
-import SectionHeading from "../common/SectionHeading";
+import SectionHeading from "../UI/SectionHeading";
 
 const testimonials = [
   {

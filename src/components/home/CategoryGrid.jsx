@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SectionHeading from "../common/SectionHeading";
+import SectionHeading from "../UI/SectionHeading";
 import { PRODUCT_CATEGORIES } from "../../data/products";
 
 const categoryImages = {

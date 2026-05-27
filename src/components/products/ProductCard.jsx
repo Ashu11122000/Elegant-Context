@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart, FaEye } from "react-icons/fa";
-import Card from "../common/Card";
-import Badge from "../common/Badge";
-import RatingStars from "../common/RatingStars";
-import PriceTag from "../common/PriceTag";
-import Button from "../common/Button";
+import Card from "../UI/Card";
+import Badge from "../UI/Badge";
+import RatingStars from "../UI/RatingStars";
+import PriceTag from "../UI/PriceTag";
+import Button from "../UI/Button";
 
 function ProductCard({
   product,

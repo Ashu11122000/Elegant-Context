@@ -1,10 +1,10 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { FaHeart, FaRegHeart, FaTruck, FaShieldAlt, FaUndo } from "react-icons/fa";
-import RatingStars from "../common/RatingStars";
-import PriceTag from "../common/PriceTag";
-import Badge from "../common/Badge";
-import Button from "../common/Button";
+import RatingStars from "../UI/RatingStars";
+import PriceTag from "../UI/PriceTag";
+import Badge from "../UI/Badge";
+import Button from "../UI/Button";
 
 function ProductInfo({
   product,
