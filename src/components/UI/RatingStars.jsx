@@ -15,18 +15,20 @@ function RatingStars({
 }) {
   const sizeClasses = {
     sm: {
-      stars: "text-sm",
-      badge: "text-xs px-2 py-1",
+      stars: "text-sm gap-1",
+      badge: "text-[11px] px-2.5 py-1",
       meta: "text-xs",
     },
+
     md: {
-      stars: "text-base",
-      badge: "text-sm px-2.5 py-1",
+      stars: "text-base gap-1.5",
+      badge: "text-sm px-3 py-1.5",
       meta: "text-sm",
     },
+
     lg: {
-      stars: "text-lg",
-      badge: "text-base px-3 py-1.5",
+      stars: "text-xl gap-2",
+      badge: "text-base px-4 py-2",
       meta: "text-base",
     },
   };
@@ -49,7 +51,7 @@ function RatingStars({
           return (
             <FaStar
               key={starNumber}
-              className="drop-shadow-[0_0_4px_rgba(237,191,104,0.35)]"
+              className="text-[#f6d48f] drop-shadow-[0_0_10px_rgba(237,191,104,0.45)] transition-transform duration-300 hover:scale-110"
             />
           );
         }
@@ -58,7 +60,7 @@ function RatingStars({
           return (
             <FaStarHalfAlt
               key={starNumber}
-              className="drop-shadow-[0_0_4px_rgba(237,191,104,0.35)]"
+              className="text-[#edbf68] drop-shadow-[0_0_10px_rgba(237,191,104,0.4)] transition-transform duration-300 hover:scale-110"
             />
           );
         }
@@ -66,7 +68,7 @@ function RatingStars({
         return (
           <FaRegStar
             key={starNumber}
-            className="text-white/20"
+            className="text-white/15"
           />
         );
       }
@@ -82,31 +84,44 @@ function RatingStars({
       {/* Stars */}
       <div
         className={[
-          "flex items-center gap-1 text-[#edbf68]",
+          "relative flex items-center",
           selectedSize.stars,
         ].join(" ")}
         aria-label={`Rated ${safeRating} out of ${maxRating}`}
       >
-        {renderStars()}
+        {/* Ambient glow */}
+        <div className="pointer-events-none absolute inset-0 rounded-full bg-amber-300/10 blur-2xl" />
+
+        <div className="relative flex items-center">
+          {renderStars()}
+        </div>
       </div>
 
-      {/* Rating value */}
+      {/* Rating Badge */}
       {showValue && (
         <span
           className={[
-            "inline-flex items-center rounded-full border border-[#edbf68]/20 bg-white/5 font-semibold text-[#f8f3e9] shadow-sm backdrop-blur-sm",
+            "relative inline-flex items-center overflow-hidden rounded-full border border-amber-200/15 bg-white/[0.05] font-semibold tracking-[0.03em] text-stone-100 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl",
             selectedSize.badge,
           ].join(" ")}
         >
-          {safeRating.toFixed(1)}
+          {/* Glass shine */}
+          <span className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent" />
+
+          {/* Golden dot */}
+          <span className="relative z-10 mr-2 h-2 w-2 rounded-full bg-amber-300 shadow-[0_0_10px_rgba(237,191,104,0.6)]" />
+
+          <span className="relative z-10">
+            {safeRating.toFixed(1)}
+          </span>
         </span>
       )}
 
-      {/* Review count */}
+      {/* Reviews */}
       {typeof reviewCount === "number" && (
         <span
           className={[
-            "font-medium tracking-wide text-[#cbbd9b]",
+            "font-medium tracking-[0.03em] text-stone-400",
             selectedSize.meta,
           ].join(" ")}
         >
@@ -121,11 +136,13 @@ RatingStars.propTypes = {
   rating: PropTypes.number,
   maxRating: PropTypes.number,
   reviewCount: PropTypes.number,
+
   size: PropTypes.oneOf([
     "sm",
     "md",
     "lg",
   ]),
+
   showValue: PropTypes.bool,
   className: PropTypes.string,
 };
