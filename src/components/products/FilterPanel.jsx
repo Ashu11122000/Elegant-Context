@@ -30,10 +30,22 @@ function FilterPanel({
 }) {
   const activeFilters = [];
 
-  if (searchQuery) activeFilters.push(`Search: "${searchQuery}"`);
-  if (selectedCategory !== "all") activeFilters.push(selectedCategory);
-  if (selectedBrand !== "all") activeFilters.push(selectedBrand);
-  if (selectedRating > 0) activeFilters.push(`${selectedRating}+ Stars`);
+  if (searchQuery) {
+    activeFilters.push(`Search: "${searchQuery}"`);
+  }
+
+  if (selectedCategory !== "all") {
+    activeFilters.push(selectedCategory);
+  }
+
+  if (selectedBrand !== "all") {
+    activeFilters.push(selectedBrand);
+  }
+
+  if (selectedRating > 0) {
+    activeFilters.push(`${selectedRating}+ Stars`);
+  }
+
   if (minPrice || maxPrice) {
     activeFilters.push(
       `₹${minPrice || 0} - ₹${maxPrice || "Any"}`
@@ -43,110 +55,209 @@ function FilterPanel({
   return (
     <aside
       aria-label="Product filters"
-      className="sticky top-24 space-y-6"
+      className="sticky top-24 space-y-7"
     >
-      {/* Master Shell */}
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#1b1308]/95 via-[#161005]/95 to-[#100a04]/95 shadow-[0_30px_90px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
-        {/* Header */}
-        <div className="border-b border-white/8 px-6 py-7">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#8f7855]">
-                Elegant Context
-              </p>
+      {/* Main Luxury Shell */}
+      <div className="relative overflow-hidden rounded-[2.2rem] border border-[#3b2912] bg-[radial-gradient(circle_at_top,rgba(255,214,153,0.08),transparent_28%),linear-gradient(to_bottom,#1b1207,#130d05,#0d0703)] shadow-[0_35px_100px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
+        {/* Decorative Overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.025),transparent)]" />
 
-              <h2 className="mt-3 text-2xl font-semibold text-[#f8e8c8]">
-                Refine Your Discovery
+        {/* Header */}
+        <div className="relative border-b border-[#352410] px-7 py-8">
+          <div className="flex items-start justify-between gap-5">
+            <div className="max-w-[85%]">
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#f3c574] shadow-[0_0_14px_rgba(243,197,116,0.9)]" />
+
+                <p className="text-[10px] font-black uppercase tracking-[0.42em] text-[#cba46a]">
+                  Elegant Context
+                </p>
+              </div>
+
+              <h2 className="mt-5 text-[2rem] font-black leading-tight tracking-tight text-[#fff2dd]">
+                Luxury Discovery Filters
               </h2>
 
-              <p className="mt-3 text-sm leading-relaxed text-[#a88f68]">
-                Curate your premium shopping journey with intelligent filters,
-                tailored sorting, and luxury discovery tools.
+              <p className="mt-4 text-sm leading-relaxed text-[#b49267]">
+                Refine your premium shopping experience using
+                intelligent discovery tools, luxury sorting,
+                curated categories, and advanced fashion filters.
               </p>
             </div>
 
             <button
               type="button"
               onClick={onResetFilters}
-              className="rounded-full border border-amber-300/15 bg-white/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d7c3a0] transition-all duration-300 hover:border-amber-300/30 hover:bg-amber-400/10 hover:text-[#edbf68]"
+              className="group relative overflow-hidden rounded-full border border-[#e0b161]/15 bg-[#241507] px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.22em] text-[#ddb97c] transition-all duration-300 hover:border-[#e0b161]/40 hover:bg-[#2c1b0c] hover:text-[#fff1d6]"
             >
-              Reset
+              <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+              <span className="relative z-10">
+                Reset
+              </span>
             </button>
           </div>
 
           {/* Active Filter Summary */}
-          <div className="mt-6 rounded-2xl border border-white/8 bg-white/5 p-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#8f7855]">
-              Active Filters
-            </p>
+          <div className="mt-7 overflow-hidden rounded-[1.7rem] border border-[#453018] bg-gradient-to-br from-[#241507] via-[#1a1007] to-[#120b04] p-5 shadow-inner">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#9c7849]">
+                  Active Filters
+                </p>
+
+                <h3 className="mt-2 text-lg font-extrabold text-[#fff0d7]">
+                  Personalized Discovery
+                </h3>
+              </div>
+
+              <div className="rounded-full border border-[#f0c372]/15 bg-[#2a190b] px-4 py-2">
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#f0c372]">
+                  {activeFilters.length} Active
+                </span>
+              </div>
+            </div>
 
             {activeFilters.length ? (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-3">
                 {activeFilters.map((filter) => (
                   <span
                     key={filter}
-                    className="rounded-full border border-amber-300/15 bg-amber-400/10 px-3 py-2 text-[11px] font-medium capitalize tracking-wide text-[#edbf68]"
+                    className="group relative overflow-hidden rounded-full border border-[#e0b161]/15 bg-gradient-to-r from-[#33200e] to-[#261708] px-4 py-2 text-[11px] font-bold capitalize tracking-wide text-[#f0c372] shadow-inner transition-all duration-300 hover:border-[#f0c372]/30 hover:bg-[#3a240d]"
                   >
-                    {filter}
+                    <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                    <span className="relative z-10">
+                      {filter}
+                    </span>
                   </span>
                 ))}
               </div>
             ) : (
-              <p className="mt-4 text-sm text-[#9e8864]">
-                No active filters. Explore the full premium collection.
-              </p>
+              <div className="mt-5 rounded-2xl border border-dashed border-[#4a3418] bg-[#1a1007]/80 px-5 py-4">
+                <p className="text-sm leading-relaxed text-[#aa8961]">
+                  No filters selected. Browse the complete
+                  luxury collection with unrestricted premium
+                  discovery.
+                </p>
+              </div>
             )}
           </div>
         </div>
 
-        {/* Search */}
-        <section className="border-b border-white/6 px-6 py-6">
-          <ProductSearch
-            searchQuery={searchQuery}
-            onSearchChange={onSearchChange}
-            onClearSearch={onClearSearch}
-          />
-        </section>
+        {/* Filter Sections */}
+        <div className="relative">
+          {/* Search */}
+          <section className="border-b border-[#2f200d] px-7 py-7">
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#8f6f45]">
+                  Smart Search
+                </p>
 
-        {/* Sort */}
-        <section className="border-b border-white/6 px-6 py-6">
-          <SortDropdown
-            selectedSort={selectedSort}
-            onSortChange={onSortChange}
-          />
-        </section>
+                <h4 className="mt-2 text-lg font-extrabold text-[#f9ead1]">
+                  Find Premium Products
+                </h4>
+              </div>
 
-        {/* Rating */}
-        <section className="border-b border-white/6 px-6 py-6">
-          <RatingFilter
-            selectedRating={selectedRating}
-            onRatingChange={onRatingChange}
-          />
-        </section>
+              <div className="rounded-full border border-[#f0c372]/10 bg-[#261709] px-3 py-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#d5ae72]">
+                  AI Discovery
+                </span>
+              </div>
+            </div>
 
-        {/* Price */}
-        <section className="border-b border-white/6 px-6 py-6">
-          <PriceFilter
-            minPrice={minPrice}
-            maxPrice={maxPrice}
-            onMinPriceChange={onMinPriceChange}
-            onMaxPriceChange={onMaxPriceChange}
-            onApplyPriceFilter={onApplyPriceFilter}
-            onClearPriceFilter={onClearPriceFilter}
-          />
-        </section>
+            <ProductSearch
+              searchQuery={searchQuery}
+              onSearchChange={onSearchChange}
+              onClearSearch={onClearSearch}
+            />
+          </section>
 
-        {/* Brand */}
-        <section className="px-6 py-6">
-          <BrandFilter
-            brands={brands}
-            selectedBrand={selectedBrand}
-            onBrandChange={onBrandChange}
-          />
-        </section>
+          {/* Sort */}
+          <section className="border-b border-[#2f200d] px-7 py-7">
+            <div className="mb-5">
+              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#8f6f45]">
+                Smart Sorting
+              </p>
+
+              <h4 className="mt-2 text-lg font-extrabold text-[#f9ead1]">
+                Organize Your Experience
+              </h4>
+            </div>
+
+            <SortDropdown
+              selectedSort={selectedSort}
+              onSortChange={onSortChange}
+            />
+          </section>
+
+          {/* Rating */}
+          <section className="border-b border-[#2f200d] px-7 py-7">
+            <div className="mb-5">
+              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#8f6f45]">
+                Customer Ratings
+              </p>
+
+              <h4 className="mt-2 text-lg font-extrabold text-[#f9ead1]">
+                Trusted Luxury Picks
+              </h4>
+            </div>
+
+            <RatingFilter
+              selectedRating={selectedRating}
+              onRatingChange={onRatingChange}
+            />
+          </section>
+
+          {/* Price */}
+          <section className="border-b border-[#2f200d] px-7 py-7">
+            <div className="mb-5">
+              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#8f6f45]">
+                Price Range
+              </p>
+
+              <h4 className="mt-2 text-lg font-extrabold text-[#f9ead1]">
+                Luxury Budget Control
+              </h4>
+            </div>
+
+            <PriceFilter
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              onMinPriceChange={onMinPriceChange}
+              onMaxPriceChange={onMaxPriceChange}
+              onApplyPriceFilter={
+                onApplyPriceFilter
+              }
+              onClearPriceFilter={
+                onClearPriceFilter
+              }
+            />
+          </section>
+
+          {/* Brand */}
+          <section className="px-7 py-7">
+            <div className="mb-5">
+              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#8f6f45]">
+                Designer Brands
+              </p>
+
+              <h4 className="mt-2 text-lg font-extrabold text-[#f9ead1]">
+                Curated Fashion Houses
+              </h4>
+            </div>
+
+            <BrandFilter
+              brands={brands}
+              selectedBrand={selectedBrand}
+              onBrandChange={onBrandChange}
+            />
+          </section>
+        </div>
       </div>
 
-      {/* Category Discovery */}
+      {/* Category Sidebar */}
       <CategorySidebar
         categories={categories}
         selectedCategory={selectedCategory}
@@ -158,8 +269,12 @@ function FilterPanel({
 }
 
 FilterPanel.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.string),
-  brands: PropTypes.arrayOf(PropTypes.string),
+  categories: PropTypes.arrayOf(
+    PropTypes.string
+  ),
+  brands: PropTypes.arrayOf(
+    PropTypes.string
+  ),
   searchQuery: PropTypes.string,
   selectedCategory: PropTypes.string,
   selectedBrand: PropTypes.string,
