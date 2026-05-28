@@ -84,7 +84,7 @@ function BrandFilter({
           onClick={() => onBrandChange("all")}
           className={`group relative flex w-full items-center justify-between overflow-hidden rounded-2xl border px-5 py-4 transition-all duration-300 ${
             selectedBrand === "all"
-              ? "border-amber-300/30 bg-gradient-to-r from-[#edbf68] to-[#d79b35] text-[#1a1205] shadow-[0_10px_30px_rgba(237,191,104,0.28)]"
+              ? "border-amber-300/30 bg-gradient-to-r from-[#edbf68] to-[#d79b35] shadow-[0_10px_30px_rgba(237,191,104,0.28)]"
               : "border-white/5 bg-gradient-to-r from-[#2a1d0b] to-[#1d1407] text-[#d8c5a4] hover:border-amber-300/20 hover:text-[#f5e6c8]"
           }`}
         >
@@ -92,7 +92,7 @@ function BrandFilter({
             <div
               className={`flex h-12 w-12 items-center justify-center rounded-2xl font-bold ${
                 selectedBrand === "all"
-                  ? "bg-black/10"
+                  ? "bg-black/10 text-[#3a2208]"
                   : "bg-white/5 text-[#edbf68]"
               }`}
             >
@@ -100,11 +100,19 @@ function BrandFilter({
             </div>
 
             <div className="text-left">
-              <p className="text-sm font-semibold">All Brands</p>
+              <p
+                className={`text-sm font-semibold ${
+                  selectedBrand === "all"
+                    ? "text-[#3a2208]"
+                    : ""
+                }`}
+              >
+                All Brands
+              </p>
               <p
                 className={`text-xs ${
                   selectedBrand === "all"
-                    ? "text-[#3b2a0e]"
+                    ? "text-[#6b3f12]"
                     : "text-[#8f7855]"
                 }`}
               >
@@ -113,7 +121,15 @@ function BrandFilter({
             </div>
           </div>
 
-          <span className="text-xs font-semibold">{brands.length}</span>
+          <span
+            className={`text-xs font-semibold ${
+              selectedBrand === "all"
+                ? "text-[#3a2208]"
+                : ""
+            }`}
+          >
+            {brands.length}
+          </span>
         </button>
 
         {/* Individual Brands */}
@@ -129,7 +145,7 @@ function BrandFilter({
               onClick={() => onBrandChange(normalizedBrand)}
               className={`group relative flex w-full items-center justify-between overflow-hidden rounded-2xl border px-5 py-4 transition-all duration-300 ${
                 isActive
-                  ? "border-amber-300/30 bg-gradient-to-r from-[#edbf68] to-[#d79b35] text-[#1a1205] shadow-[0_10px_30px_rgba(237,191,104,0.28)]"
+                  ? "border-amber-300/30 bg-gradient-to-r from-[#edbf68] to-[#d79b35] shadow-[0_10px_30px_rgba(237,191,104,0.28)]"
                   : "border-white/5 bg-gradient-to-r from-[#2a1d0b] to-[#1d1407] text-[#d8c5a4] hover:border-amber-300/20 hover:translate-x-1 hover:text-[#f5e6c8]"
               }`}
             >
@@ -137,7 +153,7 @@ function BrandFilter({
                 <div
                   className={`flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-bold ${
                     isActive
-                      ? "bg-black/10"
+                      ? "bg-black/10 text-[#3a2208]"
                       : "bg-white/5 text-[#edbf68]"
                   }`}
                 >
@@ -145,10 +161,16 @@ function BrandFilter({
                 </div>
 
                 <div className="text-left">
-                  <p className="text-sm font-semibold capitalize">{brand}</p>
+                  <p
+                    className={`text-sm font-semibold capitalize ${
+                      isActive ? "text-[#3a2208]" : ""
+                    }`}
+                  >
+                    {brand}
+                  </p>
                   <p
                     className={`text-xs ${
-                      isActive ? "text-[#3b2a0e]" : "text-[#8f7855]"
+                      isActive ? "text-[#6b3f12]" : "text-[#8f7855]"
                     }`}
                   >
                     Premium curated styles
@@ -157,7 +179,13 @@ function BrandFilter({
               </div>
 
               <div className="flex flex-col items-end gap-1">
-                <span className="text-xs font-semibold">{count}</span>
+                <span
+                  className={`text-xs font-semibold ${
+                    isActive ? "text-[#3a2208]" : ""
+                  }`}
+                >
+                  {count}
+                </span>
 
                 {index < 3 && !isActive && (
                   <span className="rounded-full bg-amber-400/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#edbf68]">

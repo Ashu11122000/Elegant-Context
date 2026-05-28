@@ -3,7 +3,7 @@ import generateSlug from "../utils/generateSlug";
 const fashionProducts = [
   {
     id: 1,
-    title: "Men Premium Leather Jacket",
+    title: "Men Premium Leather Cap",
     slug: generateSlug("Men Premium Leather Jacket"),
     category: "fashion",
     subcategory: "jackets",
