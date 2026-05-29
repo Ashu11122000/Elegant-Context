@@ -6,6 +6,8 @@ import Home from "../pages/Home";
 import ProductsPage from "../pages/ProductsPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
 import CartPage from "../pages/CartPage";
+import WishlistPage from "../pages/WishlistPage";
+import SearchResultsPage from "../pages/SearchResultsPage";
 
 function AppRoutes() {
   return (
@@ -24,6 +26,18 @@ function AppRoutes() {
         <Route
           path="products/:slug"
           element={<ProductDetailsPage />}
+        />
+
+        {/* Search */}
+        <Route
+          path="search"
+          element={<SearchResultsPage />}
+        />
+
+        {/* Wishlist */}
+        <Route
+          path="wishlist"
+          element={<WishlistPage />}
         />
 
         {/* Shopping Cart */}

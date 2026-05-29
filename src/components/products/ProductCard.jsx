@@ -12,6 +12,7 @@ import PriceTag from "../UI/PriceTag";
 import Button from "../UI/Button";
 
 import { useCartContext } from "../../context/CartContext";
+import { useWishlistContext } from "../../context/WishlistContext";
 
 function ProductCard({
   product,
@@ -23,6 +24,11 @@ function ProductCard({
   if (!product) return null;
 
   const { addToCart } = useCartContext();
+
+  const {
+    toggleWishlist,
+    isInWishlist,
+  } = useWishlistContext();
 
   const {
     id,
@@ -37,7 +43,6 @@ function ProductCard({
     reviewCount = 0,
     reviewsCount = 0,
     badge,
-    isWishlisted = false,
   } = product;
 
   const productName = name || title;
@@ -48,6 +53,9 @@ function ProductCard({
   const productUrl = `/products/${
     slug || id
   }`;
+
+  const isWishlisted =
+    isInWishlist(id);
 
   const hasDiscount =
     originalPrice &&
@@ -64,6 +72,8 @@ function ProductCard({
   const handleWishlistClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    toggleWishlist(product);
 
     onWishlistToggle?.(product);
   };
@@ -89,7 +99,7 @@ function ProductCard({
     });
   };
 
-    return (
+  return (
     <article className="group overflow-hidden rounded-[2rem] border border-[#2f2116] bg-gradient-to-b from-[#1b120c] to-[#120b07] shadow-[0_15px_45px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-2 hover:border-[#c89b5f]/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
       {/* IMAGE */}
       <Link
@@ -122,7 +132,7 @@ function ProductCard({
             )}
           </div>
 
-          {/* Action Buttons */}
+                    {/* Action Buttons */}
           {(showWishlist ||
             showQuickView) && (
             <div className="absolute right-5 top-5 flex flex-col gap-3">
@@ -132,16 +142,27 @@ function ProductCard({
                   onClick={
                     handleWishlistClick
                   }
-                  className={`flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 hover:scale-105 ${
+                  aria-label={
                     isWishlisted
-                      ? "border-[#d6a45c] bg-[#d6a45c] text-[#24150a]"
+                      ? "Remove from wishlist"
+                      : "Add to wishlist"
+                  }
+                  className={`group flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 hover:scale-105 ${
+                    isWishlisted
+                      ? "border-[#d6a45c] bg-[#d6a45c] text-[#24150a] shadow-[0_8px_25px_rgba(214,164,92,0.35)]"
                       : "border-[#3b2a1d] bg-[#1d120c]/95 text-[#f3d19c]"
                   }`}
                 >
                   {isWishlisted ? (
-                    <FaHeart size={14} />
+                    <FaHeart
+                      size={14}
+                      className="transition-transform duration-300 group-hover:scale-110"
+                    />
                   ) : (
-                    <FaRegHeart size={14} />
+                    <FaRegHeart
+                      size={14}
+                      className="transition-transform duration-300 group-hover:scale-110"
+                    />
                   )}
                 </button>
               )}
@@ -152,6 +173,7 @@ function ProductCard({
                   onClick={
                     handleQuickViewClick
                   }
+                  aria-label="Quick view"
                   className="flex h-11 w-11 items-center justify-center rounded-full border border-[#3b2a1d] bg-[#1d120c]/95 text-[#f3d19c] transition-all duration-300 hover:scale-105"
                 >
                   <FaEye size={14} />
@@ -195,7 +217,8 @@ function ProductCard({
           </div>
         </div>
       </Link>
-            {/* CONTENT */}
+
+      {/* CONTENT */}
       <div className="p-6">
         {/* Product Name */}
         <Link to={productUrl}>
@@ -240,7 +263,7 @@ function ProductCard({
           </div>
         </div>
 
-        {/* CTA */}
+                {/* CTA */}
         <div className="mt-6">
           <Button
             onClick={handleAddToCart}
@@ -259,19 +282,29 @@ ProductCard.propTypes = {
     id: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ]),
+    ]).isRequired,
+
     name: PropTypes.string,
+
     title: PropTypes.string,
+
     slug: PropTypes.string,
+
     image: PropTypes.string.isRequired,
+
     category: PropTypes.string,
+
     rating: PropTypes.number,
+
     reviewCount: PropTypes.number,
+
     reviewsCount: PropTypes.number,
-    price: PropTypes.number,
+
+    price: PropTypes.number.isRequired,
+
     originalPrice: PropTypes.number,
+
     badge: PropTypes.string,
-    isWishlisted: PropTypes.bool,
   }).isRequired,
 
   showWishlist: PropTypes.bool,

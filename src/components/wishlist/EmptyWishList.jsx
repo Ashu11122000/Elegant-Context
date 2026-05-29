@@ -5,19 +5,40 @@ import {
   FiHeart,
   FiStar,
   FiAward,
-  FiShield,
   FiShoppingBag,
-  FiBookmark,
+  FiShield,
   FiTruck,
+  FiBookmark,
 } from "react-icons/fi";
 
-function WishlistEmptyState({
+function EmptyWishlist({
   title = "Your Luxury Wishlist Awaits",
-  description = "Save your favorite products, luxury essentials, and timeless fashion pieces. Build a curated collection of products you love and return anytime to complete your perfect shopping journey.",
+  description = "Create your personal collection of premium fashion, luxury accessories, and timeless essentials. Save the pieces you love and return anytime to complete your perfect wardrobe.",
   buttonText = "Explore Collections",
   buttonLink = "/products",
   className = "",
 }) {
+  const benefits = [
+    {
+      icon: FiBookmark,
+      title: "Save Favorites",
+      description:
+        "Keep track of products you love and revisit them anytime.",
+    },
+    {
+      icon: FiAward,
+      title: "Premium Selection",
+      description:
+        "Curated collections featuring luxury quality products.",
+    },
+    {
+      icon: FiShoppingBag,
+      title: "Smart Shopping",
+      description:
+        "Compare, save, and purchase when the time is right.",
+    },
+  ];
+
   const stats = [
     {
       value: "500+",
@@ -37,27 +58,6 @@ function WishlistEmptyState({
     },
   ];
 
-  const features = [
-    {
-      icon: FiBookmark,
-      title: "Save Favorites",
-      description:
-        "Keep products you love organized in one premium collection.",
-    },
-    {
-      icon: FiShoppingBag,
-      title: "Shop Smarter",
-      description:
-        "Compare products and purchase when the time is right.",
-    },
-    {
-      icon: FiAward,
-      title: "Luxury Selection",
-      description:
-        "Discover carefully curated premium products and collections.",
-    },
-  ];
-
   return (
     <section
       className={`
@@ -71,31 +71,33 @@ function WishlistEmptyState({
         ${className}
       `}
     >
-      {/* Ambient Effects */}
+      {/* Ambient Luxury Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-amber-500/10 blur-[120px]" />
+        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-amber-500/10 blur-[120px]" />
 
-        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-orange-500/5 blur-[100px]" />
+        <div className="absolute -left-32 top-20 h-80 w-80 rounded-full bg-orange-500/5 blur-[100px]" />
 
         <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-yellow-500/5 blur-[120px]" />
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,215,120,0.08),transparent_45%)]" />
       </div>
 
-      {/* Luxury Accent */}
+      {/* Top Luxury Accent */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
 
       <div className="relative z-10 p-8 sm:p-10 lg:p-14 xl:p-16">
         <div className="mx-auto max-w-6xl">
-          {/* Hero */}
+          {/* Hero Section */}
           <div className="flex flex-col items-center text-center">
+            {/* Premium Badge */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-amber-300">
               <FiStar size={12} />
-              Premium Wishlist Experience
+              Luxury Wishlist Experience
             </div>
 
+            {/* Luxury Icon */}
             <div className="relative mb-8">
-              <div className="absolute inset-0 rounded-full bg-rose-500/20 blur-3xl" />
+              <div className="absolute inset-0 rounded-full bg-amber-500/20 blur-3xl" />
 
               <div
                 className="
@@ -107,20 +109,22 @@ function WishlistEmptyState({
                   justify-center
                   rounded-full
                   border
-                  border-rose-400/20
+                  border-amber-500/20
                   bg-[linear-gradient(to_bottom,#2b1d10,#171008)]
                   shadow-[0_20px_60px_rgba(0,0,0,0.45)]
                 "
               >
-                <FiHeart className="text-5xl text-rose-300" />
+                <FiHeart className="text-5xl text-amber-300" />
               </div>
             </div>
 
+            {/* Heading */}
             <h2
               className="
                 max-w-4xl
                 text-4xl
                 font-bold
+                leading-tight
                 tracking-tight
                 text-white
                 sm:text-5xl
@@ -130,6 +134,7 @@ function WishlistEmptyState({
               {title}
             </h2>
 
+            {/* Description */}
             <p
               className="
                 mt-6
@@ -143,7 +148,7 @@ function WishlistEmptyState({
               {description}
             </p>
 
-            {/* CTA */}
+            {/* CTA Buttons */}
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
                 to={buttonLink}
@@ -170,7 +175,13 @@ function WishlistEmptyState({
               >
                 {buttonText}
 
-                <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                <FiArrowRight
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
+                />
               </Link>
 
               <Link
@@ -198,7 +209,7 @@ function WishlistEmptyState({
             </div>
           </div>
 
-          {/* Stats */}
+          {/* Statistics */}
           <div className="mt-16 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {stats.map((item) => (
               <div
@@ -226,12 +237,12 @@ function WishlistEmptyState({
 
           {/* Benefits */}
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {features.map((feature) => {
-              const Icon = feature.icon;
+            {benefits.map((benefit) => {
+              const Icon = benefit.icon;
 
               return (
                 <div
-                  key={feature.title}
+                  key={benefit.title}
                   className="
                     rounded-[2rem]
                     border
@@ -244,52 +255,77 @@ function WishlistEmptyState({
                     hover:border-amber-500/20
                   "
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
+                  <div
+                    className="
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      border
+                      border-amber-500/20
+                      bg-amber-500/10
+                    "
+                  >
                     <Icon className="text-xl text-amber-300" />
                   </div>
 
                   <h3 className="mt-5 text-lg font-semibold text-white">
-                    {feature.title}
+                    {benefit.title}
                   </h3>
 
                   <p className="mt-2 text-sm leading-relaxed text-stone-400">
-                    {feature.description}
+                    {benefit.description}
                   </p>
                 </div>
               );
             })}
           </div>
 
-          {/* Trust Section */}
-          <div className="mt-12 rounded-[2rem] border border-[#2d2014] bg-[#171008]/70 p-6 backdrop-blur-xl">
+          {/* Premium Trust Section */}
+          <div
+            className="
+              mt-12
+              rounded-[2rem]
+              border
+              border-[#2d2014]
+              bg-[#171008]/70
+              p-6
+              backdrop-blur-xl
+            "
+          >
             <div className="grid gap-4 md:grid-cols-3">
               <div className="flex items-center gap-3">
                 <FiShield className="text-emerald-400" />
+
                 <span className="text-sm text-stone-300">
-                  Secure Shopping
+                  Secure Shopping Experience
                 </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FiTruck className="text-sky-400" />
+
                 <span className="text-sm text-stone-300">
-                  Fast Delivery
+                  Fast & Reliable Delivery
                 </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FiAward className="text-amber-300" />
+
                 <span className="text-sm text-stone-300">
-                  Premium Quality Products
+                  Curated Premium Products
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Footer Message */}
+          {/* Bottom Message */}
           <div className="mt-10 text-center">
             <p className="text-sm text-stone-500">
-              Your wishlist helps you build a personalized collection of products worth remembering.
+              Start building your dream collection and never lose track of the products you love.
             </p>
           </div>
         </div>
@@ -298,7 +334,7 @@ function WishlistEmptyState({
   );
 }
 
-WishlistEmptyState.propTypes = {
+EmptyWishlist.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   buttonText: PropTypes.string,
@@ -306,4 +342,4 @@ WishlistEmptyState.propTypes = {
   className: PropTypes.string,
 };
 
-export default WishlistEmptyState;
+export default EmptyWishlist;

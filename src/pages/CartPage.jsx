@@ -14,20 +14,18 @@ import CartEmptyState from "../components/cart/CartEmptyState";
 import { useCartContext } from "../context/CartContext";
 
 function CartPage() {
-  const { cartItems, cartCount } =
-    useCartContext();
-
-  console.log(
-    "CartPage Cart Items:",
-    cartItems
-  );
+  const {
+    cartItems,
+    cartCount,
+    subtotal,
+  } = useCartContext();
 
   const isEmpty =
     !cartItems || cartItems.length === 0;
 
   return (
     <div className="min-h-screen bg-[#0f0a05]">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1800px] px-4 py-8 sm:px-6 lg:px-8">
         <Breadcrumb
           items={[
             {
@@ -41,124 +39,267 @@ function CartPage() {
           ]}
         />
 
-        {/* Hero */}
-        <section className="relative mt-6 overflow-hidden rounded-[2.5rem] border border-[#322214] bg-gradient-to-br from-[#171008] via-[#120b05] to-[#0d0703] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.45)] lg:p-12">
-          <div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-amber-500/10 blur-3xl" />
+        {/* Premium Shopping Cart Hero */}
+        <section
+          className="
+            relative
+            mt-6
+            overflow-hidden
+            rounded-[3rem]
+            border
+            border-[#322214]
+            bg-[linear-gradient(135deg,#171008_0%,#120b05_45%,#0d0703_100%)]
+            shadow-[0_40px_120px_rgba(0,0,0,0.5)]
+          "
+        >
+          {/* Ambient Effects */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -left-24 top-0 h-72 w-72 rounded-full bg-amber-500/10 blur-[120px]" />
 
-          <div className="absolute -right-20 bottom-0 h-60 w-60 rounded-full bg-yellow-500/10 blur-3xl" />
+            <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-yellow-500/10 blur-[140px]" />
 
-          <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
-              <FiShoppingBag />
-              Shopping Cart
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,215,120,0.08),transparent_40%)]" />
+          </div>
+
+          <div className="relative z-10 p-8 lg:p-12">
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-5 py-2">
+              <FiShoppingBag className="text-amber-300" />
+
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300">
+                Premium Shopping Cart
+              </span>
             </div>
 
-            <h1 className="mt-5 text-4xl font-bold text-white md:text-5xl">
-              Your Luxury Collection
-            </h1>
+            <div className="mt-8 grid gap-8 xl:grid-cols-[1.45fr_0.8fr]">
+              {/* Left Content */}
+              <div>
+                <h1 className="max-w-4xl text-5xl font-black leading-[1.05] tracking-tight text-white md:text-6xl">
+                  Your Curated
+                  <br />
+                  Luxury Collection
+                </h1>
 
-            <p className="mt-4 max-w-2xl text-stone-400">
-              Review your selected premium
-              fashion pieces before
-              proceeding to secure checkout.
-            </p>
-
-            {!isEmpty && (
-              <div className="mt-8 flex flex-wrap gap-4">
-                <div className="rounded-2xl border border-[#322214] bg-[#171008]/80 px-5 py-4 backdrop-blur-sm">
-                  <p className="text-xs uppercase tracking-[0.15em] text-stone-500">
-                    Cart Items
-                  </p>
-
-                  <p className="mt-2 text-3xl font-bold text-amber-300">
-                    {cartCount}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-[#322214] bg-[#171008]/80 px-5 py-4 backdrop-blur-sm">
-                  <p className="text-xs uppercase tracking-[0.15em] text-stone-500">
-                    Delivery
-                  </p>
-
-                  <p className="mt-2 text-lg font-semibold text-white">
-                    Fast Shipping
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-[#322214] bg-[#171008]/80 px-5 py-4 backdrop-blur-sm">
-                  <p className="text-xs uppercase tracking-[0.15em] text-stone-500">
-                    Security
-                  </p>
-
-                  <p className="mt-2 text-lg font-semibold text-white">
-                    100% Secure
-                  </p>
-                </div>
+                <p className="mt-6 max-w-3xl text-lg leading-relaxed text-stone-400">
+                  Review your selected premium products,
+                  manage quantities, compare options,
+                  and prepare for a seamless checkout
+                  experience backed by secure payments
+                  and fast delivery.
+                </p>
               </div>
-            )}
+
+              {/* Hero Stats */}
+              {!isEmpty && (
+                <div className="grid grid-cols-2 gap-5">
+                  <div
+                    className="
+                      rounded-[2rem]
+                      border
+                      border-white/[0.08]
+                      bg-white/[0.03]
+                      p-6
+                      backdrop-blur-xl
+                    "
+                  >
+                    <p className="text-xs uppercase tracking-[0.25em] text-stone-500">
+                      Total Items
+                    </p>
+
+                    <p className="mt-4 text-5xl font-black text-amber-300">
+                      {cartCount}
+                    </p>
+
+                    <p className="mt-2 text-sm text-stone-500">
+                      Products Selected
+                    </p>
+                  </div>
+
+                  <div
+                    className="
+                      rounded-[2rem]
+                      border
+                      border-white/[0.08]
+                      bg-white/[0.03]
+                      p-6
+                      backdrop-blur-xl
+                    "
+                  >
+                    <p className="text-xs uppercase tracking-[0.25em] text-stone-500">
+                      Cart Value
+                    </p>
+
+                    <p className="mt-4 text-3xl font-black text-amber-300">
+                      ₹{subtotal.toLocaleString("en-IN")}
+                    </p>
+
+                    <p className="mt-2 text-sm text-stone-500">
+                      Current Order Value
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
-        {/* Debug Panel */}
-        <div className="mt-6 hidden">
-          <pre className="overflow-auto rounded-xl bg-black p-4 text-xs text-green-400">
-            {JSON.stringify(
-              cartItems,
-              null,
-              2
-            )}
-          </pre>
-        </div>
-
-        {/* Benefits */}
+                {/* VIP Rewards Club Hero */}
         {!isEmpty && (
-          <section className="mt-8 grid gap-4 md:grid-cols-3">
-            <div className="rounded-[1.8rem] border border-[#322214] bg-[#171008] p-5">
-              <div className="flex items-center gap-3">
-                <FiTruck className="text-xl text-amber-300" />
+          <section
+            className="
+              relative
+              mt-8
+              overflow-hidden
+              rounded-[3rem]
+              border
+              border-[#322214]
+              bg-[linear-gradient(135deg,#171008_0%,#120b05_50%,#0d0703_100%)]
+              shadow-[0_35px_100px_rgba(0,0,0,0.45)]
+            "
+          >
+            {/* Ambient Effects */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-amber-500/10 blur-[120px]" />
+
+              <div className="absolute left-0 bottom-0 h-72 w-72 rounded-full bg-orange-500/10 blur-[120px]" />
+
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,215,120,0.08),transparent_40%)]" />
+            </div>
+
+            <div className="relative z-10 p-8 lg:p-10">
+              <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr] xl:items-center">
+                {/* Left */}
+                <div>
+                  <div className="inline-flex items-center gap-3 rounded-full border border-amber-500/20 bg-amber-500/10 px-5 py-2">
+                    <FiShoppingBag className="text-amber-300" />
+
+                    <span className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300">
+                      VIP Rewards Club
+                    </span>
+                  </div>
+
+                  <h2 className="mt-6 text-4xl font-black tracking-tight text-white lg:text-5xl">
+                    Exclusive Member Benefits
+                  </h2>
+
+                  <p className="mt-5 max-w-3xl text-lg leading-relaxed text-stone-400">
+                    Unlock premium savings, exclusive coupon
+                    offers, early access collections, priority
+                    support, and luxury shopping rewards
+                    reserved for VIP members.
+                  </p>
+                </div>
+
+                {/* Right Stats */}
+                <div className="grid gap-5 sm:grid-cols-3">
+                  <div className="rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-6 text-center">
+                    <p className="text-4xl font-black text-amber-300">
+                      3
+                    </p>
+
+                    <p className="mt-2 text-xs uppercase tracking-[0.2em] text-stone-500">
+                      Active Offers
+                    </p>
+                  </div>
+
+                  <div className="rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-6 text-center">
+                    <p className="text-4xl font-black text-amber-300">
+                      20%
+                    </p>
+
+                    <p className="mt-2 text-xs uppercase tracking-[0.2em] text-stone-500">
+                      Max Savings
+                    </p>
+                  </div>
+
+                  <div className="rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-6 text-center">
+                    <p className="text-3xl font-black text-amber-300">
+                      VIP
+                    </p>
+
+                    <p className="mt-2 text-xs uppercase tracking-[0.2em] text-stone-500">
+                      Rewards Club
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Benefits Section */}
+        {!isEmpty && (
+          <section className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <div className="rounded-[2rem] border border-[#322214] bg-[#171008] p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10">
+                  <FiShield className="text-xl text-emerald-400" />
+                </div>
 
                 <div>
-                  <h3 className="font-semibold text-white">
-                    Fast Delivery
+                  <h3 className="text-lg font-bold text-white">
+                    Secure Checkout
                   </h3>
 
-                  <p className="text-sm text-stone-400">
-                    Quick and reliable
-                    shipping.
+                  <p className="mt-2 text-sm leading-7 text-stone-400">
+                    End-to-end encrypted payment
+                    processing and protected transactions.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[1.8rem] border border-[#322214] bg-[#171008] p-5">
-              <div className="flex items-center gap-3">
-                <FiShield className="text-xl text-amber-300" />
+            <div className="rounded-[2rem] border border-[#322214] bg-[#171008] p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-sky-500/20 bg-sky-500/10">
+                  <FiTruck className="text-xl text-sky-400" />
+                </div>
 
                 <div>
-                  <h3 className="font-semibold text-white">
-                    Secure Payments
+                  <h3 className="text-lg font-bold text-white">
+                    Express Delivery
                   </h3>
 
-                  <p className="text-sm text-stone-400">
-                    Protected checkout
-                    process.
+                  <p className="mt-2 text-sm leading-7 text-stone-400">
+                    Fast shipping with live order
+                    tracking and premium handling.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[1.8rem] border border-[#322214] bg-[#171008] p-5">
-              <div className="flex items-center gap-3">
-                <FiArrowRight className="text-xl text-amber-300" />
+            <div className="rounded-[2rem] border border-[#322214] bg-[#171008] p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+                  <FiShoppingBag className="text-xl text-purple-400" />
+                </div>
 
                 <div>
-                  <h3 className="font-semibold text-white">
-                    Easy Checkout
+                  <h3 className="text-lg font-bold text-white">
+                    Curated Quality
                   </h3>
 
-                  <p className="text-sm text-stone-400">
-                    Complete your order in
-                    minutes.
+                  <p className="mt-2 text-sm leading-7 text-stone-400">
+                    Premium products selected by
+                    experts and trusted brands.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-[#322214] bg-[#171008] p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
+                  <FiArrowRight className="text-xl text-amber-300" />
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-bold text-white">
+                    Ready To Checkout
+                  </h3>
+
+                  <p className="mt-2 text-sm leading-7 text-stone-400">
+                    Your premium order is prepared
+                    for a seamless purchase experience.
                   </p>
                 </div>
               </div>
@@ -166,20 +307,92 @@ function CartPage() {
           </section>
         )}
 
-        {/* Cart Content */}
+                {/* Main Cart Section */}
         <div className="mt-10">
           {isEmpty ? (
             <CartEmptyState />
           ) : (
             <Cart>
-              <div className="grid gap-8 xl:grid-cols-[1fr_420px]">
-                <CartList />
+              <div className="space-y-10">
+                {/* Cart Items Section */}
+                <div className="min-w-0">
+                  <CartList />
+                </div>
 
-                <CartSummary />
+                {/* Summary Section */}
+                <div className="min-w-0">
+                  <CartSummary />
+                </div>
               </div>
             </Cart>
           )}
         </div>
+
+        {/* Bottom Trust Bar */}
+        {!isEmpty && (
+          <section
+            className="
+              mt-12
+              overflow-hidden
+              rounded-[2.5rem]
+              border
+              border-[#322214]
+              bg-[linear-gradient(180deg,#171008,#120b05)]
+              shadow-[0_25px_70px_rgba(0,0,0,0.35)]
+            "
+          >
+            <div className="grid gap-6 p-8 lg:grid-cols-3">
+              <div className="flex items-center gap-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
+                  <FiShield className="text-2xl text-amber-300" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-white">
+                    100% Secure Checkout
+                  </h3>
+
+                  <p className="mt-1 text-sm text-stone-400">
+                    Your data is protected with
+                    bank-level security.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
+                  <FiArrowRight className="text-2xl text-amber-300" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-white">
+                    Easy Returns
+                  </h3>
+
+                  <p className="mt-1 text-sm text-stone-400">
+                    30-day hassle-free returns.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
+                  <FiTruck className="text-2xl text-amber-300" />
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-white">
+                    Fast Delivery
+                  </h3>
+
+                  <p className="mt-1 text-sm text-stone-400">
+                    Quick & reliable shipping.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
