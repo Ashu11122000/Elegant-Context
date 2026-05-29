@@ -65,224 +65,562 @@ function CartSummary() {
   );
 
   return (
-    <aside className="space-y-6 lg:sticky lg:top-24">
+    <aside className="space-y-7 lg:sticky lg:top-24">
       <CouponBox
         appliedCoupon={appliedCoupon}
         onApplyCoupon={setAppliedCoupon}
       />
 
-      <div className="relative overflow-hidden rounded-[2rem] border border-[#322214] bg-[linear-gradient(to_bottom,#171008,#120b05)] shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
-        {/* Ambient Effects */}
+      <div
+        className="
+        relative
+        overflow-hidden
+        rounded-[2.5rem]
+        border
+        border-white/[0.08]
+        bg-[linear-gradient(180deg,#181008_0%,#120b05_55%,#0d0905_100%)]
+        shadow-[0_40px_120px_rgba(0,0,0,0.55)]
+      "
+      >
+        {/* Luxury Ambient Effects */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute -right-24 -top-24 h-[320px] w-[320px] rounded-full bg-amber-500/10 blur-[120px]" />
 
-          <div className="absolute bottom-0 left-0 h-40 w-40 rounded-full bg-orange-500/5 blur-3xl" />
+          <div className="absolute -left-24 bottom-0 h-[280px] w-[280px] rounded-full bg-orange-500/10 blur-[120px]" />
+
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_35%)]" />
         </div>
+
+        <div className="absolute inset-[1px] rounded-[2.45rem] border border-white/[0.04]" />
 
         <div className="relative z-10">
           {/* Header */}
-          <div className="border-b border-[#2a1c10] p-6">
-            <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
-                <FiShoppingBag className="text-xl text-amber-300" />
+          <div className="border-b border-white/[0.08] p-7">
+            <div className="flex items-start gap-4">
+              <div
+                className="
+                flex
+                h-16
+                w-16
+                shrink-0
+                items-center
+                justify-center
+                rounded-[1.5rem]
+                border
+                border-amber-500/20
+                bg-gradient-to-br
+                from-amber-500/15
+                to-orange-500/10
+              "
+              >
+                <FiShoppingBag className="text-2xl text-amber-300" />
               </div>
 
-              <div>
-                <h2 className="text-xl font-bold text-white">
+              <div className="min-w-0">
+                <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-300">
+                  Premium Order
+                </div>
+
+                <h2 className="mt-3 text-2xl font-black tracking-tight text-white">
                   Order Summary
                 </h2>
 
-                <p className="text-sm text-stone-400">
-                  {cartCount} premium item
-                  {cartCount !== 1 ? "s" : ""}
+                <p className="mt-2 text-sm leading-7 text-stone-400">
+                  Review your order, unlock premium shipping,
+                  and proceed with secure checkout.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Order Insights */}
-          <div className="grid grid-cols-2 gap-3 border-b border-[#2a1c10] p-6">
-            <div className="rounded-2xl border border-[#322214] bg-[#171008] p-4 text-center">
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-                Items
-              </p>
+          {/* Premium Insights */}
+          <div className="border-b border-white/[0.08] p-7">
+            <div className="grid grid-cols-2 gap-4">
+              <div
+                className="
+                rounded-[1.8rem]
+                border
+                border-white/[0.08]
+                bg-white/[0.03]
+                p-5
+              "
+              >
+                <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+                  Items
+                </p>
 
-              <p className="mt-2 text-2xl font-bold text-amber-300">
-                {cartCount}
-              </p>
-            </div>
+                <p className="mt-3 text-4xl font-black text-amber-300">
+                  {cartCount}
+                </p>
 
-            <div className="rounded-2xl border border-[#322214] bg-[#171008] p-4 text-center">
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-                Cart Value
-              </p>
+                <p className="mt-2 text-xs text-stone-500">
+                  Products Selected
+                </p>
+              </div>
 
-              <p className="mt-2 text-lg font-bold text-amber-300">
-                ₹{subtotal.toLocaleString("en-IN")}
-              </p>
+              <div
+                className="
+                rounded-[1.8rem]
+                border
+                border-white/[0.08]
+                bg-white/[0.03]
+                p-5
+              "
+              >
+                <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+                  Cart Value
+                </p>
+
+                <p className="mt-3 text-xl font-black text-amber-300 break-words">
+                  ₹{subtotal.toLocaleString("en-IN")}
+                </p>
+
+                <p className="mt-2 text-xs text-stone-500">
+                  Current Order Value
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Shipping Progress */}
-          <div className="border-b border-[#2a1c10] p-6">
-            <div className="flex items-start gap-3">
-              <FiTruck className="mt-1 text-lg text-amber-300" />
+          {/* Premium Shipping Progress */}
+          <div className="border-b border-white/[0.08] p-7">
+            <div className="rounded-[1.8rem] border border-white/[0.08] bg-white/[0.03] p-5">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
+                  <FiTruck className="text-lg text-amber-300" />
+                </div>
 
-              <div className="flex-1">
-                {remainingForFreeShipping > 0 ? (
-                  <>
-                    <p className="text-sm leading-relaxed text-stone-300">
-                      Add
-                      <span className="mx-1 font-semibold text-amber-300">
-                        ₹
-                        {remainingForFreeShipping.toLocaleString(
+                <div className="min-w-0 flex-1">
+                                      {remainingForFreeShipping > 0 ? (
+                    <>
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="min-w-0">
+                          <h3 className="text-sm font-semibold text-white">
+                            Unlock Premium Shipping
+                          </h3>
+
+                          <p className="mt-1 text-sm leading-6 text-stone-400">
+                            Add
+                            <span className="mx-1 font-semibold text-amber-300">
+                              ₹
+                              {remainingForFreeShipping.toLocaleString(
+                                "en-IN"
+                              )}
+                            </span>
+                            more to qualify for complimentary
+                            priority delivery.
+                          </p>
+                        </div>
+
+                        <div className="shrink-0 rounded-2xl border border-amber-500/20 bg-amber-500/10 px-3 py-2">
+                          <span className="text-sm font-bold text-amber-300">
+                            {Math.round(progressPercentage)}%
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mt-5">
+                        <div className="h-3 overflow-hidden rounded-full bg-[#24180d]">
+                          <div
+                            className="
+                              h-full
+                              rounded-full
+                              bg-gradient-to-r
+                              from-amber-500
+                              via-yellow-400
+                              to-amber-300
+                              transition-all
+                              duration-1000
+                            "
+                            style={{
+                              width: `${progressPercentage}%`,
+                            }}
+                          />
+                        </div>
+
+                        <div className="mt-3 flex items-center justify-between text-xs">
+                          <span className="text-stone-500">
+                            Progress To Free Shipping
+                          </span>
+
+                          <span className="font-medium text-stone-400">
+                            ₹{subtotal.toLocaleString("en-IN")} /
+                            ₹{FREE_SHIPPING_THRESHOLD.toLocaleString("en-IN")}
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div
+                      className="
+                        flex
+                        items-start
+                        gap-4
+                        rounded-[1.4rem]
+                        border
+                        border-emerald-500/20
+                        bg-emerald-500/10
+                        p-4
+                      "
+                    >
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15">
+                        <FiCheckCircle className="text-lg text-emerald-400" />
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-emerald-300">
+                          Free Shipping Unlocked
+                        </h3>
+
+                        <p className="mt-1 text-sm leading-6 text-emerald-200/80">
+                          Congratulations! Your order qualifies
+                          for complimentary premium delivery.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Premium Pricing Section */}
+          <div className="p-7">
+            <div
+              className="
+                rounded-[2rem]
+                border
+                border-white/[0.08]
+                bg-white/[0.03]
+                p-6
+              "
+            >
+              <div className="mb-5 flex items-center justify-between">
+                <h3 className="text-base font-bold text-white">
+                  Payment Summary
+                </h3>
+
+                <div className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1">
+                  <span className="text-xs font-medium text-stone-400">
+                    Secure Billing
+                  </span>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <SummaryRow
+                  label="Subtotal"
+                  value={`₹${subtotal.toLocaleString(
+                    "en-IN"
+                  )}`}
+                />
+
+                {appliedCoupon && (
+                  <SummaryRow
+                    label={`Coupon Savings (${appliedCoupon.discount}%)`}
+                    value={`-₹${discountAmount.toLocaleString(
+                      "en-IN"
+                    )}`}
+                    valueClassName="text-emerald-400"
+                  />
+                )}
+
+                <SummaryRow
+                  label="Shipping"
+                  value={
+                    shipping === 0
+                      ? "FREE"
+                      : `₹${shipping.toLocaleString(
                           "en-IN"
-                        )}
-                      </span>
-                      more to unlock free premium shipping.
-                    </p>
+                        )}`
+                  }
+                  valueClassName={
+                    shipping === 0
+                      ? "text-emerald-400 font-bold"
+                      : ""
+                  }
+                />
 
-                    <div className="mt-4 h-3 overflow-hidden rounded-full bg-[#24180d]">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-300 transition-all duration-700"
-                        style={{
-                          width: `${progressPercentage}%`,
-                        }}
-                      />
+                <SummaryRow
+                  label="Tax & Charges"
+                  value={`₹${tax.toLocaleString(
+                    "en-IN"
+                  )}`}
+                />
+
+                <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                <div
+                  className="
+                    rounded-[1.6rem]
+                    border
+                    border-amber-500/15
+                    bg-gradient-to-br
+                    from-amber-500/10
+                    to-transparent
+                    p-5
+                  "
+                >
+                  <SummaryRow
+                    label="Grand Total"
+                    value={`₹${finalTotal.toLocaleString(
+                      "en-IN"
+                    )}`}
+                    labelClassName="text-lg font-bold text-white"
+                    valueClassName="text-3xl font-black text-amber-300"
+                  />
+
+                  <p className="mt-3 text-xs leading-6 text-stone-500">
+                    Includes taxes, discounts, shipping,
+                    and applicable charges.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+                        {/* Premium Benefits */}
+            <div className="mt-7">
+              <div
+                className="
+                  rounded-[2rem]
+                  border
+                  border-white/[0.08]
+                  bg-white/[0.03]
+                  p-6
+                "
+              >
+                <h3 className="mb-5 text-base font-bold text-white">
+                  Premium Benefits Included
+                </h3>
+
+                <div className="space-y-4">
+                  <div
+                    className="
+                      flex
+                      items-start
+                      gap-4
+                      rounded-[1.4rem]
+                      border
+                      border-white/[0.08]
+                      bg-[#171008]/60
+                      p-4
+                    "
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10">
+                      <FiShield className="text-emerald-400" />
                     </div>
 
-                    <p className="mt-2 text-xs text-stone-500">
-                      {Math.round(progressPercentage)}%
-                      completed
-                    </p>
-                  </>
-                ) : (
-                  <div className="flex items-center gap-2 text-emerald-400">
-                    <FiCheckCircle />
+                    <div className="min-w-0">
+                      <h4 className="font-semibold text-white">
+                        Secure Checkout
+                      </h4>
 
-                    <span className="font-medium">
-                      Free Shipping Unlocked
-                    </span>
+                      <p className="mt-1 text-sm leading-6 text-stone-400">
+                        Bank-grade encryption and protected
+                        payment processing on every transaction.
+                      </p>
+                    </div>
                   </div>
-                )}
-              </div>
-            </div>
-          </div>
 
-          {/* Pricing */}
-          <div className="p-6">
-            <div className="space-y-4">
-              <SummaryRow
-                label="Subtotal"
-                value={`₹${subtotal.toLocaleString(
-                  "en-IN"
-                )}`}
-              />
+                  <div
+                    className="
+                      flex
+                      items-start
+                      gap-4
+                      rounded-[1.4rem]
+                      border
+                      border-white/[0.08]
+                      bg-[#171008]/60
+                      p-4
+                    "
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10">
+                      <FiAward className="text-amber-300" />
+                    </div>
 
-              {appliedCoupon && (
-                <SummaryRow
-                  label={`Discount (${appliedCoupon.discount}%)`}
-                  value={`-₹${discountAmount.toLocaleString(
-                    "en-IN"
-                  )}`}
-                  valueClassName="text-emerald-400"
-                />
-              )}
+                    <div className="min-w-0">
+                      <h4 className="font-semibold text-white">
+                        Premium Quality Guarantee
+                      </h4>
 
-              <SummaryRow
-                label="Shipping"
-                value={
-                  shipping === 0
-                    ? "Free"
-                    : `₹${shipping.toLocaleString(
-                        "en-IN"
-                      )}`
-                }
-                valueClassName={
-                  shipping === 0
-                    ? "text-emerald-400"
-                    : ""
-                }
-              />
+                      <p className="mt-1 text-sm leading-6 text-stone-400">
+                        Every product is carefully selected for
+                        quality, reliability, and value.
+                      </p>
+                    </div>
+                  </div>
 
-              <SummaryRow
-                label="Tax"
-                value={`₹${tax.toLocaleString(
-                  "en-IN"
-                )}`}
-              />
+                  <div
+                    className="
+                      flex
+                      items-start
+                      gap-4
+                      rounded-[1.4rem]
+                      border
+                      border-white/[0.08]
+                      bg-[#171008]/60
+                      p-4
+                    "
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-sky-500/20 bg-sky-500/10">
+                      <FiPackage className="text-sky-400" />
+                    </div>
 
-              <div className="border-t border-[#2a1c10] pt-5">
-                <SummaryRow
-                  label="Grand Total"
-                  value={`₹${finalTotal.toLocaleString(
-                    "en-IN"
-                  )}`}
-                  labelClassName="text-lg font-semibold text-white"
-                  valueClassName="text-3xl font-bold text-amber-300"
-                />
-              </div>
-            </div>
+                    <div className="min-w-0">
+                      <h4 className="font-semibold text-white">
+                        Fast & Reliable Delivery
+                      </h4>
 
-            {/* Benefits */}
-            <div className="mt-8 space-y-3">
-              <div className="flex items-center gap-3 rounded-2xl border border-[#322214] bg-[#171008] p-4">
-                <FiShield className="text-emerald-400" />
+                      <p className="mt-1 text-sm leading-6 text-stone-400">
+                        Quick dispatch and dependable shipping
+                        with real-time tracking support.
+                      </p>
+                    </div>
+                  </div>
 
-                <span className="text-sm text-stone-300">
-                  Secure & Encrypted Checkout
-                </span>
-              </div>
+                  <div
+                    className="
+                      flex
+                      items-start
+                      gap-4
+                      rounded-[1.4rem]
+                      border
+                      border-white/[0.08]
+                      bg-[#171008]/60
+                      p-4
+                    "
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10">
+                      <FiCreditCard className="text-purple-400" />
+                    </div>
 
-              <div className="flex items-center gap-3 rounded-2xl border border-[#322214] bg-[#171008] p-4">
-                <FiAward className="text-amber-300" />
+                    <div className="min-w-0">
+                      <h4 className="font-semibold text-white">
+                        Flexible Payment Methods
+                      </h4>
 
-                <span className="text-sm text-stone-300">
-                  Premium Quality Guarantee
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 rounded-2xl border border-[#322214] bg-[#171008] p-4">
-                <FiPackage className="text-sky-400" />
-
-                <span className="text-sm text-stone-300">
-                  Fast & Reliable Delivery
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 rounded-2xl border border-[#322214] bg-[#171008] p-4">
-                <FiCreditCard className="text-purple-400" />
-
-                <span className="text-sm text-stone-300">
-                  Multiple Secure Payment Options
-                </span>
+                      <p className="mt-1 text-sm leading-6 text-stone-400">
+                        Multiple secure payment options for a
+                        smooth checkout experience.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="mt-8 space-y-3">
+            {/* Luxury CTA Section */}
+            <div className="mt-7 space-y-4">
               <button
                 type="button"
-                className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 px-6 py-4 font-bold text-black shadow-[0_12px_35px_rgba(245,158,11,0.35)] transition-all duration-300 hover:-translate-y-1"
+                className="
+                  group
+                  relative
+                  inline-flex
+                  w-full
+                  items-center
+                  justify-center
+                  gap-3
+                  overflow-hidden
+                  rounded-[1.8rem]
+                  bg-gradient-to-r
+                  from-amber-400
+                  via-yellow-400
+                  to-amber-500
+                  px-6
+                  py-5
+                  font-bold
+                  text-black
+                  shadow-[0_15px_45px_rgba(245,158,11,0.35)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-[0_25px_60px_rgba(245,158,11,0.45)]
+                  active:scale-[0.98]
+                "
               >
-                Proceed To Checkout
+                <span
+                  className="
+                    absolute
+                    inset-y-0
+                    left-[-120%]
+                    w-1/2
+                    skew-x-12
+                    bg-white/30
+                    transition-all
+                    duration-1000
+                    group-hover:left-[140%]
+                  "
+                />
 
-                <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="relative z-10">
+                  Proceed To Secure Checkout
+                </span>
+
+                <FiArrowRight
+                  className="
+                    relative
+                    z-10
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1.5
+                  "
+                />
               </button>
 
               <Link
                 to="/products"
-                className="inline-flex w-full items-center justify-center rounded-2xl border border-[#322214] bg-[#171008] px-6 py-4 font-medium text-stone-300 transition-all duration-300 hover:border-amber-500/30 hover:text-amber-300"
+                className="
+                  inline-flex
+                  w-full
+                  items-center
+                  justify-center
+                  rounded-[1.8rem]
+                  border
+                  border-white/[0.08]
+                  bg-white/[0.03]
+                  px-6
+                  py-5
+                  font-medium
+                  text-stone-300
+                  transition-all
+                  duration-300
+                  hover:border-amber-500/20
+                  hover:bg-white/[0.05]
+                  hover:text-amber-300
+                "
               >
                 Continue Shopping
               </Link>
             </div>
 
             {/* Security Notice */}
-            <div className="mt-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
-              <div className="flex items-center gap-2 text-sm font-medium text-emerald-300">
-                <FiCheckCircle />
-                Protected by secure encrypted payment processing
+            <div
+              className="
+                mt-7
+                rounded-[1.8rem]
+                border
+                border-emerald-500/20
+                bg-emerald-500/10
+                p-5
+              "
+            >
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15">
+                  <FiCheckCircle className="text-emerald-400" />
+                </div>
+
+                <div className="min-w-0">
+                  <h4 className="font-semibold text-emerald-300">
+                    Secure Payment Protection
+                  </h4>
+
+                  <p className="mt-1 text-sm leading-6 text-emerald-200/80">
+                    Your payment information is encrypted and
+                    protected using industry-standard security
+                    protocols throughout checkout.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -299,15 +637,27 @@ function SummaryRow({
   valueClassName = "",
 }) {
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex items-center justify-between gap-5">
       <span
-        className={`text-sm text-stone-400 ${labelClassName}`}
+        className={`
+          min-w-0
+          text-sm
+          text-stone-400
+          ${labelClassName}
+        `}
       >
         {label}
       </span>
 
       <span
-        className={`text-sm font-medium text-white ${valueClassName}`}
+        className={`
+          text-right
+          text-sm
+          font-semibold
+          text-white
+          break-words
+          ${valueClassName}
+        `}
       >
         {value}
       </span>

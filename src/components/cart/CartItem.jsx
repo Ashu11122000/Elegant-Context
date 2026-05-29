@@ -23,148 +23,459 @@ function CartItem({
     quantity,
   } = item;
 
-  const itemSubtotal = Number(price) * quantity;
+  const itemSubtotal =
+    Number(price) * quantity;
 
   return (
-    <article className="group relative overflow-hidden rounded-[2rem] border border-[#2f2115] bg-[linear-gradient(to_bottom,#171008,#120b05)] shadow-[0_25px_70px_rgba(0,0,0,0.4)] transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_35px_90px_rgba(245,158,11,0.08)]">
-      {/* Premium Ambient Glow */}
+    <article
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-[2.5rem]
+        border
+        border-[#2f2115]
+        bg-[linear-gradient(180deg,#171008_0%,#120b05_100%)]
+        shadow-[0_25px_80px_rgba(0,0,0,0.45)]
+        transition-all
+        duration-500
+        hover:border-amber-500/20
+      "
+    >
+      {/* Ambient Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-amber-500/5 blur-3xl" />
+        <div className="absolute -right-20 top-0 h-72 w-72 rounded-full bg-amber-500/5 blur-3xl" />
 
-        <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-orange-500/5 blur-3xl" />
+        <div className="absolute -left-20 bottom-0 h-60 w-60 rounded-full bg-orange-500/5 blur-3xl" />
       </div>
 
-      <div className="relative z-10 p-5 sm:p-6 lg:p-7">
-        <div className="flex flex-col gap-6 xl:flex-row xl:items-center">
-          {/* Product Image */}
-          <div className="mx-auto shrink-0 xl:mx-0">
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-[#3a2818] bg-[#1b1209] p-2">
-              <div className="overflow-hidden rounded-[1.25rem]">
+      <div className="relative z-10 p-6 lg:p-8">
+        {/* TOP SECTION */}
+        <div className="grid gap-6 xl:grid-cols-[260px_220px_260px]">
+          {/* IMAGE */}
+          <div className="mx-auto xl:mx-0">
+            <div className="overflow-hidden rounded-[2rem] border border-[#3a2818] bg-[#171008] p-3">
+              <div className="relative overflow-hidden rounded-[1.5rem]">
                 <img
                   src={image}
                   alt={name}
                   loading="lazy"
-                  className="h-36 w-36 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="
+                    h-[220px]
+                    w-full
+                    object-cover
+                    transition-transform
+                    duration-700
+                    group-hover:scale-105
+                  "
                 />
-              </div>
 
-              <div className="absolute left-3 top-3">
-                <span className="rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-300">
-                  Premium
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Product Information */}
-          <div className="min-w-0 flex-1 text-center xl:text-left">
-            {category && (
-              <span className="inline-flex rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-300">
-                {category}
-              </span>
-            )}
-
-            <h3 className="mt-4 text-xl font-semibold leading-relaxed text-white">
-              {name}
-            </h3>
-
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-stone-400">
-              Crafted with exceptional attention to detail, delivering
-              timeless style, premium quality, and luxury comfort for
-              everyday elegance.
-            </p>
-
-            {/* Trust Indicators */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3 xl:justify-start">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/15 bg-emerald-500/10 px-3 py-1.5 text-xs text-emerald-300">
-                <FiShield size={13} />
-                Secure Purchase
-              </div>
-
-              <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/15 bg-sky-500/10 px-3 py-1.5 text-xs text-sky-300">
-                <FiTruck size={13} />
-                Fast Delivery
-              </div>
-
-              <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/15 bg-purple-500/10 px-3 py-1.5 text-xs text-purple-300">
-                <FiAward size={13} />
-                Quality Assured
-              </div>
-            </div>
-
-            {/* Unit Price */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3 xl:justify-start">
-              <span className="text-2xl font-bold text-amber-300">
-                ₹{Number(price).toLocaleString("en-IN")}
-              </span>
-
-              <span className="rounded-full border border-[#3b2818] bg-[#1b1209] px-3 py-1 text-xs font-medium text-stone-400">
-                Price Per Item
-              </span>
-            </div>
-          </div>
-
-          {/* Quantity Section */}
-          <div className="flex flex-col items-center gap-4">
-            <div className="rounded-[1.5rem] border border-[#322214] bg-[#1a1209] p-2">
-              <div className="flex items-center">
-                <button
-                  type="button"
-                  onClick={() => onDecrement(id)}
-                  aria-label="Decrease quantity"
-                  className="flex h-11 w-11 items-center justify-center rounded-xl text-stone-300 transition-all duration-300 hover:bg-[#24180d] hover:text-amber-300"
-                >
-                  <FiMinus />
-                </button>
-
-                <div className="flex min-w-[70px] items-center justify-center">
-                  <span className="text-lg font-bold text-white">
-                    {quantity}
+                <div className="absolute left-4 top-4">
+                  <span
+                    className="
+                      rounded-full
+                      border
+                      border-amber-500/20
+                      bg-amber-500/10
+                      px-4
+                      py-2
+                      text-xs
+                      font-bold
+                      uppercase
+                      tracking-[0.2em]
+                      text-amber-300
+                    "
+                  >
+                    Premium
                   </span>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={() => onIncrement(id)}
-                  aria-label="Increase quantity"
-                  className="flex h-11 w-11 items-center justify-center rounded-xl text-stone-300 transition-all duration-300 hover:bg-[#24180d] hover:text-amber-300"
-                >
-                  <FiPlus />
-                </button>
               </div>
+            </div>
+          </div>
+
+          {/* QUANTITY */}
+          <div
+            className="
+              rounded-[2rem]
+              border
+              border-[#322214]
+              bg-[#171008]/70
+              p-5
+            "
+          >
+            <p
+              className="
+                mb-5
+                text-center
+                text-xs
+                uppercase
+                tracking-[0.25em]
+                text-stone-500
+              "
+            >
+              Quantity
+            </p>
+
+            <div
+              className="
+                flex
+                items-center
+                rounded-[1.5rem]
+                border
+                border-[#322214]
+                bg-[#120b05]
+                p-2
+              "
+            >
+              <button
+                type="button"
+                onClick={() => onDecrement(id)}
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  text-stone-300
+                  transition
+                  hover:bg-[#24180d]
+                "
+              >
+                <FiMinus />
+              </button>
+
+              <span
+                className="
+                  flex-1
+                  text-center
+                  text-2xl
+                  font-bold
+                  text-white
+                "
+              >
+                {quantity}
+              </span>
+
+              <button
+                type="button"
+                onClick={() => onIncrement(id)}
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  text-stone-300
+                  transition
+                  hover:bg-[#24180d]
+                "
+              >
+                <FiPlus />
+              </button>
             </div>
 
             <button
               type="button"
               onClick={() => onRemove(id)}
-              className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-300 transition-all duration-300 hover:border-red-500/40 hover:bg-red-500/15"
+              className="
+                mt-5
+                flex
+                w-full
+                items-center
+                justify-center
+                gap-2
+                rounded-2xl
+                bg-red-500/10
+                py-3
+                text-red-300
+                transition
+                hover:bg-red-500/15
+              "
             >
-              <FiTrash2 size={14} />
+              <FiTrash2 />
               Remove
             </button>
           </div>
 
-          {/* Premium Subtotal Panel */}
-          <div className="min-w-[190px]">
-            <div className="rounded-[1.75rem] border border-[#322214] bg-[#181008] p-5 text-center xl:text-right">
-              <p className="text-[11px] uppercase tracking-[0.25em] text-stone-500">
-                Item Total
+                    {/* ITEM TOTAL */}
+          <div
+            className="
+              rounded-[2rem]
+              border
+              border-[#322214]
+              bg-[#171008]/70
+              p-6
+              text-center
+            "
+          >
+            <p
+              className="
+                text-xs
+                uppercase
+                tracking-[0.3em]
+                text-stone-500
+              "
+            >
+              Item Total
+            </p>
+
+            <h3
+              className="
+                mt-5
+                text-5xl
+                font-bold
+                text-amber-300
+              "
+            >
+              ₹{itemSubtotal.toLocaleString("en-IN")}
+            </h3>
+
+            <div className="mt-6 border-t border-[#2a1c10] pt-5">
+              <p className="text-sm text-stone-500">
+                {quantity} × ₹
+                {Number(price).toLocaleString("en-IN")}
               </p>
-
-              <h4 className="mt-3 text-3xl font-bold text-amber-300">
-                ₹{itemSubtotal.toLocaleString("en-IN")}
-              </h4>
-
-              <div className="mt-4 border-t border-[#2a1c10] pt-4">
-                <p className="text-xs text-stone-500">
-                  {quantity} × ₹
-                  {Number(price).toLocaleString("en-IN")}
-                </p>
-              </div>
             </div>
           </div>
         </div>
+
+        {/* PRODUCT DETAILS */}
+        <div className="mt-8 space-y-6">
+          {/* PRODUCT INFO */}
+          <div
+            className="
+              rounded-[2rem]
+              border
+              border-[#322214]
+              bg-[#171008]/70
+              p-6
+            "
+          >
+            {category && (
+              <div className="mb-4">
+                <span
+                  className="
+                    inline-flex
+                    rounded-full
+                    border
+                    border-amber-500/20
+                    bg-amber-500/10
+                    px-4
+                    py-2
+                    text-xs
+                    font-semibold
+                    uppercase
+                    tracking-[0.2em]
+                    text-amber-300
+                  "
+                >
+                  {category}
+                </span>
+              </div>
+            )}
+
+            <h3
+              className="
+                text-2xl
+                font-bold
+                leading-tight
+                text-white
+                lg:text-3xl
+              "
+            >
+              {name}
+            </h3>
+
+            <p className="mt-3 text-sm text-stone-500">
+              Premium Fashion Collection
+            </p>
+          </div>
+
+          {/* DESCRIPTION */}
+          <div
+            className="
+              rounded-[2rem]
+              border
+              border-[#322214]
+              bg-[#171008]/70
+              p-6
+            "
+          >
+            <h4
+              className="
+                mb-4
+                text-sm
+                font-semibold
+                uppercase
+                tracking-[0.2em]
+                text-stone-500
+              "
+            >
+              Description
+            </h4>
+
+            <p
+              className="
+                max-w-5xl
+                text-sm
+                leading-8
+                text-stone-400
+              "
+            >
+              Crafted with exceptional attention to detail,
+              delivering timeless style, premium quality,
+              and luxury comfort for everyday elegance.
+              Designed for customers who appreciate refined
+              craftsmanship, superior materials, and a
+              sophisticated lifestyle experience.
+            </p>
+          </div>
+
+                    {/* BENEFITS */}
+          <div
+            className="
+              rounded-[2rem]
+              border
+              border-[#322214]
+              bg-[#171008]/70
+              p-6
+            "
+          >
+            <h4
+              className="
+                mb-4
+                text-sm
+                font-semibold
+                uppercase
+                tracking-[0.2em]
+                text-stone-500
+              "
+            >
+              Premium Benefits
+            </h4>
+
+            <div className="flex flex-wrap gap-3">
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-emerald-500/15
+                  bg-emerald-500/10
+                  px-4
+                  py-2
+                  text-sm
+                  text-emerald-300
+                "
+              >
+                <FiShield />
+                Secure Purchase
+              </div>
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-sky-500/15
+                  bg-sky-500/10
+                  px-4
+                  py-2
+                  text-sm
+                  text-sky-300
+                "
+              >
+                <FiTruck />
+                Fast Delivery
+              </div>
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-purple-500/15
+                  bg-purple-500/10
+                  px-4
+                  py-2
+                  text-sm
+                  text-purple-300
+                "
+              >
+                <FiAward />
+                Quality Assured
+              </div>
+            </div>
+          </div>
+
+          {/* PRICE PANEL */}
+          <div
+            className="
+              rounded-[2rem]
+              border
+              border-[#322214]
+              bg-[#171008]/70
+              p-6
+            "
+          >
+            <h4
+              className="
+                mb-4
+                text-sm
+                font-semibold
+                uppercase
+                tracking-[0.2em]
+                text-stone-500
+              "
+            >
+              Pricing Details
+            </h4>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <span
+                className="
+                  text-4xl
+                  font-bold
+                  text-amber-300
+                "
+              >
+                ₹{Number(price).toLocaleString("en-IN")}
+              </span>
+
+              <span
+                className="
+                  rounded-full
+                  border
+                  border-[#3b2818]
+                  bg-[#1b1209]
+                  px-4
+                  py-2
+                  text-xs
+                  font-medium
+                  text-stone-400
+                "
+              >
+                Price Per Item
+              </span>
+            </div>
+
+            <p className="mt-3 text-sm text-stone-500">
+              Inclusive of all taxes and applicable charges.
+            </p>
+          </div>
+        </div>
       </div>
+
+      {/* Premium Bottom Accent */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-amber-400/70 to-transparent" />
     </article>
   );
 }

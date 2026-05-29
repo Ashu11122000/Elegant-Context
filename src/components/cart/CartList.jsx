@@ -11,10 +11,7 @@ import { useCartContext } from "../../context/CartContext";
 import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
 
-function CartList({
-  className = "",
-  showHeader = true,
-}) {
+function CartList({ className = "", showHeader = true }) {
   const {
     cartItems,
     cartCount,
@@ -32,51 +29,61 @@ function CartList({
     <section className={className}>
       {showHeader && (
         <>
-          {/* Premium Header */}
-          <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-[#322214] bg-[linear-gradient(to_right,#171008,#1c1209,#171008)] shadow-[0_25px_70px_rgba(0,0,0,0.4)]">
-            {/* Ambient Glow */}
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="relative mb-10 overflow-hidden rounded-[2.5rem] border border-white/[0.08] bg-[linear-gradient(180deg,#1a1209_0%,#130c06_100%)] shadow-[0_35px_90px_rgba(0,0,0,0.45)]">
+            {/* Ambient Effects */}
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-amber-500/10 blur-[120px]" />
 
-              <div className="absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-orange-500/5 blur-3xl" />
+              <div className="absolute -left-20 bottom-0 h-56 w-56 rounded-full bg-orange-500/10 blur-[120px]" />
+
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_35%)]" />
             </div>
 
-            <div className="relative z-10 p-6 lg:p-8">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <div className="max-w-2xl">
+            <div className="relative z-10 p-6 sm:p-8 lg:p-10">
+              <div className="flex flex-col gap-8 xl:flex-row xl:items-center xl:justify-between">
+                <div className="max-w-3xl">
                   <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-amber-300">
                     <FiShoppingBag size={14} />
                     Premium Shopping Cart
                   </div>
 
-                  <h2 className="mt-5 text-3xl font-bold text-white lg:text-4xl">
-                    Your Luxury Collection
+                  <h2 className="mt-6 text-4xl font-black tracking-tight text-white lg:text-5xl">
+                    Your Curated Luxury Collection
                   </h2>
 
-                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-400">
+                  <p className="mt-4 max-w-2xl text-base leading-8 text-stone-400">
                     Review your selected premium products, manage quantities,
-                    and prepare for a seamless luxury checkout experience.
+                    compare options, and prepare for a seamless checkout
+                    experience backed by secure payments and fast delivery.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 sm:min-w-[320px]">
-                  <div className="rounded-2xl border border-[#322214] bg-[#120b05]/80 p-5 text-center backdrop-blur-xl">
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-                      Items
+                <div className="grid grid-cols-2 gap-4 sm:min-w-[380px]">
+                  <div className="rounded-[1.8rem] border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl">
+                    <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+                      Total Items
                     </p>
 
-                    <p className="mt-2 text-3xl font-bold text-amber-300">
+                    <p className="mt-3 text-4xl font-black text-amber-300">
                       {cartCount}
+                    </p>
+
+                    <p className="mt-2 text-xs text-stone-500">
+                      Products Selected
                     </p>
                   </div>
 
-                  <div className="rounded-2xl border border-[#322214] bg-[#120b05]/80 p-5 text-center backdrop-blur-xl">
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-                      Value
+                  <div className="rounded-[1.8rem] border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl">
+                    <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+                      Cart Value
                     </p>
 
-                    <p className="mt-2 text-xl font-bold text-amber-300">
+                    <p className="mt-3 text-2xl font-black text-amber-300">
                       ₹{total.toLocaleString("en-IN")}
+                    </p>
+
+                    <p className="mt-2 text-xs text-stone-500">
+                      Current Order Value
                     </p>
                   </div>
                 </div>
@@ -84,75 +91,73 @@ function CartList({
             </div>
           </div>
 
-          {/* Premium Stats Section */}
-          <div className="mb-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <div className="rounded-[1.75rem] border border-[#322214] bg-[#171008] p-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10">
-                  <FiShield className="text-emerald-400" />
+          <div className="mb-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {/* Secure Checkout */}
+            <div className="group rounded-[1.8rem] border border-white/[0.08] bg-[linear-gradient(180deg,#171008,#120b05)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/20">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10">
+                  <FiShield className="text-xl text-emerald-400" />
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-white">
-                    Secure Checkout
-                  </h3>
+                  <h3 className="font-semibold text-white">Secure Checkout</h3>
 
-                  <p className="text-xs text-stone-400">
-                    Protected Transactions
+                  <p className="mt-1 text-sm leading-6 text-stone-400">
+                    End-to-end encrypted payment processing.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[1.75rem] border border-[#322214] bg-[#171008] p-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-sky-500/20 bg-sky-500/10">
-                  <FiTruck className="text-sky-400" />
+            {/* Fast Delivery */}
+            <div className="group rounded-[1.8rem] border border-white/[0.08] bg-[linear-gradient(180deg,#171008,#120b05)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/20">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-sky-500/20 bg-sky-500/10">
+                  <FiTruck className="text-xl text-sky-400" />
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-white">
-                    Fast Delivery
-                  </h3>
+                  <h3 className="font-semibold text-white">Express Delivery</h3>
 
-                  <p className="text-xs text-stone-400">
-                    Quick Shipping Available
+                  <p className="mt-1 text-sm leading-6 text-stone-400">
+                    Fast shipping with live order tracking.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[1.75rem] border border-[#322214] bg-[#171008] p-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
-                  <FiAward className="text-purple-400" />
+            {/* Premium Quality */}
+            <div className="group rounded-[1.8rem] border border-white/[0.08] bg-[linear-gradient(180deg,#171008,#120b05)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/20">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10">
+                  <FiAward className="text-xl text-purple-400" />
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-white">
-                    Premium Quality
-                  </h3>
+                  <h3 className="font-semibold text-white">Curated Quality</h3>
 
-                  <p className="text-xs text-stone-400">
-                    Carefully Curated Products
+                  <p className="mt-1 text-sm leading-6 text-stone-400">
+                    Premium products selected by our experts.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[1.75rem] border border-[#322214] bg-[#171008] p-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
-                  <FiPackage className="text-amber-300" />
+            {/* Cart Status */}
+            <div className="group rounded-[1.8rem] border border-white/[0.08] bg-[linear-gradient(180deg,#171008,#120b05)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/20">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/10">
+                  <FiPackage className="text-xl text-amber-300" />
                 </div>
 
                 <div>
                   <h3 className="font-semibold text-white">
-                    {cartCount} Products
+                    Ready To Checkout
                   </h3>
 
-                  <p className="text-xs text-stone-400">
-                    Ready For Checkout
+                  <p className="mt-1 text-sm leading-6 text-stone-400">
+                    {cartCount} premium item{cartCount !== 1 ? "s" : ""}{" "}
+                    prepared for your order.
                   </p>
                 </div>
               </div>
