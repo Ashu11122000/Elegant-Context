@@ -13,10 +13,15 @@ import products from "../data/products";
 import ProductDetails from "../components/products/ProductDetails";
 import Breadcrumb from "../components/common/Breadcrumb";
 import ErrorMessage from "../components/common/ErrorMessage";
+
 import ROUTES from "../config/routes";
+import { useCartContext } from "../context/CartContext";
 
 function ProductDetailsPage() {
   const { slug } = useParams();
+
+  const { addToCart } =
+    useCartContext();
 
   const product = products.find(
     (item) =>
@@ -28,9 +33,13 @@ function ProductDetailsPage() {
     selectedProduct,
     quantity
   ) => {
-    console.log(
-      "Add to cart:",
-      selectedProduct,
+    addToCart(
+      {
+        ...selectedProduct,
+        name:
+          selectedProduct.name ||
+          selectedProduct.title,
+      },
       quantity
     );
   };
@@ -53,14 +62,14 @@ function ProductDetailsPage() {
     );
   };
 
-  if (!product) {
+    if (!product) {
     return (
       <section className="relative min-h-screen overflow-hidden bg-[#070503] px-4 py-16 text-[#f7e7c6] sm:px-6 lg:px-8">
         {/* Ambient Background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 h-[420px] w-[420px] rounded-full bg-amber-500/10 blur-3xl" />
+          <div className="absolute left-0 top-0 h-[420px] w-[420px] rounded-full bg-amber-500/10 blur-3xl" />
 
-          <div className="absolute top-40 right-0 h-[350px] w-[350px] rounded-full bg-yellow-400/5 blur-3xl" />
+          <div className="absolute right-0 top-40 h-[350px] w-[350px] rounded-full bg-yellow-400/5 blur-3xl" />
 
           <div className="absolute bottom-0 left-1/3 h-[420px] w-[420px] rounded-full bg-orange-500/5 blur-3xl" />
 
@@ -74,7 +83,6 @@ function ProductDetailsPage() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(237,191,104,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.03),transparent_30%)]" />
 
             <div className="relative px-8 py-14 lg:px-14">
-              {/* Return Badge */}
               <div className="mb-10 inline-flex items-center gap-3 rounded-full border border-[#d6b36a]/15 bg-[#edbf68]/10 px-5 py-3 backdrop-blur-xl">
                 <FaArrowLeft className="text-[#d6b36a]" />
 
@@ -83,12 +91,10 @@ function ProductDetailsPage() {
                 </span>
               </div>
 
-              {/* Icon */}
               <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-[2rem] border border-[#d6b36a]/20 bg-gradient-to-br from-[#f0c879] to-[#c88c29] text-5xl text-[#1a1205] shadow-[0_25px_60px_rgba(237,191,104,0.35)]">
                 <FaGem />
               </div>
 
-              {/* Content */}
               <div className="mt-10 text-center">
                 <p className="text-[11px] font-bold uppercase tracking-[0.45em] text-[#8d7551]">
                   Luxury Collection
@@ -142,7 +148,6 @@ function ProductDetailsPage() {
                 </div>
               </div>
 
-              {/* Error Card */}
               <div className="mt-12 rounded-[2rem] border border-[#d6b36a]/10 bg-white/[0.03] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl">
                 <ErrorMessage
                   title="Unavailable Product"
@@ -165,7 +170,7 @@ function ProductDetailsPage() {
                     </p>
                   </div>
 
-                                    <div className="rounded-2xl border border-[#d6b36a]/10 bg-[#120d07]/80 p-5">
+                  <div className="rounded-2xl border border-[#d6b36a]/10 bg-[#120d07]/80 p-5">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#edbf68]/10 text-[#d6b36a]">
                       <FaGem />
                     </div>
@@ -201,20 +206,18 @@ function ProductDetailsPage() {
     );
   }
 
-  return (
+    return (
     <section className="relative min-h-screen overflow-hidden bg-[#070503] px-4 py-6 text-[#f7e8c8] sm:px-6 lg:px-8">
       {/* Luxury Ambient Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 h-[520px] w-[520px] rounded-full bg-amber-500/10 blur-3xl" />
+        <div className="absolute left-0 top-0 h-[520px] w-[520px] rounded-full bg-amber-500/10 blur-3xl" />
 
-        <div className="absolute top-32 right-0 h-[420px] w-[420px] rounded-full bg-yellow-400/5 blur-3xl" />
+        <div className="absolute right-0 top-32 h-[420px] w-[420px] rounded-full bg-yellow-400/5 blur-3xl" />
 
         <div className="absolute bottom-0 left-1/3 h-[450px] w-[450px] rounded-full bg-orange-500/5 blur-3xl" />
 
-        {/* Center Luxury Glow */}
         <div className="absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#edbf68]/5 blur-[220px]" />
 
-        {/* Premium Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
@@ -240,7 +243,6 @@ function ProductDetailsPage() {
         {/* Luxury Hero Banner */}
         <div className="mb-8 overflow-hidden rounded-[2.2rem] border border-[#d6b36a]/10 bg-gradient-to-r from-[#1b1208]/95 via-[#120c07]/95 to-[#1b1208]/95 shadow-[0_25px_80px_rgba(0,0,0,0.5)] backdrop-blur-2xl">
           <div className="relative overflow-hidden px-6 py-8 sm:px-8 lg:px-10">
-            {/* Decorative Glow */}
             <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-[#edbf68]/10 blur-3xl" />
 
             <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
@@ -256,10 +258,11 @@ function ProductDetailsPage() {
 
                 <p className="mt-5 max-w-3xl text-sm leading-7 text-[#b79d73] sm:text-base">
                   Discover refined craftsmanship,
-                  premium materials, exceptional
-                  detailing, and timeless design
-                  curated for luxury lifestyles
-                  and elevated personal style.
+                  premium materials,
+                  exceptional detailing,
+                  and timeless design curated
+                  for luxury lifestyles and
+                  elevated personal style.
                 </p>
               </div>
 
@@ -324,7 +327,7 @@ function ProductDetailsPage() {
             </div>
           </div>
 
-                    <div className="rounded-[1.8rem] border border-[#d6b36a]/10 bg-[#120d07]/85 p-5 backdrop-blur-xl">
+          <div className="rounded-[1.8rem] border border-[#d6b36a]/10 bg-[#120d07]/85 p-5 backdrop-blur-xl">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#edbf68]/10 text-[#d6b36a]">
                 <FaStar />
@@ -361,7 +364,7 @@ function ProductDetailsPage() {
           </div>
         </div>
 
-        {/* Product Details Content */}
+        {/* Product Details */}
         <div className="relative">
           <ProductDetails
             product={product}
