@@ -1,20 +1,36 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 import Layout from "../components/layout/Layout";
+
 import Home from "../pages/Home";
 import ProductsPage from "../pages/ProductsPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
+import CartPage from "../pages/CartPage";
 
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        {/* Homepage */}
         <Route index element={<Home />} />
 
-        {/* Product listing */}
-        <Route path="products" element={<ProductsPage />} />
+        {/* Product Catalog */}
+        <Route
+          path="products"
+          element={<ProductsPage />}
+        />
 
-        {/* Product details */}
-        <Route path="products/:slug" element={<ProductDetailsPage />} />
+        {/* Product Details */}
+        <Route
+          path="products/:slug"
+          element={<ProductDetailsPage />}
+        />
+
+        {/* Shopping Cart */}
+        <Route
+          path="cart"
+          element={<CartPage />}
+        />
       </Route>
     </Routes>
   );

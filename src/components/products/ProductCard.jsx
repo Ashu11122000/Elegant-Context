@@ -11,6 +11,8 @@ import RatingStars from "../UI/RatingStars";
 import PriceTag from "../UI/PriceTag";
 import Button from "../UI/Button";
 
+import { useCartContext } from "../../context/CartContext";
+
 function ProductCard({
   product,
   onWishlistToggle,
@@ -19,6 +21,8 @@ function ProductCard({
   showQuickView = true,
 }) {
   if (!product) return null;
+
+  const { addToCart } = useCartContext();
 
   const {
     id,
@@ -71,7 +75,21 @@ function ProductCard({
     onQuickView?.(product);
   };
 
-  return (
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    addToCart({
+      id,
+      name: productName,
+      image,
+      category,
+      price,
+      slug,
+    });
+  };
+
+    return (
     <article className="group overflow-hidden rounded-[2rem] border border-[#2f2116] bg-gradient-to-b from-[#1b120c] to-[#120b07] shadow-[0_15px_45px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-2 hover:border-[#c89b5f]/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
       {/* IMAGE */}
       <Link
@@ -86,10 +104,10 @@ function ProductCard({
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
           />
 
-          {/* DARK OVERLAY */}
+          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/10" />
 
-          {/* TOP BADGES */}
+          {/* Top Badges */}
           <div className="absolute left-5 top-5 flex items-center gap-2">
             {badge && (
               <span className="rounded-full bg-[#d6a45c] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#24150a] shadow-[0_8px_20px_rgba(214,164,92,0.35)]">
@@ -104,7 +122,7 @@ function ProductCard({
             )}
           </div>
 
-          {/* ACTION BUTTONS */}
+          {/* Action Buttons */}
           {(showWishlist ||
             showQuickView) && (
             <div className="absolute right-5 top-5 flex flex-col gap-3">
@@ -142,16 +160,14 @@ function ProductCard({
             </div>
           )}
 
-          {/* IMAGE CONTENT */}
+          {/* Image Content */}
           <div className="absolute bottom-5 left-5 right-5">
-            {/* Category */}
             {category && (
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f0c372]">
                 {category}
               </p>
             )}
 
-            {/* Rating + Verified */}
             <div className="mt-4 flex items-start justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2">
@@ -179,8 +195,7 @@ function ProductCard({
           </div>
         </div>
       </Link>
-
-      {/* CONTENT */}
+            {/* CONTENT */}
       <div className="p-6">
         {/* Product Name */}
         <Link to={productUrl}>
@@ -196,7 +211,7 @@ function ProductCard({
           timeless modern luxury.
         </p>
 
-        {/* PRICE SECTION */}
+        {/* Price Section */}
         <div className="mt-5 rounded-[1.4rem] border border-[#342419] bg-[#160e09] p-4">
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -227,7 +242,10 @@ function ProductCard({
 
         {/* CTA */}
         <div className="mt-6">
-          <Button className="w-full rounded-[1.4rem] bg-gradient-to-r from-[#d6a45c] to-[#b9853f] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-[#24150a] shadow-[0_10px_25px_rgba(214,164,92,0.28)] transition-all duration-300 hover:translate-y-[-1px] hover:shadow-[0_18px_35px_rgba(214,164,92,0.38)]">
+          <Button
+            onClick={handleAddToCart}
+            className="w-full rounded-[1.4rem] bg-gradient-to-r from-[#d6a45c] to-[#b9853f] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-[#24150a] shadow-[0_10px_25px_rgba(214,164,92,0.28)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_18px_35px_rgba(214,164,92,0.38)]"
+          >
             Add to Cart
           </Button>
         </div>
@@ -255,9 +273,13 @@ ProductCard.propTypes = {
     badge: PropTypes.string,
     isWishlisted: PropTypes.bool,
   }).isRequired,
+
   showWishlist: PropTypes.bool,
+
   showQuickView: PropTypes.bool,
+
   onWishlistToggle: PropTypes.func,
+
   onQuickView: PropTypes.func,
 };
 
