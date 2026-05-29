@@ -19,6 +19,12 @@ function SectionHeading({
     right: "justify-end",
   };
 
+  const formattedTitle = title
+    .toLowerCase()
+    .replace(/\b\w/g, (char) =>
+      char.toUpperCase()
+    );
+
   return (
     <section
       className={`relative mb-16 flex flex-col gap-7 ${alignmentClasses[align]} ${className}`}
@@ -56,7 +62,7 @@ function SectionHeading({
           <div className="absolute inset-0 bg-amber-300/10 blur-3xl" />
 
           <h2 className="relative max-w-5xl text-[2.2rem] font-semibold leading-[1.05] tracking-[-0.05em] text-stone-100 sm:text-5xl lg:text-6xl xl:text-7xl">
-            {title}
+            {formattedTitle}
           </h2>
         </div>
 

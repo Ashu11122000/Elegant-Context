@@ -6,7 +6,9 @@ import {
   FaCrown,
   FaGem,
   FaShieldAlt,
+  FaArrowRight,
 } from "react-icons/fa";
+
 import RatingStars from "../UI/RatingStars";
 
 const RATING_OPTIONS = [4, 3, 2, 1];
@@ -17,215 +19,254 @@ function RatingFilter({
 }) {
   const activeLabel =
     selectedRating > 0
-      ? `${selectedRating}+ Star Premium Products`
+      ? `${selectedRating}+ Star Products`
       : "All Customer Ratings";
 
   const getReviewInsight = (rating) => {
     const insights = {
-      4: "Elite premium customer favorites",
-      3: "Highly trusted luxury selections",
-      2: "Well-reviewed curated collections",
-      1: "Explore all customer experiences",
+      4: "Top rated customer favorites",
+      3: "Highly trusted luxury picks",
+      2: "Well-reviewed curated products",
+      1: "Explore every customer experience",
     };
 
     return insights[rating];
   };
 
   return (
-    <section className="relative overflow-hidden rounded-[2rem] border border-[#c9a86a]/15 bg-gradient-to-br from-[#19130d] via-[#120f0b] to-[#0d0a07] p-6 shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:p-7">
-      {/* Ambient Glow */}
-      <div className="pointer-events-none absolute -left-20 top-0 h-56 w-56 rounded-full bg-amber-400/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-56 w-56 rounded-full bg-yellow-200/5 blur-3xl" />
+    <section className="relative overflow-hidden rounded-[2.5rem] border border-[#352514] bg-[#0d0906] shadow-[0_45px_120px_rgba(0,0,0,0.75)]">
+      {/* ================= BACKGROUND ================= */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(240,195,114,0.12),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(240,195,114,0.04),transparent_30%)]" />
 
-      <div className="relative z-10 space-y-7">
-        {/* Header */}
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-          <div className="max-w-xl">
-            {/* Premium Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#d6b57b]/15 bg-[#241b13]/80 px-4 py-1.5 backdrop-blur-xl">
-              <FaShieldAlt className="text-[10px] text-[#f0c879]" />
+      <div className="absolute inset-0 bg-[linear-gradient(130deg,transparent,rgba(255,255,255,0.02),transparent)]" />
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#c9a56c]">
-                Trust Filter
+      <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-[#f0c372]/10 blur-3xl" />
+
+      <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-[#f0c372]/5 blur-3xl" />
+
+      <div className="relative z-10 space-y-8 p-6 sm:p-8">
+        {/* ================= HEADER ================= */}
+        <div className="flex flex-col items-center text-center gap-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#f0c372]/10 bg-[#1c120a] px-4 py-2 shadow-[0_10px_25px_rgba(0,0,0,0.2)]">
+              <FaShieldAlt className="text-[10px] text-[#f0c372]" />
+
+              <span className="text-[10px] font-black uppercase tracking-[0.34em] text-[#d2a967]">
+                Verified Trust Filter
               </span>
             </div>
 
-            <h3 className="mt-5 text-[1.9rem] font-black tracking-tight text-[#f5efe4] sm:text-[2rem]">
-              Customer Ratings
+            <h3 className="mt-6 text-[2rem] font-black leading-tight tracking-tight text-[#fff3df] sm:text-[2.5rem]">
+              Shop By
+              <span className="block bg-gradient-to-r from-[#f3cb82] via-[#ffe4b3] to-[#c8862b] bg-clip-text text-transparent">
+                Customer Ratings
+              </span>
             </h3>
 
-            <p className="mt-3 max-w-lg text-sm leading-relaxed text-[#b09b7f] sm:text-[15px]">
-              Discover luxury products trusted by verified shoppers and premium
-              customer experiences worldwide.
+            <p className="mt-5 text-sm leading-[2] text-[#b69469] sm:text-base">
+              Discover highly rated products trusted by verified
+              shoppers, refined customer experiences, and premium
+              collections curated through authentic feedback.
             </p>
           </div>
 
-          {/* Premium Icon */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col items-center gap-4">
             {selectedRating > 0 && (
               <button
                 type="button"
                 onClick={() => onRatingChange(0)}
                 className="
                   rounded-full
-                  border border-[#d6b57b]/15
-                  bg-[#241b13]/90
-                  px-5 py-2.5
+                  border border-[#f0c372]/12
+                  bg-[#1d130a]
+                  px-5 py-3
                   text-[10px]
-                  font-semibold
+                  font-black
                   uppercase
                   tracking-[0.2em]
-                  text-[#ceb087]
+                  text-[#d3b083]
+                  shadow-[0_10px_25px_rgba(0,0,0,0.2)]
                   transition-all duration-300
-                  hover:border-[#f0c879]/30
-                  hover:bg-[#302317]
-                  hover:text-[#f0c879]
+                  hover:border-[#f0c372]/25
+                  hover:bg-[#291a0d]
+                  hover:text-[#f0c372]
                 "
               >
                 Clear Filter
               </button>
             )}
 
-            <div className="relative flex h-16 w-16 items-center justify-center rounded-[1.7rem] border border-[#f0c879]/20 bg-gradient-to-br from-[#f0c879] via-[#d9a84d] to-[#9b6822] text-2xl text-[#261707] shadow-[0_15px_35px_rgba(240,200,121,0.25)]">
-              <div className="absolute inset-[1px] rounded-[1.6rem] border border-white/10" />
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-[2rem] border border-[#f0c372]/20 bg-gradient-to-br from-[#f4ce85] via-[#dca94b] to-[#c8862b] shadow-[0_20px_40px_rgba(237,191,104,0.25)]">
+              <div className="absolute inset-[1px] rounded-[1.9rem] border border-white/10" />
 
-              <FaAward className="relative z-10" />
+              <FaAward className="relative z-10 text-3xl text-[#2d1702]" />
             </div>
           </div>
         </div>
 
-        {/* Active Summary */}
-        <div className="relative overflow-hidden rounded-[1.9rem] border border-[#d6b57b]/12 bg-gradient-to-r from-[#241b13] to-[#17110c] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-          {/* Glow */}
-          <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[#f0c879]/5 blur-3xl" />
+                {/* ================= ACTIVE FILTER CARD ================= */}
+        <div className="relative overflow-hidden rounded-[2rem] border border-[#f0c372]/10 bg-[linear-gradient(to_bottom,#1a120b,#120c07)] p-6 shadow-[0_20px_45px_rgba(0,0,0,0.35)]">
+          <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-[#f0c372]/5 blur-3xl" />
 
-          <div className="relative flex items-center gap-5">
-            {/* Icon */}
-            <div className="flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-[#f0c879] to-[#c98a29] text-2xl text-[#241405] shadow-[0_10px_30px_rgba(240,200,121,0.25)]">
-              <FaGem />
+          <div className="relative flex flex-col items-center justify-center text-center gap-5">
+            <div className="flex h-16 w-16 items-center justify-center rounded-[1.7rem] bg-gradient-to-br from-[#f4ce85] to-[#c8862b] text-[#2d1702] shadow-[0_15px_35px_rgba(237,191,104,0.25)]">
+              <FaGem className="text-2xl" />
             </div>
 
-            {/* Content */}
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#b79259]">
-                Active Rating Filter
+            <div className="max-w-[280px] mx-auto">
+              <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#c89f60]">
+                Active Rating Selection
               </p>
 
-              <h4 className="mt-2 text-xl font-black tracking-tight text-[#f6efe4]">
+              <h4 className="mt-3 text-[1.6rem] font-black tracking-tight text-[#fff1db]">
                 {activeLabel}
               </h4>
 
-              <p className="mt-1 text-sm text-[#aa9576]">
-                Premium shopper confidence & verified trust insights
+              <p className="mt-2 text-sm leading-relaxed text-[#ae8d62]">
+                Filtered using verified customer trust,
+                shopping confidence, and authentic luxury
+                experiences.
               </p>
+            </div>
+
+            <div className="mx-auto rounded-full border border-[#f0c372]/10 bg-[#241507] px-5 py-3">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#f0c372]">
+                Live Rating Filter
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Rating Options */}
-        <div className="space-y-4">
+        {/* ================= RATING OPTIONS ================= */}
+        <div className="space-y-5">
           {RATING_OPTIONS.map((rating) => {
-            const isActive = selectedRating === rating;
+            const isActive =
+              selectedRating === rating;
 
             return (
               <button
                 key={rating}
                 type="button"
-                onClick={() => onRatingChange(rating)}
+                onClick={() =>
+                  onRatingChange(rating)
+                }
                 className={`
-                  group relative w-full overflow-hidden rounded-[1.9rem]
-                  border p-5 text-left
-                  transition-all duration-300
+                  group relative w-full overflow-hidden rounded-[2rem]
+                  border p-6 text-center transition-all duration-300
                   ${
                     isActive
                       ? `
-                        border-[#f0c879]/30
+                        border-[#f0c372]/35
                         bg-gradient-to-r
-                        from-[#f0c879]
-                        via-[#d9a84d]
-                        to-[#b97b1e]
-                        text-[#241405]
-                        shadow-[0_18px_40px_rgba(240,200,121,0.22)]
+                        from-[#f4ce85]
+                        via-[#dca94b]
+                        to-[#c8862b]
+                        text-[#2d1702]
+                        shadow-[0_20px_45px_rgba(237,191,104,0.22)]
                       `
                       : `
-                        border-[#d6b57b]/10
-                        bg-gradient-to-r
-                        from-[#241b13]
-                        to-[#17110c]
-                        text-[#ceb087]
+                        border-[#352514]
+                        bg-[linear-gradient(to_bottom,#1a120b,#120c07)]
+                        text-[#d1b084]
                         hover:-translate-y-1
-                        hover:border-[#f0c879]/20
-                        hover:shadow-[0_15px_35px_rgba(0,0,0,0.35)]
+                        hover:border-[#f0c372]/20
+                        hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]
                       `
                   }
                 `}
               >
-                {/* Hover Glow */}
                 {!isActive && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#f0c879]/0 via-[#f0c879]/5 to-[#f0c879]/0 opacity-0 transition duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    <div className="absolute -left-10 top-0 h-full w-20 rotate-12 bg-white/5 blur-2xl" />
+                  </div>
                 )}
 
-                <div className="relative flex items-center justify-between gap-5">
-                  {/* Left */}
-                  <div className="flex items-center gap-4">
-                    {/* Icon */}
+                <div className="relative flex flex-col items-center justify-center text-center gap-5">
+                  <div className="flex flex-col items-center justify-center gap-5">
                     <div
                       className={`
-                        flex h-14 w-14 items-center justify-center rounded-2xl
+                        flex h-16 w-16 items-center justify-center rounded-[1.5rem]
                         ${
                           isActive
-                            ? "bg-black/10 text-[#2d1b06]"
-                            : "border border-[#d6b57b]/10 bg-[#2a1f15] text-[#f0c879]"
+                            ? "bg-black/10 text-[#2d1702]"
+                            : "border border-[#f0c372]/10 bg-[#241608] text-[#f0c372]"
                         }
                       `}
                     >
-                      <FaStar className="text-lg" />
+                      <FaStar className="text-xl" />
                     </div>
 
-                    {/* Rating Info */}
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <RatingStars rating={rating} />
+                    <div className="flex flex-col items-center text-center">
+                      <div className="flex flex-col items-center justify-center gap-3">
+                        <RatingStars
+                          rating={rating}
+                        />
 
                         <span
-                          className={`text-sm font-semibold tracking-wide ${
+                          className={`text-sm font-black tracking-wide ${
                             isActive
-                              ? "text-[#2b1b07]"
-                              : "text-[#d3b48a]"
+                              ? "text-[#2d1702]"
+                              : "text-[#e0c49c]"
                           }`}
                         >
-                          & Up
+                          & Up Ratings
                         </span>
                       </div>
 
                       <p
-                        className={`mt-2 text-sm leading-relaxed ${
+                        className={`mt-3 max-w-[260px] text-center text-sm leading-[1.8] ${
                           isActive
-                            ? "text-[#3a2508]"
-                            : "text-[#a89272]"
+                            ? "text-[#4a2f0b]"
+                            : "text-[#aa8a62]"
                         }`}
                       >
-                        {getReviewInsight(rating)}
+                        {getReviewInsight(
+                          rating
+                        )}
                       </p>
+
+                      <div className="mt-4 flex flex-wrap justify-center gap-2">
+                        {[
+                          "Verified Reviews",
+                          "Trusted Quality",
+                          "Luxury Picks",
+                        ].map((tag) => (
+                          <span
+                            key={tag}
+                            className={`rounded-full px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.18em] ${
+                              isActive
+                                ? "bg-black/10 text-[#2d1702]"
+                                : "border border-[#f0c372]/10 bg-[#241507] text-[#f0c372]"
+                            }`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Right */}
-                  <div className="flex flex-col items-end gap-3">
+                  <div className="flex flex-col items-center justify-center gap-4">
                     {isActive ? (
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black/10 text-[#2d1b06]">
-                        <FaCheckCircle />
+                      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-black/10 text-[#2d1702]">
+                        <FaCheckCircle className="text-lg" />
                       </div>
                     ) : (
-                      <div className="h-5 w-5 rounded-full border border-[#c9ab83]/30 transition-all duration-300 group-hover:border-[#f0c879]" />
-                    )}
-
-                    {rating >= 4 && !isActive && (
-                      <div className="inline-flex items-center gap-1 rounded-full border border-[#f0c879]/10 bg-[#f0c879]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-[#f0c879]">
-                        <FaCrown className="text-[8px]" />
-                        Bestseller
+                      <div className="flex h-7 w-7 items-center justify-center rounded-full border border-[#f0c372]/15 bg-[#241507] transition-all duration-300 group-hover:border-[#f0c372]/30">
+                        <div className="h-2.5 w-2.5 rounded-full bg-[#6f5332] group-hover:bg-[#f0c372]" />
                       </div>
                     )}
+
+                    {rating >= 4 &&
+                      !isActive && (
+                        <div className="inline-flex items-center gap-2 rounded-full border border-[#f0c372]/10 bg-[#241507] px-4 py-2">
+                          <FaCrown className="text-[10px] text-[#f0c372]" />
+
+                          <span className="text-[9px] font-black uppercase tracking-[0.18em] text-[#f0c372]">
+                            Bestseller
+                          </span>
+                        </div>
+                      )}
                   </div>
                 </div>
               </button>
@@ -233,26 +274,35 @@ function RatingFilter({
           })}
         </div>
 
-        {/* Bottom Trust Note */}
-        <div className="relative overflow-hidden rounded-[1.8rem] border border-[#d6b57b]/10 bg-[#15110c]/90 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-          {/* Accent Line */}
-          <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#f0c879] to-[#9c6921]" />
+                {/* ================= FOOTER NOTE ================= */}
+        <div className="relative overflow-hidden rounded-[2rem] border border-[#352514] bg-[linear-gradient(to_bottom,#171007,#100903)] p-6 shadow-[0_25px_55px_rgba(0,0,0,0.35)]">
+          {/* Accent */}
+          <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#f0c372] to-[#9c6b23]" />
 
-          <div className="flex items-start gap-4">
+          {/* Glow */}
+          <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-[#f0c372]/5 blur-3xl" />
+
+          <div className="relative flex flex-col items-center justify-center text-center gap-5">
             {/* Icon */}
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#f0c879]/15 bg-gradient-to-br from-[#f0c879]/15 to-[#f0c879]/5 text-[#f0c879]">
-              <FaCheckCircle />
+            <div className="flex h-14 w-14 items-center justify-center rounded-[1.5rem] border border-[#f0c372]/15 bg-gradient-to-br from-[#f0c372]/15 to-[#f0c372]/5 text-[#f0c372]">
+              <FaCheckCircle className="text-lg" />
             </div>
 
-            {/* Text */}
-            <div>
-              <p className="text-sm font-bold tracking-wide text-[#f5efe4]">
-                Verified Shopper Trust
-              </p>
+            {/* Content */}
+            <div className="max-w-[280px] mx-auto">
+              <div className="flex items-center justify-center gap-2">
+                <p className="text-sm font-black tracking-wide text-[#fff1db]">
+                  Verified Shopper Confidence
+                </p>
 
-              <p className="mt-2 text-sm leading-relaxed text-[#aa9575]">
-                Filter products using real customer satisfaction, premium
-                quality confidence, and authentic luxury shopping experiences.
+                <FaArrowRight className="text-[10px] text-[#f0c372]" />
+              </div>
+
+              <p className="mt-3 text-sm leading-[1.9] text-[#ae8d62]">
+                Filter collections using authentic customer
+                satisfaction, premium quality assurance,
+                verified shopping experiences, and trusted
+                product performance insights.
               </p>
             </div>
           </div>

@@ -5,8 +5,8 @@ import {
   FiArrowRight,
   FiClock,
   FiEye,
-  FiFlame,
   FiTrendingUp,
+  FiZap,
 } from "react-icons/fi";
 
 import ProductCard from "../products/ProductCard";
@@ -147,7 +147,7 @@ function TrendingProducts({ limit = 4 }) {
                 {
                   title: "Luxury Momentum",
                   value: "HOT",
-                  icon: FiFlame,
+                  icon: FiZap,
                 },
               ].map((item) => {
                 const Icon = item.icon;
@@ -198,7 +198,7 @@ function TrendingProducts({ limit = 4 }) {
             <div className="relative z-10 text-center">
               {/* Badge */}
               <div className="inline-flex items-center gap-3 rounded-full border border-amber-400/20 bg-black/20 px-5 py-2.5 backdrop-blur-xl">
-                <FiFlame className="text-sm text-amber-300" />
+                <FiZap className="text-sm text-amber-300" />
 
                 <span className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200">
                   Trending Momentum

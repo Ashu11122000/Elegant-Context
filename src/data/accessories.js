@@ -14,7 +14,7 @@ const accessoriesProducts = [
     reviewCount: 184,
     stock: 14,
     image:
-      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=800&q=80",
     description:
       "Elegant analog leather watch crafted for timeless premium everyday styling.",
     tags: ["watch", "premium", "men", "accessories"],
@@ -182,7 +182,7 @@ const accessoriesProducts = [
     reviewCount: 83,
     stock: 40,
     image:
-      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80",
     description:
       "Stylish hoop earrings crafted for chic daily styling and occasion elegance.",
     tags: ["earrings", "women", "fashion", "jewelry"],
@@ -211,6 +211,204 @@ const accessoriesProducts = [
     trending: true,
     isNew: false,
   },
+
+  {
+  id: 11,
+  title: "Luxury Chronograph Watch",
+  slug: generateSlug("Luxury Chronograph Watch"),
+  category: "accessories",
+  subcategory: "watches",
+  brand: "Citizen",
+  price: 11999,
+  originalPrice: 14999,
+  rating: 4.8,
+  reviewCount: 231,
+  stock: 12,
+  image:
+    "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Premium chronograph watch with stainless steel construction.",
+  tags: ["watch", "luxury", "premium"],
+  featured: true,
+  trending: true,
+  isNew: true,
+},
+
+{
+  id: 13,
+  title: "Premium Travel Duffel Bag",
+  slug: generateSlug("Premium Travel Duffel Bag"),
+  category: "accessories",
+  subcategory: "bags",
+  brand: "Samsonite",
+  price: 6999,
+  originalPrice: 8999,
+  rating: 4.7,
+  reviewCount: 118,
+  stock: 17,
+  image:
+    "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Spacious travel duffel bag crafted for premium journeys.",
+  tags: ["travel", "bag"],
+  featured: true,
+  trending: true,
+  isNew: false,
+},
+
+{
+  id: 14,
+  title: "Gold Plated Bracelet",
+  slug: generateSlug("Gold Plated Bracelet"),
+  category: "accessories",
+  subcategory: "jewelry",
+  brand: "Pandora",
+  price: 3499,
+  originalPrice: 4999,
+  rating: 4.5,
+  reviewCount: 94,
+  stock: 35,
+  image:
+    "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Elegant bracelet designed for luxury styling.",
+  tags: ["bracelet", "jewelry"],
+  featured: true,
+  trending: false,
+  isNew: true,
+},
+
+{
+  id: 15,
+  title: "Designer Cat Eye Sunglasses",
+  slug: generateSlug("Designer Cat Eye Sunglasses"),
+  category: "accessories",
+  subcategory: "sunglasses",
+  brand: "Prada",
+  price: 7999,
+  originalPrice: 9999,
+  rating: 4.8,
+  reviewCount: 176,
+  stock: 15,
+  image:
+    "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Fashion-forward cat eye sunglasses with UV protection.",
+  tags: ["sunglasses", "fashion"],
+  featured: true,
+  trending: true,
+  isNew: false,
+},
+
+{
+  id: 16,
+  title: "Smart Fitness Tracker Elite",
+  slug: generateSlug("Smart Fitness Tracker Elite"),
+  category: "accessories",
+  subcategory: "smartwatches",
+  brand: "Fitbit",
+  price: 8999,
+  originalPrice: 10999,
+  rating: 4.7,
+  reviewCount: 255,
+  stock: 20,
+  image:
+    "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Advanced fitness tracking smartwatch for active lifestyles.",
+  tags: ["fitness", "smartwatch"],
+  featured: true,
+  trending: true,
+  isNew: true,
+},
+
+{
+  id: 17,
+  title: "Premium Laptop Backpack",
+  slug: generateSlug("Premium Laptop Backpack"),
+  category: "accessories",
+  subcategory: "backpacks",
+  brand: "American Tourister",
+  price: 5999,
+  originalPrice: 7499,
+  rating: 4.6,
+  reviewCount: 193,
+  stock: 23,
+  image:
+    "https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Professional backpack with laptop compartment.",
+  tags: ["backpack", "travel"],
+  featured: false,
+  trending: true,
+  isNew: false,
+},
+
+{
+  id: 18,
+  title: "Premium Leather Card Holder",
+  slug: generateSlug("Premium Leather Card Holder"),
+  category: "accessories",
+  subcategory: "wallets",
+  brand: "Tommy Hilfiger",
+  price: 1799,
+  originalPrice: 2499,
+  rating: 4.4,
+  reviewCount: 88,
+  stock: 38,
+  image:
+    "https://images.unsplash.com/photo-1606503825008-909a67e63c3d?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Minimal card holder crafted from genuine leather.",
+  tags: ["wallet", "cardholder"],
+  featured: false,
+  trending: false,
+  isNew: true,
+},
+
+{
+  id: 19,
+  title: "Luxury Women's Tote Bag",
+  slug: generateSlug("Luxury Women's Tote Bag"),
+  category: "accessories",
+  subcategory: "handbags",
+  brand: "Coach",
+  price: 10499,
+  originalPrice: 12999,
+  rating: 4.8,
+  reviewCount: 122,
+  stock: 11,
+  image:
+    "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Premium designer tote bag for modern elegance.",
+  tags: ["tote", "women"],
+  featured: true,
+  trending: true,
+  isNew: true,
+},
+
+{
+  id: 20,
+  title: "Premium Polarized Sports Sunglasses",
+  slug: generateSlug("Premium Polarized Sports Sunglasses"),
+  category: "accessories",
+  subcategory: "sunglasses",
+  brand: "Oakley",
+  price: 8499,
+  originalPrice: 10499,
+  rating: 4.7,
+  reviewCount: 207,
+  stock: 18,
+  image:
+    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80",
+  description:
+    "High-performance polarized sunglasses for outdoor activities.",
+  tags: ["sports", "sunglasses"],
+  featured: true,
+  trending: true,
+  isNew: false,
+}
 ];
 
 export default accessoriesProducts;

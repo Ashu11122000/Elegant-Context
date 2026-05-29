@@ -56,7 +56,7 @@ const fashionProducts = [
     reviewCount: 254,
     stock: 40,
     image:
-      "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg?auto=compress&cs=tinysrgb&w=800",
     description:
       "Classic slim-fit denim jeans designed for all-day comfort and versatile styling.",
     tags: ["jeans", "casual", "men", "denim"],
@@ -84,27 +84,6 @@ const fashionProducts = [
     featured: false,
     trending: false,
     isNew: true,
-  },
-  {
-    id: 5,
-    title: "Luxury Men's Formal Blazer",
-    slug: generateSlug("Luxury Men's Formal Blazer"),
-    category: "fashion",
-    subcategory: "blazers",
-    brand: "Raymond",
-    price: 8999,
-    originalPrice: 11999,
-    rating: 4.8,
-    reviewCount: 141,
-    stock: 10,
-    image:
-      "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description:
-      "Luxury formal blazer with premium tailoring for executive and event styling.",
-    tags: ["formal", "men", "blazer", "luxury"],
-    featured: true,
-    trending: true,
-    isNew: false,
   },
   {
     id: 6,
@@ -170,27 +149,6 @@ const fashionProducts = [
     isNew: true,
   },
   {
-    id: 9,
-    title: "Women's Premium Winter Coat",
-    slug: generateSlug("Women's Premium Winter Coat"),
-    category: "fashion",
-    subcategory: "coats",
-    brand: "Mango",
-    price: 6799,
-    originalPrice: 8999,
-    rating: 4.7,
-    reviewCount: 74,
-    stock: 12,
-    image:
-      "https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg?auto=compress&cs=tinysrgb&w=800",
-    description:
-      "Premium insulated winter coat designed for warmth with timeless elegant styling.",
-    tags: ["winter", "women", "coat", "premium"],
-    featured: true,
-    trending: false,
-    isNew: true,
-  },
-  {
     id: 10,
     title: "Premium Polo T-Shirt",
     slug: generateSlug("Premium Polo T-Shirt"),
@@ -211,6 +169,182 @@ const fashionProducts = [
     trending: true,
     isNew: false,
   },
+
+  {
+  id: 11,
+  title: "Men's Premium Hooded Sweatshirt",
+  slug: generateSlug("Men's Premium Hooded Sweatshirt"),
+  category: "fashion",
+  subcategory: "hoodies",
+  brand: "Puma",
+  price: 3299,
+  originalPrice: 4499,
+  rating: 4.6,
+  reviewCount: 164,
+  stock: 28,
+  image:
+    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Premium fleece-lined hoodie designed for comfort and modern streetwear styling.",
+  tags: ["hoodie", "men", "winter", "streetwear"],
+  featured: true,
+  trending: true,
+  isNew: true,
+},
+
+{
+  id: 12,
+  title: "Women's Floral Summer Dress",
+  slug: generateSlug("Women's Floral Summer Dress"),
+  category: "fashion",
+  subcategory: "dresses",
+  brand: "Forever 21",
+  price: 3899,
+  originalPrice: 5299,
+  rating: 4.5,
+  reviewCount: 117,
+  stock: 24,
+  image:
+    "https://images.pexels.com/photos/291762/pexels-photo-291762.jpeg?auto=compress&cs=tinysrgb&w=800",
+  description:
+    "Elegant floral summer dress crafted for effortless seasonal styling.",
+  tags: ["dress", "women", "summer", "fashion"],
+  featured: true,
+  trending: false,
+  isNew: true,
+},
+
+{
+  id: 13,
+  title: "Men's Checked Casual Shirt",
+  slug: generateSlug("Men's Checked Casual Shirt"),
+  category: "fashion",
+  subcategory: "shirts",
+  brand: "Jack & Jones",
+  price: 2599,
+  originalPrice: 3599,
+  rating: 4.4,
+  reviewCount: 201,
+  stock: 36,
+  image:
+    "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Classic checked casual shirt designed for versatile everyday wear.",
+  tags: ["shirt", "casual", "men"],
+  featured: false,
+  trending: true,
+  isNew: false,
+},
+
+{
+  id: 15,
+  title: "Men's Premium Bomber Jacket",
+  slug: generateSlug("Men's Premium Bomber Jacket"),
+  category: "fashion",
+  subcategory: "jackets",
+  brand: "Zara",
+  price: 6999,
+  originalPrice: 8999,
+  rating: 4.8,
+  reviewCount: 143,
+  stock: 16,
+  image:
+    "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=800",
+  description:
+    "Stylish bomber jacket crafted for premium urban fashion.",
+  tags: ["jacket", "men", "premium"],
+  featured: true,
+  trending: true,
+  isNew: false,
+},
+
+{
+  id: 16,
+  title: "Women's Designer Saree",
+  slug: generateSlug("Women's Designer Saree"),
+  category: "fashion",
+  subcategory: "ethnic",
+  brand: "Manyavar Mohey",
+  price: 5999,
+  originalPrice: 7999,
+  rating: 4.7,
+  reviewCount: 84,
+  stock: 14,
+  image:
+    "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Premium designer saree crafted for weddings and festive occasions.",
+  tags: ["saree", "ethnic", "women"],
+  featured: true,
+  trending: false,
+  isNew: true,
+},
+
+{
+  id: 17,
+  title: "Men's Running Performance Shoes",
+  slug: generateSlug("Men's Running Performance Shoes"),
+  category: "fashion",
+  subcategory: "footwear",
+  brand: "Nike",
+  price: 5499,
+  originalPrice: 7499,
+  rating: 4.6,
+  reviewCount: 278,
+  stock: 32,
+  image:
+    "https://images.pexels.com/photos/2529147/pexels-photo-2529147.jpeg?auto=compress&cs=tinysrgb&w=800",
+  description:
+    "Performance running shoes engineered for comfort and endurance.",
+  tags: ["shoes", "running", "nike"],
+  featured: false,
+  trending: true,
+  isNew: true,
+},
+
+{
+  id: 18,
+  title: "Women's Premium Knit Sweater",
+  slug: generateSlug("Women's Premium Knit Sweater"),
+  category: "fashion",
+  subcategory: "sweaters",
+  brand: "H&M",
+  price: 3499,
+  originalPrice: 4799,
+  rating: 4.5,
+  reviewCount: 112,
+  stock: 21,
+  image:
+    "https://images.pexels.com/photos/5709661/pexels-photo-5709661.jpeg?auto=compress&cs=tinysrgb&w=800",
+  description:
+    "Soft premium knit sweater designed for cozy winter styling.",
+  tags: ["sweater", "women", "winter"],
+  featured: false,
+  trending: false,
+  isNew: true,
+},
+
+{
+  id: 19,
+  title: "Men's Formal Slim Fit Trousers",
+  slug: generateSlug("Men's Formal Slim Fit Trousers"),
+  category: "fashion",
+  subcategory: "trousers",
+  brand: "Louis Philippe",
+  price: 3999,
+  originalPrice: 5499,
+  rating: 4.6,
+  reviewCount: 151,
+  stock: 29,
+  image:
+    "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80",
+  description:
+    "Premium formal trousers tailored for executive dressing.",
+  tags: ["formal", "trousers", "men"],
+  featured: false,
+  trending: true,
+  isNew: false,
+},
 ];
 
 export default fashionProducts;

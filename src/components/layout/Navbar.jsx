@@ -2,12 +2,10 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import {
   FiCompass,
-  FiHeart,
   FiHome,
   FiPackage,
-  FiShoppingBag,
-  FiUser,
 } from "react-icons/fi";
+
 import ROUTES from "../../config/routes";
 
 const navLinks = [
@@ -15,149 +13,134 @@ const navLinks = [
     path: ROUTES.HOME,
     label: "Home",
     icon: FiHome,
-    description: "Luxury landing",
   },
   {
     path: ROUTES.PRODUCTS,
     label: "Products",
     icon: FiPackage,
-    description: "Premium collections",
-  },
-  {
-    path: ROUTES.WISHLIST,
-    label: "Wishlist",
-    icon: FiHeart,
-    badge: 2,
-    description: "Saved favorites",
-  },
-  {
-    path: ROUTES.CART,
-    label: "Cart",
-    icon: FiShoppingBag,
-    badge: 3,
-    description: "Selected items",
-  },
-  {
-    path: ROUTES.LOGIN,
-    label: "Account",
-    icon: FiUser,
-    description: "Profile & orders",
   },
 ];
 
-function Navbar({ className = "" }) {
+function Navbar({ className }) {
   return (
     <nav
-      className={`hidden items-center gap-3 lg:flex ${className}`}
+      className={`hidden items-center gap-5 lg:flex ${
+        className || ""
+      }`}
       aria-label="Primary Navigation"
     >
-      {/* Premium Explore Badge */}
-      <div className="mr-2 flex items-center gap-2 rounded-full border border-amber-500/15 bg-gradient-to-r from-amber-400/10 to-yellow-500/5 px-4 py-2 backdrop-blur-xl">
-        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-yellow-500 text-[#2B1D0E] shadow-lg shadow-amber-500/20">
-          <FiCompass size={14} />
-        </div>
+      {/* Premium Explore Capsule */}
+      <div className="group relative hidden overflow-hidden rounded-full border border-amber-400/10 bg-gradient-to-br from-[#1b140c] via-[#120d07] to-[#0a0806] px-4 py-2 shadow-[0_10px_35px_rgba(0,0,0,0.45)] backdrop-blur-2xl transition-all duration-500 hover:border-amber-400/25 hover:shadow-[0_12px_45px_rgba(251,191,36,0.15)] 2xl:flex">
+        {/* Ambient Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.12),transparent_40%)] opacity-80" />
 
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.22em] text-stone-500">
-            Explore
-          </p>
+        {/* Shine */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent" />
 
-          <p className="text-xs font-semibold text-amber-100">
-            Luxury Fashion
-          </p>
+        <div className="relative flex items-center gap-3">
+          {/* Icon */}
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-500 text-[#2B1D0E] shadow-[0_8px_20px_rgba(251,191,36,0.35)]">
+            <FiCompass size={15} />
+
+            {/* Inner Ring */}
+            <div className="absolute inset-[3px] rounded-full border border-white/20" />
+          </div>
+
+          {/* Text */}
+          <div>
+            <p className="text-[10px] font-medium uppercase tracking-[0.32em] text-stone-500">
+              Explore
+            </p>
+
+            <p className="bg-gradient-to-r from-[#f8e7be] via-[#f6d58d] to-[#c89b3c] bg-clip-text text-sm font-bold text-transparent">
+              Luxury
+            </p>
+          </div>
         </div>
       </div>
 
-      {navLinks.map((link) => {
-        const Icon = link.icon;
+      {/* Navigation Container */}
+      <div className="relative flex items-center gap-3 rounded-[28px] border border-white/[0.05] bg-white/[0.02] p-2 shadow-[0_10px_40px_rgba(0,0,0,0.4)] backdrop-blur-2xl">
+        {/* Container Glow */}
+        <div className="absolute inset-0 rounded-[28px] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.08),transparent_55%)]" />
 
-        return (
-          <NavLink
-            key={link.path}
-            to={link.path}
-            className={({ isActive }) =>
-              `group relative overflow-hidden rounded-2xl border px-4 py-3 transition-all duration-300 ${
-                isActive
-                  ? "border-amber-400/20 bg-gradient-to-r from-amber-400/20 to-yellow-500/10 shadow-[0_10px_30px_rgba(251,191,36,0.12)]"
-                  : "border-white/5 bg-white/[0.03] hover:-translate-y-0.5 hover:border-amber-500/15 hover:bg-white/[0.05]"
-              }`
-            }
-          >
-            {({ isActive }) => (
-              <>
-                {/* Hover Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-300/0 via-amber-200/0 to-yellow-200/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:from-amber-300/10 group-hover:via-amber-200/5 group-hover:to-yellow-200/10" />
+        {/* Navigation Links */}
+        {navLinks.map((link) => {
+          const Icon = link.icon;
 
-                {/* Active Glow */}
-                {isActive && (
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.18),transparent_70%)]" />
-                )}
+          return (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                `group relative overflow-hidden rounded-2xl border transition-all duration-500 ${
+                  isActive
+                    ? "border-amber-400/20 bg-gradient-to-br from-amber-500/20 via-amber-400/10 to-yellow-400/10 shadow-[0_10px_30px_rgba(251,191,36,0.18)]"
+                    : "border-transparent bg-transparent hover:border-white/10 hover:bg-white/[0.03]"
+                }`
+              }
+            >
+              {({ isActive }) => (
+                <div className="relative flex items-center gap-3 px-4 py-3">
+                  {/* Premium Hover Glow */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.14),transparent_45%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                <div className="relative z-10 flex items-center gap-3">
-                  {/* Icon */}
+                  {/* Top Shine */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                  {/* Icon Container */}
                   <div
-                    className={`relative flex h-10 w-10 items-center justify-center rounded-2xl border transition-all duration-300 ${
+                    className={`relative flex h-11 w-11 items-center justify-center rounded-2xl border transition-all duration-500 ${
                       isActive
-                        ? "border-amber-300/30 bg-gradient-to-br from-amber-300 to-yellow-500 text-[#2B1D0E] shadow-lg shadow-amber-500/20"
-                        : "border-white/5 bg-stone-900/80 text-amber-200 group-hover:border-amber-500/20 group-hover:bg-amber-500/10 group-hover:text-[#2B1D0E]"
+                        ? "border-amber-300/30 bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-500 text-[#2B1D0E] shadow-[0_10px_25px_rgba(251,191,36,0.3)]"
+                        : "border-white/5 bg-[#16120d] text-[#d6b36a] group-hover:border-amber-400/20 group-hover:bg-[#1d160f]"
                     }`}
                   >
-                    <Icon
-                      size={17}
-                      className="transition-transform duration-300 group-hover:scale-110"
-                    />
+                    {/* Icon Glow */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent opacity-60" />
 
-                    {/* Notification Badge */}
-                    {link.badge ? (
-                      <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full border border-amber-200/30 bg-gradient-to-br from-amber-300 to-yellow-500 px-1 text-[10px] font-bold text-[#2B1D0E] shadow-lg shadow-amber-500/20">
-                        {link.badge}
-                      </span>
-                    ) : null}
+                    <Icon
+                      size={18}
+                      className="relative z-10"
+                    />
                   </div>
 
-                  {/* Text */}
-                  <div className="flex flex-col">
-                    <span
-                      className={`text-sm font-semibold tracking-wide transition-colors duration-300 ${
+                  {/* Label */}
+                  <div className="relative z-10 hidden xl:block">
+                    <p
+                      className={`text-sm font-semibold tracking-wide transition-all duration-300 ${
                         isActive
-                          ? "text-amber-100"
-                          : "text-stone-200 group-hover:text-amber-100"
+                          ? "bg-gradient-to-r from-[#fff3d6] to-[#e2bc68] bg-clip-text text-transparent"
+                          : "text-stone-300 group-hover:text-[#f6e7c6]"
                       }`}
                     >
                       {link.label}
-                    </span>
+                    </p>
 
-                    <span
-                      className={`text-[11px] transition-colors duration-300 ${
+                    <div
+                      className={`mt-1 h-px rounded-full transition-all duration-500 ${
                         isActive
-                          ? "text-amber-200/70"
-                          : "text-stone-500 group-hover:text-stone-400"
+                          ? "w-full bg-gradient-to-r from-amber-300 to-yellow-500"
+                          : "w-0 bg-gradient-to-r from-amber-300 to-yellow-500 group-hover:w-full"
                       }`}
-                    >
-                      {link.description}
-                    </span>
+                    />
                   </div>
                 </div>
-
-                {/* Bottom Shine */}
-                <div
-                  className={`absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-amber-300 to-transparent transition-all duration-500 ${
-                    isActive
-                      ? "w-3/4"
-                      : "group-hover:w-1/2"
-                  }`}
-                />
-              </>
-            )}
-          </NavLink>
-        );
-      })}
+              )}
+            </NavLink>
+          );
+        })}
+      </div>
     </nav>
   );
 }
 
 Navbar.propTypes = {
   className: PropTypes.string,
+};
+
+Navbar.defaultProps = {
+  className: "",
 };
 
 export default Navbar;

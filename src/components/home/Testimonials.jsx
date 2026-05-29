@@ -9,7 +9,9 @@ import {
   FiArrowRight,
   FiAward,
   FiShield,
+  FiTrendingUp,
   FiUsers,
+  FiCheckCircle,
 } from "react-icons/fi";
 
 import SectionHeading from "../UI/SectionHeading";
@@ -20,119 +22,133 @@ const testimonials = [
     name: "Sophia Anderson",
     role: "Fashion Enthusiast",
     review:
-      "Elegant completely transformed my shopping experience. The premium quality, luxury styling, and seamless browsing experience feel genuinely world-class.",
+      "Elegant completely transformed my shopping experience. The refined presentation, modern styling, and seamless browsing flow feel truly world-class and thoughtfully curated.",
     rating: 5,
   },
+
   {
     id: 2,
     name: "Daniel Roberts",
-    role: "Premium Member",
+    role: "Member Shopper",
     review:
-      "Everything feels thoughtfully curated—from collections to product presentation. This feels like a true luxury retail experience online.",
+      "Everything feels carefully curated, from the product collections to the overall interface design. It genuinely feels like browsing a luxury fashion boutique online.",
     rating: 5,
   },
+
   {
     id: 3,
     name: "Emily Carter",
     role: "Lifestyle Shopper",
     review:
-      "Beautiful product presentation, premium aesthetics, and effortless navigation. Shopping here feels sophisticated and premium.",
+      "Beautiful product presentation, elegant visuals, and effortless navigation make the entire shopping experience feel refined and sophisticated.",
     rating: 5,
   },
+
   {
     id: 4,
     name: "Michael Turner",
     role: "Corporate Professional",
     review:
-      "I appreciate premium craftsmanship and elegant design, and this storefront delivers exactly that. Clean, polished, and trustworthy.",
+      "I appreciate elegant craftsmanship and polished design, and this storefront delivers a clean, trustworthy, and elevated shopping experience.",
     rating: 5,
   },
+
   {
     id: 5,
     name: "Olivia Bennett",
-    role: "Luxury Fashion Shopper",
+    role: "Fashion Shopper",
     review:
-      "The featured collections feel curated like a boutique luxury brand. I genuinely enjoy browsing here.",
+      "The collections feel thoughtfully selected like a modern fashion boutique. Browsing through the products feels inspiring and premium.",
     rating: 5,
   },
+
   {
     id: 6,
     name: "James Walker",
     role: "Frequent Shopper",
     review:
-      "Smooth shopping experience, premium product presentation, and intuitive navigation. It feels professionally crafted.",
+      "Smooth shopping flow, polished product presentation, and intuitive navigation make the experience feel professionally crafted.",
     rating: 5,
   },
+
   {
     id: 7,
     name: "Charlotte Reed",
     role: "Style Consultant",
     review:
-      "A refined digital shopping experience with premium aesthetics and elegant product storytelling.",
+      "A refined digital shopping experience with elegant visuals, modern layouts, and beautifully presented fashion storytelling.",
     rating: 5,
   },
+
   {
     id: 8,
     name: "Benjamin Scott",
     role: "Luxury Buyer",
     review:
-      "One of the most polished fashion storefronts I’ve browsed. The premium look instantly builds trust.",
+      "One of the most polished fashion storefronts I have explored. The elegant presentation instantly builds trust and confidence.",
     rating: 5,
   },
+
   {
     id: 9,
     name: "Grace Mitchell",
     role: "Fashion Blogger",
     review:
-      "Beautiful luxury styling and premium merchandising. The interface feels high-end and intentional.",
+      "Beautiful styling, elevated aesthetics, and polished visual presentation make the overall experience feel intentional and premium.",
     rating: 5,
   },
+
   {
     id: 10,
     name: "Ethan Cooper",
     role: "Returning Customer",
     review:
-      "The experience feels smooth, premium, and reliable. Product discovery is especially well designed.",
+      "The experience feels smooth, reliable, and modern. Product discovery and overall browsing feel especially well designed.",
     rating: 5,
   },
+
   {
     id: 11,
     name: "Ava Richardson",
     role: "Modern Shopper",
     review:
-      "A luxury storefront experience that feels curated, elegant, and visually impressive from start to finish.",
+      "A visually impressive shopping experience that feels curated, elegant, refined, and thoughtfully designed from start to finish.",
     rating: 5,
   },
+
   {
     id: 12,
     name: "William Harris",
-    role: "Premium Fashion Buyer",
+    role: "Fashion Buyer",
     review:
-      "Trustworthy premium shopping experience with elegant layouts and strong luxury branding.",
+      "Trustworthy shopping experience with elegant layouts, refined collections, and strong modern fashion branding.",
     rating: 5,
   },
+
   {
     id: 13,
     name: "Mia Thompson",
     role: "Curated Style Shopper",
     review:
-      "The premium fashion presentation and polished shopping flow make this experience memorable.",
+      "The polished shopping flow and elevated fashion presentation make the browsing experience memorable and enjoyable.",
     rating: 5,
   },
+
   {
     id: 14,
     name: "Lucas Morgan",
-    role: "Luxury Lifestyle Shopper",
+    role: "Lifestyle Shopper",
     review:
-      "Elegant, modern, and premium. The whole experience feels like browsing a high-end fashion boutique.",
+      "Elegant, modern, and visually refined. The whole experience feels like browsing a sophisticated high-end fashion boutique.",
     rating: 5,
   },
+
   {
     id: 15,
     name: "Harper Collins",
     role: "Fashion Collector",
     review:
-      "Exceptional visual presentation and premium luxury feel. This is how fashion e-commerce should look.",
+      "Exceptional visual presentation, elegant product storytelling, and refined aesthetics make this experience stand out beautifully.",
     rating: 5,
   },
 ];
@@ -142,20 +158,29 @@ const trustHighlights = [
     icon: FiUsers,
     title: "10K+ Happy Shoppers",
     description:
-      "Trusted by fashion lovers who appreciate refined premium experiences.",
+      "Trusted by fashion enthusiasts who appreciate elegant shopping experiences and refined modern collections.",
   },
+
   {
     icon: FiAward,
-    title: "Luxury Experience",
+    title: "Curated Fashion Experience",
     description:
-      "Curated premium collections with elevated digital craftsmanship.",
+      "Thoughtfully selected collections crafted with elevated design aesthetics and refined presentation.",
   },
+
   {
     icon: FiShield,
-    title: "Trusted Platform",
+    title: "Trusted Shopping Platform",
     description:
-      "Elegant, secure, and confidence-driven luxury shopping experience.",
+      "Secure, elegant, and confidence-driven shopping experience designed for modern lifestyles.",
   },
+];
+
+const additionalHighlights = [
+  "Elegant Fashion Collections",
+  "Trusted Shopping Experience",
+  "Modern Luxury Styling",
+  "Curated Customer Favorites",
 ];
 
 const TESTIMONIALS_PER_PAGE = 3;
@@ -207,64 +232,93 @@ function Testimonials() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#110e09] py-20 md:py-28">
-      {/* Luxury Background */}
+    <section className="relative overflow-hidden bg-[#090806] py-24 sm:py-28">
+      {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(245,158,11,0.14),_transparent_28%)]" />
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(217,119,6,0.08),_transparent_34%)]" />
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:90px_90px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:90px_90px]" />
 
       {/* Glow Effects */}
-      <div className="absolute left-[-120px] top-0 h-[260px] w-[260px] rounded-full bg-amber-500/10 blur-3xl" />
+      <div className="absolute left-[-120px] top-0 h-[300px] w-[300px] rounded-full bg-amber-500/10 blur-3xl" />
 
-      <div className="absolute bottom-[-120px] right-[-120px] h-[260px] w-[260px] rounded-full bg-yellow-500/10 blur-3xl" />
+      <div className="absolute bottom-[-120px] right-[-120px] h-[300px] w-[300px] rounded-full bg-yellow-500/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* HEADER */}
-        <SectionHeading
-          badge="Testimonials"
-          title="What Our Premium Customers Say"
-          subtitle="Trusted by fashion enthusiasts who value refined luxury experiences, premium collections, elegant aesthetics, and sophisticated digital craftsmanship."
-          align="center"
-        />
+        {/* Header */}
+        <div className="text-center">
+          <SectionHeading
+            badge="Customer Testimonials"
+            title="What Our Customers Say About Their Shopping Experience"
+            subtitle="Trusted by modern fashion enthusiasts who appreciate elegant design aesthetics, refined collections, seamless browsing experiences, and thoughtfully curated fashion presentation."
+            align="center"
+          />
 
-        {/* TRUST HIGHLIGHTS */}
-        <div className="mt-12 grid gap-5 sm:grid-cols-3">
-          {trustHighlights.map((item) => {
-            const Icon = item.icon;
-
-            return (
+          {/* Highlight Pills */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            {additionalHighlights.map((item) => (
               <div
-                key={item.title}
-                className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.03] p-6 text-center shadow-[0_15px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/20"
+                key={item}
+                className="rounded-full border border-white/10 bg-white/[0.05] px-5 py-3 text-xs font-bold uppercase tracking-[0.16em] text-stone-300 backdrop-blur-xl transition-all duration-300 hover:border-amber-400/25 hover:bg-white/[0.08]"
               >
-                {/* Glow */}
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-amber-400/10 blur-2xl transition-all duration-500 group-hover:bg-amber-400/20" />
-
-                <div className="relative z-10">
-                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-400/20 bg-gradient-to-br from-amber-400/15 to-yellow-500/10 shadow-inner">
-                    <Icon
-                      size={24}
-                      className="text-amber-300"
-                    />
-                  </div>
-
-                  <h3 className="text-lg font-bold tracking-wide text-[#f4e7d2]">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-relaxed text-stone-400">
-                    {item.description}
-                  </p>
-                </div>
+                {item}
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* TESTIMONIAL SLIDER */}
-        <div className="relative mt-16 overflow-hidden">
+        {/* Trust Highlights */}
+        <div className="mt-16">
+          <div className="mb-8 flex items-center justify-center gap-3">
+            <div className="h-px w-14 bg-gradient-to-r from-transparent to-amber-400" />
+
+            <p className="text-xs font-bold uppercase tracking-[0.30em] text-amber-300">
+              Trusted Customer Experience
+            </p>
+
+            <div className="h-px w-14 bg-gradient-to-l from-transparent to-amber-400" />
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {trustHighlights.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.title}
+                  className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.03] p-7 text-center shadow-[0_18px_45px_rgba(0,0,0,0.28)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/20"
+                >
+                  {/* Glow */}
+                  <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-amber-400/10 blur-2xl transition-all duration-500 group-hover:bg-amber-400/20" />
+
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-3xl border border-amber-400/20 bg-gradient-to-br from-amber-400/15 to-yellow-500/10 shadow-inner">
+                      <Icon
+                        size={24}
+                        className="text-amber-300"
+                      />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold tracking-wide text-[#f4e7d2]">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-4 text-sm leading-[1.9] text-stone-400">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Testimonials Slider */}
+        <div className="relative mt-20 overflow-hidden">
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{
@@ -288,19 +342,21 @@ function Testimonials() {
                         key={
                           testimonial.id
                         }
-                        className="group relative overflow-hidden rounded-[34px] border border-white/10 bg-gradient-to-br from-[#1a140d] via-[#24190e] to-[#2f210f] p-8 shadow-[0_22px_60px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-3 hover:border-amber-400/20"
+                        className="group relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-[#19130c] via-[#24190e] to-[#30210f] p-8 shadow-[0_25px_70px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-3 hover:border-amber-400/20"
                       >
                         {/* Glow */}
-                        <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl transition-all duration-500 group-hover:bg-amber-400/20" />
+                        <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-amber-400/10 blur-3xl transition-all duration-500 group-hover:bg-amber-400/20" />
 
                         <div className="relative z-10">
                           {/* Top */}
                           <div className="flex items-start justify-between gap-5">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-400/20 bg-gradient-to-br from-amber-400/15 to-yellow-500/10 shadow-inner">
+                            {/* Quote Icon */}
+                            <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-amber-400/20 bg-gradient-to-br from-amber-400/15 to-yellow-500/10 shadow-inner">
                               <FaQuoteLeft className="text-2xl text-amber-300" />
                             </div>
 
-                            <div className="flex gap-1">
+                            {/* Rating */}
+                            <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-xl">
                               {Array.from({
                                 length:
                                   testimonial.rating,
@@ -319,7 +375,7 @@ function Testimonials() {
                           </div>
 
                           {/* Review */}
-                          <p className="mt-7 text-[15px] leading-[1.9] text-stone-300">
+                          <p className="mt-8 text-[15px] leading-[2] text-stone-300">
                             &ldquo;
                             {
                               testimonial.review
@@ -328,7 +384,7 @@ function Testimonials() {
                           </p>
 
                           {/* Footer */}
-                          <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-6">
+                          <div className="mt-10 flex items-center justify-between border-t border-white/10 pt-6">
                             <div>
                               <h3 className="text-lg font-bold tracking-wide text-[#f4e7d2]">
                                 {
@@ -336,14 +392,15 @@ function Testimonials() {
                                 }
                               </h3>
 
-                              <p className="mt-1 text-sm text-stone-400">
+                              <p className="mt-2 text-sm text-stone-400">
                                 {
                                   testimonial.role
                                 }
                               </p>
                             </div>
 
-                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-400/20 bg-black/20 backdrop-blur-xl">
+                            {/* Arrow Button */}
+                            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-400/20 bg-black/20 backdrop-blur-xl transition-all duration-300 group-hover:bg-amber-400/10">
                               <FiArrowRight className="text-amber-300 transition-transform duration-300 group-hover:translate-x-1" />
                             </div>
                           </div>
@@ -357,8 +414,8 @@ function Testimonials() {
           </div>
         </div>
 
-        {/* PAGINATION DOTS */}
-        <div className="mt-10 flex items-center justify-center gap-3">
+        {/* Pagination */}
+        <div className="mt-12 flex items-center justify-center gap-4">
           {groupedTestimonials.map(
             (_, index) => (
               <button
@@ -367,10 +424,10 @@ function Testimonials() {
                 onClick={() =>
                   setCurrentPage(index)
                 }
-                className={`h-3 rounded-full transition-all duration-300 ${
+                className={`transition-all duration-300 ${
                   currentPage === index
-                    ? "w-10 bg-gradient-to-r from-amber-400 to-yellow-500"
-                    : "w-3 bg-white/20 hover:bg-white/40"
+                    ? "h-3 w-12 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 shadow-lg"
+                    : "h-3 w-3 rounded-full bg-white/20 hover:bg-white/40"
                 }`}
                 aria-label={`Go to testimonials page ${
                   index + 1
@@ -378,6 +435,56 @@ function Testimonials() {
               />
             )
           )}
+        </div>
+
+        {/* Bottom Trust Section */}
+        <div className="mt-20 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              icon: FiTrendingUp,
+              title: "Modern Fashion Experience",
+              description:
+                "Elegant shopping experiences designed with refined digital craftsmanship and modern aesthetics.",
+            },
+
+            {
+              icon: FiCheckCircle,
+              title: "Trusted Customer Satisfaction",
+              description:
+                "Thousands of shoppers trust our collections for quality, elegance, and reliable service.",
+            },
+
+            {
+              icon: FiShield,
+              title: "Secure Shopping Platform",
+              description:
+                "Safe browsing, protected checkout systems, and confidence-driven shopping experiences.",
+            },
+          ].map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.title}
+                className="rounded-[32px] border border-white/10 bg-white/[0.04] p-7 text-center backdrop-blur-2xl"
+              >
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-amber-400 to-yellow-500 shadow-lg">
+                  <Icon
+                    size={24}
+                    className="text-[#23180a]"
+                  />
+                </div>
+
+                <h4 className="mt-6 text-lg font-bold text-[#f4e7d2]">
+                  {item.title}
+                </h4>
+
+                <p className="mt-4 text-sm leading-[1.9] text-stone-400">
+                  {item.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
