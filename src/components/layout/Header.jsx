@@ -1,34 +1,40 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  FiHeart,
-  FiMenu,
-  FiShoppingBag,
-  FiUser,
-} from "react-icons/fi";
+import { FiHeart, FiMenu, FiShoppingBag, FiUser } from "react-icons/fi";
 
 import Navbar from "./Navbar";
 import SearchBar from "./SearchBar";
 import MobileMenu from "./MobileMenu";
+
 import ROUTES from "../../config/routes";
 
+import { useAuthContext } from "../../context/AuthContext";
+import { useWishlistContext } from "../../context/WishlistContext";
+import { useCartContext } from "../../context/CartContext";
+
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] =
-    useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const wishlistCount = 2;
-  const cartCount = 3;
+  const { isAuthenticated, user, logout } = useAuthContext();
+
+  const { wishlistCount } = useWishlistContext();
+
+  const { cartCount } = useCartContext();
 
   const handleSearch = (query) => {
     if (!query.trim()) {
       return;
     }
 
-    navigate(
-      `${ROUTES.SEARCH_RESULTS}?q=${query}`
-    );
+    navigate(`${ROUTES.SEARCH_RESULTS}?q=${query}`);
+  };
+
+  const handleLogout = () => {
+    logout();
+
+    navigate(ROUTES.HOME);
   };
 
   return (
@@ -53,16 +59,13 @@ function Header() {
               className="group relative shrink-0"
               aria-label="Go to homepage"
             >
-              {/* Logo Glow */}
               <div className="absolute inset-0 bg-amber-400/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               <div className="relative">
-                {/* Brand */}
                 <h1 className="bg-gradient-to-r from-[#f8df9e] via-[#fff4d6] to-[#c8922e] bg-clip-text text-3xl font-black tracking-[0.28em] text-transparent transition-all duration-500 group-hover:brightness-110">
                   ELEGANT
                 </h1>
 
-                {/* Subtitle */}
                 <div className="mt-2 flex items-center gap-3">
                   <div className="h-px w-8 bg-gradient-to-r from-amber-500 via-amber-300 to-transparent" />
 
@@ -75,14 +78,10 @@ function Header() {
 
             {/* Navigation + Search */}
             <div className="hidden items-center lg:flex">
-              {/* Navbar */}
               <Navbar />
 
-              {/* Searchbar */}
               <div className="ml-8 mr-8 w-[360px] 2xl:w-[400px]">
-                <SearchBar
-                  onSearch={handleSearch}
-                />
+                <SearchBar onSearch={handleSearch} />
               </div>
             </div>
           </div>
@@ -95,7 +94,6 @@ function Header() {
               aria-label="Wishlist"
               className="group relative flex h-[60px] w-[60px] items-center justify-center overflow-visible rounded-[22px] border border-white/[0.07] bg-gradient-to-b from-white/[0.05] to-white/[0.02] text-stone-300 shadow-[0_10px_30px_rgba(0,0,0,0.38)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-0.5 hover:border-amber-400/25 hover:bg-amber-500/10 hover:text-[#f8e7be]"
             >
-              {/* Premium Glow */}
               <div className="absolute inset-0 rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               <FiHeart
@@ -116,7 +114,6 @@ function Header() {
               aria-label="Cart"
               className="group relative flex h-[60px] w-[60px] items-center justify-center overflow-visible rounded-[22px] border border-white/[0.07] bg-gradient-to-b from-white/[0.05] to-white/[0.02] text-stone-300 shadow-[0_10px_30px_rgba(0,0,0,0.38)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-0.5 hover:border-amber-400/25 hover:bg-amber-500/10 hover:text-[#f8e7be]"
             >
-              {/* Premium Glow */}
               <div className="absolute inset-0 rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               <FiShoppingBag
@@ -132,27 +129,105 @@ function Header() {
             </Link>
 
             {/* Account */}
-            <Link
-              to={ROUTES.LOGIN}
-              aria-label="Account"
-              className="group hidden h-[60px] w-[60px] items-center justify-center overflow-hidden rounded-[22px] border border-white/[0.07] bg-gradient-to-b from-white/[0.05] to-white/[0.02] text-stone-300 shadow-[0_10px_30px_rgba(0,0,0,0.38)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-0.5 hover:border-amber-400/25 hover:bg-amber-500/10 hover:text-[#f8e7be] sm:flex"
-            >
-              {/* Premium Glow */}
-              <div className="absolute inset-0 rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              <FiUser
-                size={21}
-                className="relative z-10 transition-all duration-500 group-hover:scale-110"
-              />
-            </Link>
+            {isAuthenticated ? (
+              <div className="hidden items-center gap-3 sm:flex">
+                <div className="rounded-2xl border border-amber-500/10 bg-amber-500/5 px-4 py-2">
+                  <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+                    Welcome
+                  </p>
 
-            {/* Mobile Menu */}
+                  <p className="max-w-[120px] truncate text-sm font-semibold text-amber-100">
+                    {user?.name}
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="
+              flex
+              h-[60px]
+              items-center
+              justify-center
+              rounded-[22px]
+              border
+              border-red-500/20
+              bg-red-500/10
+              px-5
+              text-sm
+              font-semibold
+              text-red-300
+              transition-all
+              duration-300
+              hover:border-red-400/40
+              hover:bg-red-500/20
+            "
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                to={ROUTES.LOGIN}
+                aria-label="Login"
+                className="
+            group
+            hidden
+            h-[60px]
+            w-[60px]
+            items-center
+            justify-center
+            overflow-hidden
+            rounded-[22px]
+            border
+            border-white/[0.07]
+            bg-gradient-to-b
+            from-white/[0.05]
+            to-white/[0.02]
+            text-stone-300
+            shadow-[0_10px_30px_rgba(0,0,0,0.38)]
+            backdrop-blur-2xl
+            transition-all
+            duration-500
+            hover:-translate-y-0.5
+            hover:border-amber-400/25
+            hover:bg-amber-500/10
+            hover:text-[#f8e7be]
+            sm:flex
+          "
+              >
+                <div className="absolute inset-0 rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                <FiUser
+                  size={21}
+                  className="relative z-10 transition-all duration-500 group-hover:scale-110"
+                />
+              </Link>
+            )}
+
+            {/* Mobile Menu Button */}
+
             <button
               type="button"
-              onClick={() =>
-                setIsMenuOpen(true)
-              }
-              className="flex h-[60px] w-[60px] items-center justify-center rounded-[22px] border border-amber-500/10 bg-amber-500/10 text-amber-200 transition-all duration-500 hover:border-amber-400/30 hover:bg-amber-400/20 lg:hidden"
+              onClick={() => setIsMenuOpen(true)}
+              className="
+          flex
+          h-[60px]
+          w-[60px]
+          items-center
+          justify-center
+          rounded-[22px]
+          border
+          border-amber-500/10
+          bg-amber-500/10
+          text-amber-200
+          transition-all
+          duration-500
+          hover:border-amber-400/30
+          hover:bg-amber-400/20
+          lg:hidden
+        "
               aria-label="Open mobile menu"
             >
               <FiMenu size={22} />
@@ -161,13 +236,7 @@ function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMenuOpen}
-        onClose={() =>
-          setIsMenuOpen(false)
-        }
-      />
+      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </>
   );
 }
