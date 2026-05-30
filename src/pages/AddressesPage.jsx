@@ -1,23 +1,21 @@
-import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiAward,
-  FiCheckCircle,
-  FiClock,
-  FiPackage,
+  FiHome,
+  FiMapPin,
+  FiPlus,
   FiShield,
-  FiTruck,
-  FiTrendingUp,
+  FiStar,
 } from "react-icons/fi";
 
 import Layout from "../components/layout/Layout";
 
 import AccountSidebar from "../components/accounts/AccountSidebar";
-import OrderHistory from "../components/accounts/OrderHistory";
+import AddressBook from "../components/accounts/AddressBook";
 
 import useAuth from "../hooks/useAuth";
 
-function OrdersPage() {
+function AddressesPage() {
   const navigate = useNavigate();
 
   const {
@@ -25,37 +23,41 @@ function OrdersPage() {
     logout,
   } = useAuth();
 
-  const orders = user?.orders || [];
+  const addresses =
+    user?.addresses || [];
 
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
-  const handleViewOrder = (order) => {
-    console.log("View Order:", order);
+  const handleAddAddress = () => {
+    console.log("Add Address");
   };
 
-  const orderStats = useMemo(() => {
-    return {
-      total: orders.length,
-      delivered: orders.filter(
-        (order) =>
-          order.status?.toLowerCase() ===
-          "delivered"
-      ).length,
-      processing: orders.filter(
-        (order) =>
-          order.status?.toLowerCase() ===
-          "processing"
-      ).length,
-      shipped: orders.filter(
-        (order) =>
-          order.status?.toLowerCase() ===
-          "shipped"
-      ).length,
-    };
-  }, [orders]);
+  const handleEditAddress = (
+    address
+  ) => {
+    console.log(
+      "Edit Address:",
+      address
+    );
+  };
+
+  const handleDeleteAddress = (
+    address
+  ) => {
+    console.log(
+      "Delete Address:",
+      address
+    );
+  };
+
+  const defaultAddress =
+    addresses.find(
+      (address) =>
+        address.isDefault
+    );
 
   return (
     <Layout>
@@ -164,11 +166,11 @@ function OrdersPage() {
                     text-[11px]
                     font-bold
                     uppercase
-                    tracking-[0.28em]
+                    tracking-[0.25em]
                     text-[#c6a769]
                   "
                 >
-                  Premium Order Center
+                  Premium Address Center
                 </span>
               </div>
 
@@ -182,10 +184,10 @@ function OrdersPage() {
                   lg:text-6xl
                 "
               >
-                Purchase &
+                Address &
                 <span className="text-[#d9bf87]">
                   {" "}
-                  Delivery Timeline
+                  Delivery Hub
                 </span>
               </h1>
 
@@ -198,16 +200,15 @@ function OrdersPage() {
                   text-zinc-400
                 "
               >
-                Track shipments, monitor order progress,
-                review completed purchases, and manage
-                your entire premium shopping journey
-                from one luxury dashboard.
+                Manage all shipping, billing,
+                gifting, and preferred delivery
+                destinations from one secure
+                premium dashboard.
               </p>
             </div>
           </section>
 
           <div className="mt-8" />
-
                     <div
             className="
               grid
@@ -236,11 +237,8 @@ function OrdersPage() {
                     className="
                       mb-6
                       flex
-                      flex-col
-                      gap-4
-                      lg:flex-row
-                      lg:items-center
-                      lg:justify-between
+                      items-center
+                      justify-between
                     "
                   >
                     <div>
@@ -251,7 +249,7 @@ function OrdersPage() {
                           text-white
                         "
                       >
-                        Order Performance Analytics
+                        Address Analytics
                       </h2>
 
                       <p
@@ -261,8 +259,8 @@ function OrdersPage() {
                           text-zinc-400
                         "
                       >
-                        Real-time overview of your
-                        purchasing activity.
+                        Quick overview of your
+                        delivery infrastructure.
                       </p>
                     </div>
 
@@ -285,7 +283,7 @@ function OrdersPage() {
                       />
 
                       <span className="text-sm text-white">
-                        Live Tracking Active
+                        Secure Storage
                       </span>
                     </div>
                   </div>
@@ -294,8 +292,7 @@ function OrdersPage() {
                     className="
                       grid
                       gap-5
-                      sm:grid-cols-2
-                      xl:grid-cols-4
+                      lg:grid-cols-3
                     "
                   >
                     <div
@@ -307,21 +304,31 @@ function OrdersPage() {
                         p-6
                       "
                     >
-                      <FiPackage
-                        size={24}
-                        className="text-[#c6a769]"
-                      />
+                      <div
+                        className="
+                          flex
+                          h-14
+                          w-14
+                          items-center
+                          justify-center
+                          rounded-2xl
+                          bg-[#c6a769]/10
+                          text-[#c6a769]
+                        "
+                      >
+                        <FiMapPin size={24} />
+                      </div>
 
                       <p className="mt-5 text-sm text-zinc-500">
-                        Total Orders
+                        Saved Addresses
                       </p>
 
                       <h3 className="mt-2 text-4xl font-bold text-white">
-                        {orderStats.total}
+                        {addresses.length}
                       </h3>
 
                       <p className="mt-2 text-xs text-zinc-500">
-                        Lifetime purchases
+                        Active delivery destinations
                       </p>
                     </div>
 
@@ -334,21 +341,40 @@ function OrdersPage() {
                         p-6
                       "
                     >
-                      <FiCheckCircle
-                        size={24}
-                        className="text-emerald-400"
-                      />
+                      <div
+                        className="
+                          flex
+                          h-14
+                          w-14
+                          items-center
+                          justify-center
+                          rounded-2xl
+                          bg-emerald-500/10
+                          text-emerald-400
+                        "
+                      >
+                        <FiHome size={24} />
+                      </div>
 
                       <p className="mt-5 text-sm text-zinc-500">
-                        Delivered
+                        Default Location
                       </p>
 
-                      <h3 className="mt-2 text-4xl font-bold text-white">
-                        {orderStats.delivered}
+                      <h3
+                        className="
+                          mt-2
+                          truncate
+                          text-xl
+                          font-bold
+                          text-white
+                        "
+                      >
+                        {defaultAddress?.label ||
+                          "Not Set"}
                       </h3>
 
                       <p className="mt-2 text-xs text-zinc-500">
-                        Successfully completed
+                        Primary checkout destination
                       </p>
                     </div>
 
@@ -356,34 +382,7 @@ function OrdersPage() {
                       className="
                         rounded-[1.75rem]
                         border
-                        border-white/10
-                        bg-black/20
-                        p-6
-                      "
-                    >
-                      <FiClock
-                        size={24}
-                        className="text-amber-400"
-                      />
-
-                      <p className="mt-5 text-sm text-zinc-500">
-                        Processing
-                      </p>
-
-                      <h3 className="mt-2 text-4xl font-bold text-white">
-                        {orderStats.processing}
-                      </h3>
-
-                      <p className="mt-2 text-xs text-zinc-500">
-                        Preparing for dispatch
-                      </p>
-                    </div>
-
-                    <div
-                      className="
-                        rounded-[1.75rem]
-                        border
-                        border-[#c6a769]/15
+                        border-[#c6a769]/20
                         bg-gradient-to-br
                         from-[#c6a769]/10
                         via-[#c6a769]/5
@@ -391,112 +390,92 @@ function OrdersPage() {
                         p-6
                       "
                     >
-                      <FiTruck
-                        size={24}
-                        className="text-sky-400"
-                      />
-
-                      <p className="mt-5 text-sm text-zinc-500">
-                        In Transit
-                      </p>
-
-                      <h3 className="mt-2 text-4xl font-bold text-white">
-                        {orderStats.shipped}
-                      </h3>
-
-                      <p className="mt-2 text-xs text-zinc-500">
-                        Currently on the way
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    className="
-                      mt-6
-                      rounded-[1.75rem]
-                      border
-                      border-[#c6a769]/15
-                      bg-gradient-to-r
-                      from-[#c6a769]/10
-                      via-[#c6a769]/5
-                      to-transparent
-                      p-5
-                    "
-                  >
-                    <div
-                      className="
-                        flex
-                        flex-col
-                        gap-4
-                        lg:flex-row
-                        lg:items-center
-                        lg:justify-between
-                      "
-                    >
-                      <div>
-                        <div
-                          className="
-                            inline-flex
-                            items-center
-                            gap-2
-                          "
-                        >
-                          <FiTrendingUp
-                            size={16}
-                            className="text-[#c6a769]"
-                          />
-
-                          <span
-                            className="
-                              text-xs
-                              font-bold
-                              uppercase
-                              tracking-[0.2em]
-                              text-[#c6a769]
-                            "
-                          >
-                            Purchase Insights
-                          </span>
-                        </div>
-
-                        <h3 className="mt-2 text-lg font-bold text-white">
-                          Premium Shopping Activity
-                        </h3>
-
-                        <p className="mt-2 text-sm text-zinc-400">
-                          Your account continues to
-                          enjoy priority order handling,
-                          shipment monitoring, and
-                          premium customer support.
-                        </p>
-                      </div>
-
                       <div
                         className="
+                          flex
+                          h-14
+                          w-14
+                          items-center
+                          justify-center
                           rounded-2xl
-                          border
-                          border-[#c6a769]/20
                           bg-[#c6a769]/10
-                          px-5
-                          py-4
+                          text-[#c6a769]
                         "
                       >
-                        <p className="text-xs text-zinc-400">
-                          Success Rate
-                        </p>
-
-                        <h4 className="mt-1 text-2xl font-bold text-[#d9bf87]">
-                          98%
-                        </h4>
+                        <FiStar size={24} />
                       </div>
+
+                      <h3
+                        className="
+                          mt-5
+                          text-xl
+                          font-bold
+                          text-white
+                        "
+                      >
+                        Add New Address
+                      </h3>
+
+                      <p
+                        className="
+                          mt-2
+                          text-sm
+                          leading-relaxed
+                          text-zinc-400
+                        "
+                      >
+                        Save additional delivery
+                        locations for faster
+                        purchases and gifting.
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={
+                          handleAddAddress
+                        }
+                        className="
+                          mt-5
+                          flex
+                          w-full
+                          items-center
+                          justify-center
+                          gap-3
+                          rounded-2xl
+                          border
+                          border-[#c6a769]/30
+                          bg-gradient-to-r
+                          from-[#c6a769]
+                          via-[#d9bf87]
+                          to-[#b89255]
+                          px-5
+                          py-4
+                          font-semibold
+                          text-[#120d09]
+                          transition-all
+                          duration-300
+                          hover:-translate-y-1
+                        "
+                      >
+                        <FiPlus size={18} />
+                        Add New Address
+                      </button>
                     </div>
                   </div>
                 </div>
               </section>
 
-              <OrderHistory
-                orders={orders}
-                onViewOrder={handleViewOrder}
+              <AddressBook
+                addresses={addresses}
+                onAddAddress={
+                  handleAddAddress
+                }
+                onEditAddress={
+                  handleEditAddress
+                }
+                onDeleteAddress={
+                  handleDeleteAddress
+                }
               />
             </div>
           </div>
@@ -506,4 +485,4 @@ function OrdersPage() {
   );
 }
 
-export default OrdersPage;
+export default AddressesPage;
