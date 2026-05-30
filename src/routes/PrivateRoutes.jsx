@@ -10,6 +10,11 @@ import Layout from "../components/layout/Layout";
 import CartPage from "../pages/CartPage";
 import WishlistPage from "../pages/WishlistPage";
 
+import AccountPage from "../pages/AccountPage";
+import ProfilePage from "../pages/ProfilePage";
+import OrdersPage from "../pages/OrdersPage";
+import AddressesPage from "../pages/AddressesPage";
+
 import { useAuthContext } from "../context/AuthContext";
 
 function ProtectedRoute({
@@ -44,8 +49,6 @@ ProtectedRoute.propTypes = {
 function PrivateRoutes() {
   return (
     <Routes>
-      {/* Cart */}
-
       <Route
         path="/cart"
         element={
@@ -56,8 +59,6 @@ function PrivateRoutes() {
           </ProtectedRoute>
         }
       />
-
-      {/* Wishlist */}
 
       <Route
         path="/wishlist"
@@ -70,70 +71,40 @@ function PrivateRoutes() {
         }
       />
 
-      {/* Future Account Routes */}
-
-      {/*
       <Route
         path="/account"
         element={
           <ProtectedRoute>
-            <Layout>
-              <AccountPage />
-            </Layout>
+            <AccountPage />
           </ProtectedRoute>
         }
       />
 
       <Route
-        path="/profile"
+        path="/account/profile"
         element={
           <ProtectedRoute>
-            <Layout>
-              <ProfilePage />
-            </Layout>
+            <ProfilePage />
           </ProtectedRoute>
         }
       />
 
       <Route
-        path="/orders"
+        path="/account/orders"
         element={
           <ProtectedRoute>
-            <Layout>
-              <OrdersPage />
-            </Layout>
+            <OrdersPage />
           </ProtectedRoute>
         }
       />
 
       <Route
-        path="/addresses"
+        path="/account/addresses"
         element={
           <ProtectedRoute>
-            <Layout>
-              <AddressesPage />
-            </Layout>
+            <AddressesPage />
           </ProtectedRoute>
         }
-      />
-
-      <Route
-        path="/checkout"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <CheckoutPage />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      */}
-
-      {/* Fallback Route */}
-
-      <Route
-        path="*"
-        element={null}
       />
     </Routes>
   );

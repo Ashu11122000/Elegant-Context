@@ -26,7 +26,12 @@ function PublicOnlyRoute({
     useAuthContext();
 
   if (isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return (
+      <Navigate
+        to="/"
+        replace
+      />
+    );
   }
 
   return children;
@@ -40,8 +45,6 @@ PublicOnlyRoute.propTypes = {
 function PublicRoutes() {
   return (
     <Routes>
-      {/* Store Routes */}
-
       <Route
         path="/"
         element={
@@ -77,8 +80,6 @@ function PublicRoutes() {
           </Layout>
         }
       />
-
-      {/* Authentication Routes */}
 
       <Route
         path="/login"
